@@ -1,0 +1,183 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html{
+  font-family: Arial, Helvetica, sans-serif;
+}
+/* Phần Header*/
+#nav{
+  display: inline-block;
+}
+
+#header{
+  height: 46px;
+  background: #000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+
+#nav, .subnav{
+  list-style: none;
+}
+#nav > li{
+  display: inline-block;
+}
+#nav li{
+  position: relative;
+}
+
+#nav > li > a{
+  color: #fff;
+  text-transform: uppercase;
+}
+
+#nav li a{
+  text-decoration: none;
+  line-height: 46px;
+  padding: 0 20px;
+  display: block;
+}
+#nav li:hover .subnav{
+  display: block;
+}
+
+#nav > li:hover > a{
+  color: #000;
+  background-color: #ccc;
+}
+
+#nav .subnav{
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+#nav .subnav a{
+  color: #000;
+}
+#nav .subnav li:hover{
+  color: #000;
+  background-color: #ccc;
+  opacity:1;
+}
+
+/* Phần ICON*/
+#header .search-btn{
+  float: right;
+  padding: 0 10px;
+  cursor: pointer;
+}
+#header .search-btn:hover{
+  background-color: #f44336;
+}
+#header .search-icon{
+  color: #fff;
+  font-size: 20px;
+  line-height: 46px;
+}
+/* user */
+#header .user-btn{
+  float: right;
+  padding: 0 10px;
+  cursor: pointer;
+}
+#header .user-btn:hover{
+  background-color: #f44336;
+}
+#header .user-icon{
+  color: #fff;
+  font-size: 20px;
+  line-height: 46px;
+}
+/* shopping */
+#header .shopping-btn{
+  float: right;
+  padding: 0 10px;
+  cursor: pointer;
+}
+#header .shopping-btn:hover{
+  background-color: #f44336;
+}
+#header .shopping-icon{
+  color: #fff;
+  font-size: 20px;
+  line-height: 46px;
+}
+
+
+/* Phần Slider*/
+#slider{
+  margin-top: 20px;
+  padding-top: 50%;
+  background: url('../img/Slider/Slider1.png') top center / cover no-repeat;
+}
+
+/* Phần New Collection*/
+#content{
+  background-color: antiquewhite;
+  height: 600px;
+}
+ #content .content-section{
+  width: 800px;
+  padding: 64px 0;
+  margin-left: auto;
+  margin-right: auto;
+ }
+
+ #content .section-heading{
+  font-size: 30px;
+  text-align: center;
+  font-weight: 500;
+  text-transform: uppercase;
+ }
+ #content .section-sub-heading{
+  font-size: 15px;
+  text-align: center;
+  margin-top: 8px;
+  font-style: italic;
+ }
+#content .list-item{
+  margin-top: 48px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+ }
+#content .item-img{
+  margin-top: 15px;
+  width: 250px;
+}
+
+/* Phần sản phẩm bán chạy*/
+.sanpham-section{
+  background-color: #fdf9f5;
+  min-height: 600px;
+
+}
+
+/* Phần Hot items*/
+.sanpham-list{
+  margin-top: 32px;
+
+}
+.sanpham-hot .sanpham-img{
+  height: 300px;
+  width: 250px;
+}
+.sanpham-hot1 .sanpham-img{
+  height: 700px;
+  width: 500px;
+
+}
+.sanpham-list{
+  display: grid;
+  grid-template-columns: 1fr 1fr 3fr;
+}
+
+.sanpham-hot1{
+  grid-row: 1 / 4;
+}
