@@ -3,20 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Cellz.clothing</title>
   <link rel="stylesheet" href="./assets/css/style.css">
   <link rel="stylesheet" href="./assets/icon/themify-icons-font/themify-icons/themify-icons.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
 </head>
 <body>
   <!----Header-->
 <div id="main">
   <div id="header">
     <ul id="nav">
-    <li><a href="">Home</a></li>
+    <li><a href="#">Home</a></li>
       <li>
         <a href="">Shopping</a>
         <ul class="subnav">
@@ -27,21 +24,35 @@
         </ul>
       </li>
       <li><a href="">Instagram</a></li>
-      <li><a href="">Contact</a></li>
-      <li><a href="">Us</a></li>
+      <li><a href="">About Us</a></li>
     </ul>
 <!----End Header-->
 
 <!----Icon-->
+<!---shopping-->
+<!---Gio hang-->
 <div class="shopping-btn">
   <i class="shopping-icon ti-shopping-cart"></i>
+  <span class="shopping-notice">3</span>
+<!---No item-->
+  <div class="shopping_list shopping_list--no-item">
+    <img src="./assets/img/Slider/giohang.png" alt="" class="shopping-no-item-img">
   </div>
-<div class="search-btn">
-  <i class="search-icon ti-search"></i>
   </div>
+
+<!---user-->
   <div class="user-btn">
     <i class="user-icon ti-user"></i>
   </div>
+<!-- Search-->
+  <div class="search-btn_tem">
+    <form action="" id="search-box">
+      <input type="text" id="search-text"
+      placeholder="Search your item" required>
+      <button id="search-btn"><i class="search-icon ti-search"></i></button>
+    </form>
+    </div>
+
   </div>
 <!----End Icon-->
 
@@ -70,10 +81,10 @@
     </div>
 
 
-<!----Sản phẩm bán chạy-->
-<div class="sanpham-section">
-  <div class="content-section">
-    <h2 class="section-heading">HOT IMTEMS</h2>
+    <!----Sản phẩm bán chạy-->
+    <div class="sanpham-section">
+      <h2 class="section-heading">HOT ITEMS</h2>
+
     <!----HOT IMTEMS-->
     <div class="sanpham-list">
       <div class="sanpham-hot">
@@ -93,7 +104,7 @@
       </div>
 
       <div class="sanpham-hot1">
-        <img src="./assets/img/item/ga1.jpg" alt="Jumpsuit Summer" class="sanpham-img">
+        <img src="./assets/img/item/ga1.jpg" alt="Jumpsuit Summer" class="sanpham-img1">
       </div>
 
       <div class="sanpham-hot">
@@ -111,18 +122,44 @@
           <a href="#" class="sanpham-btn">BUY NOW</a>
         </div>
       </div>
-
     </div>
+  </div>
 
+<!----IMTEMS-->
+<div class="slider">
+  <h2 class="section-heading">ITEMS</h2>
+  <div class="slider_img">
+    <input type="radio" name="inputslider" id="img1">
+    <input type="radio" name="inputslider" id="img2">
+    <input type="radio" name="inputslider" id="img3">
 
+    <img src="./assets/img/item/Moon3.png" alt="img1" class="imgslider1">
+    <img src="./assets/img/item/Moon2.png" alt="img2" class="imgslider2">
+    <img src="./assets/img/item/Moon1.png" alt="img3" class="imgslider3">
+  </div>
+  <div class="lableslider">
+    <label for="img1"></label>
+    <label for="img2"></label>
+    <label for="img3"></label>
+  </div>
+  </div>
+
+<!----footer-->
+  <div id="footer">
+      <div class="anhbia">
+        <img src="./assets/img/Slider/a.jpg" alt="bia" class="anhbia-img">
+      </div>
+      <p class="about">About Us</p>
+      <div class="socical-list">
+        <a href=""><i class="ti-truck"></i></a>
+        <a href=""><i class="ti-package"></i></a>
+        <a href=""><i class="ti-headphone-alt"></i></a>
+        <a href=""><i class="ti-instagram"></i></a>
+      </div>
+    </div>
   </div>
 </div>
+</div>
 
-
-
-
-  <div id="footer">
-
-  </div>
 </body>
 </html>
