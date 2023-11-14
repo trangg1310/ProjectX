@@ -1,0 +1,39 @@
+{
+  "name": "projectx",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --exec babel-node src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trangg1310/ProjectX.git"
+  },
+  "author": "trang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/trangg1310/ProjectX/issues"
+  },
+  "homepage": "https://github.com/trangg1310/ProjectX#readme",
+  "dependencies": {
+    "@babel/core": "7.23.2",
+    "@babel/node": "7.22.19",
+    "@babel/preset-env": "7.23.2",
+    "bcrypt": "5.1.1",
+    "body-parser": "1.20.2",
+    "cors": "2.8.5",
+    "dotenv": "16.3.1",
+    "ejs": "3.1.9",
+    "express": "4.18.2",
+    "express-flash": "0.0.2",
+    "express-session": "1.17.3",
+    "moment": "2.29.4",
+    "mysql2": "3.6.3",
+    "nodemon": "3.0.1",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0",
+    "toastify-js": "1.12.0"
+  }
+}
