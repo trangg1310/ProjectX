@@ -14,12 +14,12 @@
       html{
         font-family: Arial, Helvetica, sans-serif;
       }
-      
+
       /* Phần Header*/
       #nav{
         display: inline-block;
       }
-      
+
       #header{
         height: 46px;
         background: #000;
@@ -28,8 +28,8 @@
         left: 0;
         right: 0;
       }
-      
-      
+
+
       #nav, .subnav{
         list-style: none;
       }
@@ -39,12 +39,12 @@
       #nav li{
         position: relative;
       }
-      
+
       #nav > li > a{
         color: #fff;
         text-transform: uppercase;
       }
-      
+
       #nav li a{
         text-decoration: none;
         line-height: 46px;
@@ -54,17 +54,18 @@
       #nav li:hover .subnav{
         display: block;
       }
-      
+
       #nav > li:hover > a{
         color: #000;
         background-color: #ccc;
       }
-      
+
       #nav .subnav{
         display: none;
         position: absolute;
         background-color: #fff;
         box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        width: 150px;
       }
       #nav .subnav a{
         color: #000;
@@ -73,22 +74,22 @@
         color: #000;
         background-color: #ccc;
         opacity:1;
+        width: 150px;
       }
-      
+
       /* Phần ICON*/
       #header .search-btn_tem{
         float: right;
         padding: 0 15px;
         cursor: pointer;
       }
-      
+
       #search-box{
         background: #000;
         height: 46px;
       }
       #search-box #search-text{
         background-color: #fff;
-      
         border: none;
         outline: none;
         padding: 10px 0;
@@ -111,7 +112,7 @@
       #header #search-box #search-btn:hover{
         background-color: #f44336;
       }*/
-      
+
       #header #search-box:hover #search-text {
         width: 300px;
         padding: 0 20px ;
@@ -119,8 +120,12 @@
       ::placeholder{
         font-size: 15px;
       }
-      
-      
+
+
+
+
+
+
       /* user */
       #header .user-btn{
         float: right;
@@ -136,8 +141,8 @@
         font-size: 20px;
         line-height: 46px;
       }
-      
-      
+
+
       /* shopping */
       #header .shopping-btn{
         float: right;
@@ -189,9 +194,9 @@
         top: -8px;
         font-size: 15px;
       }
-      
-      
-      
+
+
+
       /*
       #header .shopping-btn:hover{
         background-color: #f44336;
@@ -201,15 +206,15 @@
         font-size: 20px;
         line-height: 46px;
       }
-      
-      
+
+
       /* Phần Slider*/
       #slider{
         margin-top: 46px;
         padding-top: 50%;
         background: url('image/Slider/Slider1.png') top center / cover no-repeat;
       }
-      
+
       /* Phần New Collection*/
       #content{
         background-color: antiquewhite;
@@ -222,7 +227,7 @@
         margin-left: auto;
         margin-right: auto;
        }
-      
+
        #content .section-heading{
         font-size: 30px;
         text-align: center;
@@ -245,25 +250,25 @@
         height: 300px;
         width: 250px;
         padding: 0 20px;
-      
+
       }
-      
-      
+
+
       /* Phần sản phẩm bán chạy*/
       #content .sanpham-section{
         background-color: #fff;
-      
+
       }
       .sanpham-section .section-heading{
         margin-top: 3%;
-      
-      
+
+
       }
       /* Phần Hot items*/
       .sanpham-list{
         margin-top: 32px;
         padding: 10px 150px;
-      
+
       }
       .sanpham-hot{
         padding: 0 15px;
@@ -276,7 +281,7 @@
       .sanpham-hot1 .sanpham-img{
         height: 700px;
         width: 500px;
-      
+
       }
       .sanpham-list{
         display: grid;
@@ -292,7 +297,7 @@
         font-size: 18px;
         text-align: center;
         margin-top: 6px;
-      
+
       }
       .sanpham-btn{
         color: #f7b271;
@@ -307,7 +312,7 @@
         color: #000;
         background-color: #ccc;
       }
-      
+
       /*IMTEMS*/
       #content .slider{
         background-color: antiquewhite;
@@ -355,19 +360,19 @@
       #img3:checked ~imgslider3{
         margin-left: -300%;
       }
-      
+
       /*footer*/
-      
+
       #footer{
         background-color: black;
         padding: 30px 5px;
         text-align: center;
-      
+
       }
-      
+
       #footer .anhbia-img{
        width: 500px;
-      
+
       }
       #footer p{
         color: #ccc;
@@ -377,7 +382,7 @@
       #footer .socical-list{
         font-size: 30px;
         padding: 0 10px;
-      
+
       }
       #footer .socical-list a{
         color: #ccc;
@@ -386,7 +391,7 @@
       #footer .socical-list a:hover{
         color: gray;
       }
-      
+
 </style>
 </head>
 <body>
