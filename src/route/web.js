@@ -14,6 +14,8 @@ const initWebRoute = (app) => {
 
     router.post('/signin', homeController.postSignIn);
 
+    router.get('/product', homeController.getProduct);
+
     return app.use('/', router);
 }
 

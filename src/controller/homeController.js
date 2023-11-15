@@ -99,10 +99,15 @@ let postSignUp = async(req, res) => {
     }
 }
 
+
+let getProduct = async(req, res) => {
+    return res.render("product.ejs");
+}
 module.exports = {
     getHomePage,
     getSignIn,
     getSignUp,
     postSignUp,
-    postSignIn
+    postSignIn,
+    getProduct
 }
