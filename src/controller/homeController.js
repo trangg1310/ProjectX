@@ -1,6 +1,8 @@
 import pool from "../configs/connectDB";
 import bcrypt from "bcrypt";
 import moment from "moment/moment";
+import multer from "multer"
+import path from "path"
 
 const user = {
     email: "",
@@ -101,7 +103,15 @@ let postSignUp = async(req, res) => {
 
 
 let getProduct = async(req, res) => {
-    return res.render("product.ejs");
+    const [product, fields] = await pool.query(`select sanpham.idSP as idSP, sanpham.nameSP as nameSP, sanpham.giaBan as giaBan, sanpham.imgSP as imgSP, danhmuc.nameDM as nameDM from sanpham, danhmuc where sanpham.idDM = danhmuc.idDM`);
+    return res.render("product.ejs", {product: product});
+}
+
+let getProductDetail = async(req, res) => {
+    const productId = req.query.id;
+    //res.render('product-detail', { productId: productId });
+    console.log(productId);
+    res.send(`Chi tiết sản phẩm có id ${productId}`);
 }
 
 let getUser = async(req, res) => {
@@ -184,5 +194,6 @@ module.exports = {
     getChangePassword,
     postChangePassword,
     getLogout,
-    getCart
+    getCart,
+    getProductDetail
 }

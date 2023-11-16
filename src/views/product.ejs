@@ -302,13 +302,33 @@
   <div class="headline">
     <h3>Items</h3>
     <ul class="products">
+      <% for( let index = product.length - 1; index >= 0; index-- ) { %>
+        <li>
+          <div class="product-item">
+            <div class="product-top">
+              <a href="" class="product-pic">
+                <img src="<%=product[index].imgSP %>" alt="">
+              </a>
+              <a href="/productDetail?id=<%=product[index].idSP%>" class="buy-now">Buy Now</a>
+            </div>
+            <div class="product-info">
+              <a href="" class="product-cate"><%=product[index].nameDM%></a>
+              <a href="" class="product-name"><%=product[index].nameSP%></a>
+              <div class="product-price"><%=product[index].giaBan%> VND</div>
+            </div>
+          </div>
+        </li>
+        <% } %>
+      <!--
+
+      
       <li>
         <div class="product-item">
           <div class="product-top">
             <a href="" class="product-pic">
               <img src="image/product/sp1.jpg" alt="">
             </a>
-            <!--mua ngay-->
+           
             <a href="" class="buy-now">Buy Now</a>
           </div>
           <div class="product-info">
@@ -326,7 +346,7 @@
             <a href="" class="product-pic">
               <img src="image/product/sp2.jpg" alt="">
             </a>
-            <!--mua ngay-->
+          
             <a href="" class="buy-now">Buy Now</a>
           </div>
           <div class="product-info">
@@ -343,7 +363,7 @@
             <a href="" class="product-pic">
               <img src="image/product/sp3.jpg" alt="">
             </a>
-            <!--mua ngay-->
+            
             <a href="" class="buy-now">Buy Now</a>
           </div>
           <div class="product-info">
@@ -360,7 +380,7 @@
             <a href="" class="product-pic">
               <img src="image/product/sp4.jpg" alt="">
             </a>
-            <!--mua ngay-->
+           
             <a href="" class="buy-now">Buy Now</a>
           </div>
           <div class="product-info">
@@ -377,7 +397,7 @@
             <a href="" class="product-pic">
               <img src="image/product/sp5.jpg" alt="">
             </a>
-            <!--mua ngay-->
+            
             <a href="" class="buy-now">Buy Now</a>
           </div>
           <div class="product-info">
@@ -394,7 +414,7 @@
             <a href="" class="product-pic">
               <img src="image/product/sp6.jpg" alt="">
             </a>
-            <!--mua ngay-->
+            
             <a href="" class="buy-now">Buy Now</a>
           </div>
           <div class="product-info">
@@ -411,7 +431,7 @@
             <a href="" class="product-pic">
               <img src="image/product/sp7.jpg" alt="">
             </a>
-            <!--mua ngay-->
+            
             <a href="" class="buy-now">Buy Now</a>
           </div>
           <div class="product-info">
@@ -428,7 +448,7 @@
             <a href="" class="product-pic">
               <img src="image/product/sp8.jpg" alt="">
             </a>
-            <!--mua ngay-->
+            
             <a href="" class="buy-now">Buy Now</a>
           </div>
           <div class="product-info">
@@ -438,7 +458,7 @@
           </div>
         </div>
       </li>
-
+    -->
     </ul>
   </div>
 </div>

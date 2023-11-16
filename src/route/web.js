@@ -16,6 +16,7 @@ const initWebRoute = (app) => {
 
     router.get('/cart', homeController.getCart);
     router.get('/product', homeController.getProduct);
+    router.get('/productDetail', homeController.getProductDetail);
 
     router.get('/user', homeController.getUser);
     router.post('/user', homeController.postUser);
