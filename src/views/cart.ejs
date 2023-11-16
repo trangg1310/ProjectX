@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cellz.clothing</title>
+  <link rel="stylesheet" href="icon/themify-icons-font/themify-icons/themify-icons.css">
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      html{
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      
+      /* Phần Header*/
+      #nav{
+        display: inline-block;
+      }
+      
+      #header{
+        height: 46px;
+        background: #000;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+      }
+      
+      
+      #nav, .subnav{
+        list-style: none;
+      }
+      #nav > li{
+        display: inline-block;
+      }
+      #nav li{
+        position: relative;
+      }
+      
+      #nav > li > a{
+        color: #fff;
+        text-transform: uppercase;
+      }
+      
+      #nav li a{
+        text-decoration: none;
+        line-height: 46px;
+        padding: 0 20px;
+        display: block;
+      }
+      #nav li:hover .subnav{
+        display: block;
+      }
+      
+      #nav > li:hover > a{
+        color: #000;
+        background-color: #ccc;
+      }
+      
+      #nav .subnav{
+        display: none;
+        position: absolute;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      }
+      #nav .subnav a{
+        color: #000;
+      }
+      #nav .subnav li:hover{
+        color: #000;
+        background-color: #ccc;
+        opacity:1;
+      }
+      
+      /* Phần ICON*/
+      #header .search-btn{
+        float: right;
+        padding: 0 10px;
+        cursor: pointer;
+      }
+      #header .search-btn:hover{
+        background-color: #f44336;
+      }
+      #header .search-icon{
+        color: #fff;
+        font-size: 20px;
+        line-height: 46px;
+      }
+      /* user */
+      #header .user-btn{
+        float: right;
+        padding: 0 10px;
+        cursor: pointer;
+      }
+      #header .user-btn:hover{
+        background-color: #f44336;
+      }
+      #header .user-icon{
+        color: #fff;
+        font-size: 20px;
+        line-height: 46px;
+      }
+      /* shopping */
+      #header .shopping-btn{
+        float: right;
+        padding: 0 10px;
+        cursor: pointer;
+      }
+      #header .shopping-btn:hover{
+        background-color: #f44336;
+      }
+      #header .shopping-icon{
+        color: #fff;
+        font-size: 20px;
+        line-height: 46px;
+      }
+      
+      /*footer*/
+      
+      #footer{
+        background-color: black;
+        padding: 30px 5px;
+        text-align: center;
+      
+      }
+      
+      #footer .anhbia-img{
+       width: 500px;
+      
+      }
+      #footer p{
+        color: #ccc;
+        margin-top: 20px;
+        margin-bottom: 10px;
+      }
+      #footer .socical-list{
+        font-size: 30px;
+        padding: 0 10px;
+      
+      }
+      #footer .socical-list a{
+        color: #ccc;
+        text-decoration: none;
+      }
+      #footer .socical-list a:hover{
+        color: gray;
+      }
+      /* gio hang */
+      .container{
+        padding: 100px 0;
+      }
+      .head-link{
+        margin-top: -50px;
+      }
+      .head-link p{
+        margin-top: 50px;
+        font-family: 'Courier New', Courier, monospace;
+        margin: 0 12px;
+        font-size: 12px;
+        display: inline-block;
+        color: #000;
+      }
+      .headline{
+        text-align: center;
+      
+      }
+      h3{
+        margin-top: 10px;
+        font-size: 30px;
+        padding: 10px 20px;
+        text-transform: uppercase;
+        display: inline-block;
+        color: #ccc;
+        margin-bottom: 10px;
+      
+      }
+      .cart-content{
+        display: flex;
+      }
+      .cart-content-left{
+        flex: 2;
+        padding: 10px;
+      }
+      .cart-content-left table{
+        width: 100%;
+        text-align: center;
+        margin-right: 200px;
+      }
+      .cart-content-left table th{
+        padding-bottom: 30px;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 12px;
+        text-transform: uppercase;
+        color: #333;
+        border-collapse: collapse;
+        border-bottom: 2px solid #dddddd;
+      
+      }
+      .cart-content-left table p{
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 12px;
+        color: #333;
+      }
+      .cart-content-left table input{
+        width: 30px;
+      }
+      .cart-content-left table span{
+        display: block;
+        width: 20px;
+        height: 20px;
+        border: 1px solid #dddddd;
+        cursor: pointer;
+      }
+      .cart-content-left .cart-img{
+        width: 130px;
+      }
+      .cart-content-left table td{
+        padding: 20px 0;
+        border-bottom: 2px solid #dddddd;
+      }
+      .cart-content-left td:nth-child(2){
+        max-width: 130px;
+      }
+      .cart-content-right{
+        flex: 1;
+        padding-left: 10px;
+        border-left: 2px solid #dddddd;
+        margin-top: 80px;
+      }
+      .cart-content-right table{
+        width: 100%;
+      }
+      .cart-content-right table th{
+        padding-bottom: 30px;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 20px;
+        color: #333;
+        border-collapse: collapse;
+        border-bottom: 2px solid #dddddd;
+      }
+      .cart-content-right table td{
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 20px;
+        color: #333;
+        padding: 6px 0;
+      }
+      .cart-button-right{
+        margin-top: 12px;
+        text-align: center;
+        align-items: center;
+      }
+      .btn--pay{
+        color: #fff;
+        background-color: #000;
+        padding: 0 30px ;
+        font-size: 20;
+        height: 35px;
+      }
+      .btn--shopping{
+        color: #fff;
+        background-color: #000;
+        padding: 0 10px ;
+        font-size: 20;
+        height: 35px;
+      }
+      .btn--pay:hover , .btn--shopping:hover{
+        background-color: #ccc;
+        color: #000;
+        cursor: pointer;
+      }      
+</style>
+</head>
+<body>
+  <!----Header-->
+<div id="main">
+  <div id="header">
+    <ul id="nav">
+    <li><a href="/">Home</a></li>
+      <li>
+        <a href="/product">Shopping</a>
+        <ul class="subnav">
+          <li><a href="">T-Shirt</a></li>
+          <li><a href="">Dress</a></li>
+          <li><a href="">Pants</a></li>
+          <li><a href="">Accessories</a></li>
+        </ul>
+      </li>
+      <li><a href="">Instagram</a></li>
+      <li><a href="">About Us</a></li>
+    </ul>
+<!----End Header-->
+
+<!----Icon-->
+<div class="shopping-btn">
+  <a href="#">
+  <i class="shopping-icon ti-shopping-cart"></i>
+  </a>
+  </div>
+
+  <div class="user-btn">
+    <a href="/user">
+    <i class="user-icon ti-user"></i>
+    </a>
+  </div>
+  <div class="search-btn">
+    <i class="search-icon ti-search"></i>
+    </div>
+  </div>
+<!----End Icon-->
+<!---- Gio hang-->
+<div class="container">
+  <div class="head-link">
+    <p>Home</p><span>&#10230;</span><p>Shopping Cart</p>
+  </div>
+  <div class="headline">
+    <h3>Your Cart</h3>
+  </div>
+<div class="cart-content">
+    <div class="cart-content-left">
+      <table>
+        <tr>
+          <th>Items</th>
+          <th>Name Item</th>
+          <th>Size</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th></th>
+        </tr>
+        <tr>
+          <td><img src="image/product/sp1.jpg" alt="" class="cart-img"></td>
+          <td><p>Flora Dress</p></td>
+          <td><p>S</p></td>
+          <td><input type="number" value="1" min="1"></td>
+          <td><p>$2.999</p></td>
+          <td><span>X</span></td>
+        </tr>
+        <tr>
+          <td><img src="image/product/sp2.jpg" alt="" class="cart-img"></td>
+          <td><p>Aula Dress</p></td>
+          <td><p>S</p></td>
+          <td><input type="number" value="1" min="1"></td>
+          <td><p>$3.999</p></td>
+          <td><span>X</span></td>
+        </tr>
+      </table>
+    </div>
+    <div class="cart-content-right">
+        <table>
+          <tr>
+            <th colspan="2">Information Your Items</th>
+          </tr>
+          <tr>
+          <td>Gross product</td>
+          <td>2</td>
+          </tr>
+          <tr>
+            <td>Total amount</td>
+            <td><p>$6.998</p></td>
+          </tr>
+        </table>
+        <div class="cart-button-right">
+          <button class="btn--pay">Pay Now</button>
+          <button class="btn--shopping">Back Shopping</button>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!----footer-->
+  <div id="footer">
+      <div class="anhbia">
+        <img src="image/Slider/a.jpg" alt="bia" class="anhbia-img">
+      </div>
+      <p class="about">About Us</p>
+      <div class="socical-list">
+        <a href=""><i class="ti-truck"></i></a>
+        <a href=""><i class="ti-package"></i></a>
+        <a href=""><i class="ti-headphone-alt"></i></a>
+        <a href=""><i class="ti-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+</body>
+</html>

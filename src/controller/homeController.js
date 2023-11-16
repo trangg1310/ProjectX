@@ -168,6 +168,10 @@ let getLogout = async (req, res) => {
     //req.flash('success_msg', "Bạn vừa đăng xuất.");
     return res.redirect('/signin');
 }
+
+let getCart = async(req, res) => {
+    return res.render("cart.ejs");
+}
 module.exports = {
     getHomePage,
     getSignIn,
@@ -179,5 +183,6 @@ module.exports = {
     postUser,
     getChangePassword,
     postChangePassword,
-    getLogout
+    getLogout,
+    getCart
 }
