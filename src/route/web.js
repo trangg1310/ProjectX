@@ -16,6 +16,14 @@ const initWebRoute = (app) => {
 
     router.get('/product', homeController.getProduct);
 
+    router.get('/user', homeController.getUser);
+    router.post('/user', homeController.postUser);
+
+    router.get('/user/changePassword', homeController.getChangePassword)
+    router.post('/user/changePassword', homeController.postChangePassword);
+
+    router.get('/logout', homeController.getLogout);
+
     return app.use('/', router);
 }
 

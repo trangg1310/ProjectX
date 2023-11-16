@@ -103,11 +103,81 @@ let postSignUp = async(req, res) => {
 let getProduct = async(req, res) => {
     return res.render("product.ejs");
 }
+
+let getUser = async(req, res) => {
+    if(req.session.dalogin==true && req.session.email !== process.env.EMAIL_ADMIN) {
+        let [account, fields] = await pool.query(`select * from account where email = ?`, [req.session.email]);
+        let [user, fields1] = await pool.query(`select * from user where idTK = ?`, [account[0].idTK]);
+        return res.render('user.ejs', {account: account[0], user: user[0], errors: errors});
+    } else {
+        return res.redirect('/signin');
+    }
+}
+
+let postUser = async(req, res) => {
+    let {name, email, address, phoneNumber} = req.body;
+    errors = [];
+    var phone_regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
+    if(phoneNumber.length != 10 || phone_regex.test(phoneNumber) == false){
+        errors.push({message: "Số điện thoại không hợp lệ"});
+    }
+    if(errors.length>0) {
+        res.redirect('/user');
+    } else {
+        let [account, fields] = await pool.query(`select * from account where email = ?`, [email]);
+        await pool.execute(`update user set name=?, phoneNumber=?, address=? where idTK=?`, [name, phoneNumber, address, account[0].idTK]);
+        req.flash('success_msg', "Thay đổi thông tin thành công");
+        res.redirect("/user");
+    }
+}
+
+let getChangePassword = async(req, res) => {
+    return res.render("changePassword.ejs", {email: req.session.email, errors: errors});
+}
+
+let postChangePassword = async(req, res) => {
+    errors = [];
+    let {email, password, password1, password2} = req.body;
+    if(password1 !== password2){
+        errors.push({message: 'Mật khẩu xác nhận không khớp.'})
+    }
+    if(password.length < 6 || password1.length < 6 || password2.length < 6){
+        errors.push({message: "Mật khẩu cần có ít nhất 6 ký tự."});
+    }
+    if(errors.length > 0){
+        res.redirect('/user/changePassword');
+    } else {
+        let results = await pool.query (`select * from account where email = ?`, [email]);
+        let account = results[0];
+        let curPass = account[0].password;
+        let check = bcrypt.compareSync(password, curPass);
+        if(!check){
+            errors.push({message: 'Mật khẩu cũ không đúng.'});
+            res.redirect('/user/changePassword');
+        } else {
+            let hashedPassword = await bcrypt.hash(password1, 10);
+            await pool.execute(`update account set password = ? where email=?`, [hashedPassword, email]);
+            req.flash('success_msg', "Thay đổi mật khẩu thành công.");
+            res.redirect('/user/changePassword');
+        }
+    }
+}
+
+let getLogout = async (req, res) => {
+    req.session.destroy();
+    //req.flash('success_msg', "Bạn vừa đăng xuất.");
+    return res.redirect('/signin');
+}
 module.exports = {
     getHomePage,
     getSignIn,
     getSignUp,
     postSignUp,
     postSignIn,
-    getProduct
+    getProduct,
+    getUser,
+    postUser,
+    getChangePassword,
+    postChangePassword,
+    getLogout
 }
