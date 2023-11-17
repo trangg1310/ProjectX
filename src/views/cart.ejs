@@ -14,12 +14,12 @@
       html{
         font-family: Arial, Helvetica, sans-serif;
       }
-      
+
       /* Phần Header*/
       #nav{
         display: inline-block;
       }
-      
+
       #header{
         height: 46px;
         background: #000;
@@ -28,8 +28,8 @@
         left: 0;
         right: 0;
       }
-      
-      
+
+
       #nav, .subnav{
         list-style: none;
       }
@@ -39,12 +39,12 @@
       #nav li{
         position: relative;
       }
-      
+
       #nav > li > a{
         color: #fff;
         text-transform: uppercase;
       }
-      
+
       #nav li a{
         text-decoration: none;
         line-height: 46px;
@@ -54,17 +54,18 @@
       #nav li:hover .subnav{
         display: block;
       }
-      
+
       #nav > li:hover > a{
         color: #000;
         background-color: #ccc;
       }
-      
+
       #nav .subnav{
         display: none;
         position: absolute;
         background-color: #fff;
         box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        width: 150px;
       }
       #nav .subnav a{
         color: #000;
@@ -73,8 +74,9 @@
         color: #000;
         background-color: #ccc;
         opacity:1;
+        width: 150px;
       }
-      
+
       /* Phần ICON*/
       #header .search-btn{
         float: right;
@@ -117,19 +119,19 @@
         font-size: 20px;
         line-height: 46px;
       }
-      
+
       /*footer*/
-      
+
       #footer{
         background-color: black;
         padding: 30px 5px;
         text-align: center;
-      
+
       }
-      
+
       #footer .anhbia-img{
        width: 500px;
-      
+
       }
       #footer p{
         color: #ccc;
@@ -139,7 +141,7 @@
       #footer .socical-list{
         font-size: 30px;
         padding: 0 10px;
-      
+
       }
       #footer .socical-list a{
         color: #ccc;
@@ -165,7 +167,7 @@
       }
       .headline{
         text-align: center;
-      
+
       }
       h3{
         margin-top: 10px;
@@ -175,7 +177,7 @@
         display: inline-block;
         color: #ccc;
         margin-bottom: 10px;
-      
+
       }
       .cart-content{
         display: flex;
@@ -197,7 +199,7 @@
         color: #333;
         border-collapse: collapse;
         border-bottom: 2px solid #dddddd;
-      
+
       }
       .cart-content-left table p{
         font-family: 'Courier New', Courier, monospace;
@@ -270,7 +272,7 @@
         background-color: #ccc;
         color: #000;
         cursor: pointer;
-      }      
+      }
 </style>
 </head>
 <body>
@@ -295,13 +297,13 @@
 
 <!----Icon-->
 <div class="shopping-btn">
-  <a href="#">
+  <a style="text-decoration: none" href="#">
   <i class="shopping-icon ti-shopping-cart"></i>
   </a>
   </div>
 
   <div class="user-btn">
-    <a href="/user">
+    <a style="text-decoration: none" href="/user">
     <i class="user-icon ti-user"></i>
     </a>
   </div>

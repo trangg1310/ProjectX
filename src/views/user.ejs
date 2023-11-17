@@ -18,12 +18,12 @@
     html{
       font-family: Arial, Helvetica, sans-serif;
     }
-    
+
     /* Phần Header*/
     #nav{
       display: inline-block;
     }
-    
+
     #header{
       height: 46px;
       background: #000;
@@ -32,8 +32,8 @@
       left: 0;
       right: 0;
     }
-    
-    
+
+
     #nav, .subnav{
       list-style: none;
     }
@@ -42,13 +42,14 @@
     }
     #nav li{
       position: relative;
+      right: 32px;
     }
-    
+
     #nav > li > a{
       color: #fff;
       text-transform: uppercase;
     }
-    
+
     #nav li a{
       text-decoration: none;
       line-height: 46px;
@@ -58,17 +59,18 @@
     #nav li:hover .subnav{
       display: block;
     }
-    
+
     #nav > li:hover > a{
       color: #000;
       background-color: #ccc;
     }
-    
+
     #nav .subnav{
       display: none;
       position: absolute;
       background-color: #fff;
       box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      width: 150px;
     }
     #nav .subnav a{
       color: #000;
@@ -77,8 +79,9 @@
       color: #000;
       background-color: #ccc;
       opacity:1;
+      width: 150px;
     }
-    
+
     /* Phần ICON*/
     #header .search-btn{
       float: right;
@@ -121,19 +124,19 @@
       font-size: 20px;
       line-height: 46px;
     }
-    
+
     /*footer*/
-    
+
     #footer{
       background-color: black;
       padding: 30px 5px;
       text-align: center;
-    
+
     }
-    
+
     #footer .anhbia-img{
      width: 500px;
-    
+
     }
     #footer p{
       color: #ccc;
@@ -143,7 +146,7 @@
     #footer .socical-list{
       font-size: 30px;
       padding: 0 10px;
-    
+
     }
     #footer .socical-list a{
       color: #ccc;
@@ -156,19 +159,33 @@
     #form{
       background-color: #fff;
       margin-top: 46px;
-      height: 400px;
+      height: 450px;
       padding: 0 300px;
-    
+
     }
+    /*
     .auth-form{
       margin-top: 46px;
-      height: 400px;
-    
+      height: 500px;
+    } */
+    .alert {
+      width: 500px;
+      margin-bottom: -5px;
+      height: 40px;
+
+    }
+    .alert p{
+      text-align: center;
+      margin-top: -10px;
+    }
+
+    .btn-close{
+      text-align: center;
+      margin-top: -10px;
     }
     .auth-form__container{
-      height: 350px;
+      height: 400px;
       width: 900px;
-    
       margin-top: 100px;
       display: grid;
       grid-template-columns: 350px 450px;
@@ -176,7 +193,6 @@
       background-color: #d7d6d6;
     }
     .auth-form__header{
-    
       font-size: 30px;
       text-align: center;
       font-weight: 500;
@@ -203,7 +219,7 @@
       border-radius: 1.2px;
     }
     .auth-form__controls{
-      margin-top: 40px;
+      margin-top: 20px;
     }
     .btn--save{
       margin-right: 10px;
@@ -215,21 +231,11 @@
       border: #1f1f1f;
       width: 80px;
     }
-    .btn--update{
-      color: #fff;
-      background-color: #1f1f1f;
-      text-decoration: none;
-      padding: 10px 20px;
-      cursor: pointer;
-      border: #1f1f1f;
-      width: 80px;
-    
-    }
-    
-    .btn--save:hover, .btn--update:hover{
+
+    .btn--save:hover{
       background-color: #3f3a3a;
     }
-    
+
     .btn--withicon{
       text-decoration: none;
       color: #000;
@@ -243,18 +249,18 @@
       justify-items: center;
       height: 10px;
       margin-bottom: 50px;
-      margin-top: -60px;
+      margin-top: -70px;
     }
     .user-ava{
       margin-bottom: 100px;
       width: 60px;
       height: 60px;
-      margin-bottom: 10px;
+     
     }
     .user-name{
-      margin-top: 30px;
+      margin-top: 20px;
       font-size: 12px;
-    }    
+    }
   </style>
 </head>
 <body>
@@ -285,7 +291,7 @@
   </div>
 
   <div class="user-btn">
-    <a href="/user">
+    <a style="text-decoration: none" href="/user">
       <i class="user-icon ti-user"></i>
     </a>
   </div>
@@ -314,6 +320,13 @@
             <i class="address-icon ti-control-play"></i>
             Change Password</a>
         </div>
+
+        <div class="auth-form__icon">
+          <a href="/user/history" class="btn--withicon">
+            <i class="address-icon ti-control-play"></i>
+            History Orrder</a>
+        </div>
+
         <div class="auth-form__icon">
           <a href="/logout" class="btn--withicon">
             <i class="logout-icon ti-control-play"></i>
@@ -321,7 +334,7 @@
         </div>
 
       </div>
-      
+
       <div class="auth-form__form">
 
         <div class="user-form-ava">
@@ -332,20 +345,24 @@
           <div>
             <% if (typeof errors != 'undefined'){
                 %> <% errors.forEach(element =>
-                {%> <div class="alert alert-warning alert-dismissible fade show" role="alert"><%= element.message%>
+                {%> <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                  <p>
+                  <%= element.message%></p>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             <% }) %>
             <% } %>
         </div>
-    
+
         <div>
             <% if (messages.success_msg) { %>
-                <div class="alert alert-success alert-dismissible fade show" role="alert"><%= messages.success_msg %>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  <p>
+                  <%= messages.success_msg %></p>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    
+
                 </div>
-            <% } %>   
+            <% } %>
         </div>
         <div class ="auth-form__group">
           <input type="text" class="auth-form__input" name="name" placeholder="Name" value="<%=user.name%>" required>
