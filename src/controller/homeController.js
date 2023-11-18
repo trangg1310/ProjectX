@@ -47,7 +47,7 @@ let postSignIn = async(req, res) => {
             var sess = req.session;
             sess.dalogin= true;
             sess.email=email;
-            sess.giohang = [];
+            sess.cart = [];
             console.log(sess.email);
             if(sess.email == process.env.EMAIL_ADMIN) {
                 return res.redirect('/admin');
@@ -103,15 +103,17 @@ let postSignUp = async(req, res) => {
 
 
 let getProduct = async(req, res) => {
-    const [product, fields] = await pool.query(`select sanpham.idSP as idSP, sanpham.nameSP as nameSP, sanpham.giaBan as giaBan, sanpham.imgSP as imgSP, danhmuc.nameDM as nameDM from sanpham, danhmuc where sanpham.idDM = danhmuc.idDM`);
+    const [product, fields] = await pool.query(`select sanpham.idSP as idSP, sanpham.nameSP as nameSP, sanpham.giaBan as giaBan, sanpham.imgSP as imgSP, sanpham.soLuong as soLuong, danhmuc.nameDM as nameDM from sanpham, danhmuc where sanpham.idDM = danhmuc.idDM`);
     return res.render("product.ejs", {product: product});
 }
 
 let getProductDetail = async(req, res) => {
     const productId = req.query.id;
-    //res.render('product-detail', { productId: productId });
-    console.log(productId);
-    res.send(`Chi tiết sản phẩm có id ${productId}`);
+    let [product, fields] = await pool.query(`select sanpham.idSP as idSP, sanpham.nameSP as nameSP, sanpham.giaBan as giaBan, sanpham.imgSP as imgSP, sanpham.imgSPCT as imgSPCT, danhmuc.nameDM as nameDM from sanpham, danhmuc where sanpham.idDM = danhmuc.idDM and sanpham.idSP = ?`, [productId]);
+    const [productDiff, fields1] = await pool.query(`select sanpham.idSP as idSP, sanpham.nameSP as nameSP, sanpham.giaBan as giaBan, sanpham.imgSP as imgSP, danhmuc.nameDM as nameDM from sanpham, danhmuc where sanpham.idDM = danhmuc.idDM and sanpham.idSP != ?`, [productId]);
+    let [sizes, fields2] = await pool.query(`select size, soLuong from sanphamchitiet where idSP = ?`, [productId]);
+    console.log(product);
+    res.render("productDetail.ejs", {product: product, sizes: sizes, productDiff: productDiff});
 }
 
 let getUser = async(req, res) => {
@@ -180,8 +182,109 @@ let getLogout = async (req, res) => {
 }
 
 let getCart = async(req, res) => {
-    return res.render("cart.ejs");
+    if(req.session.dalogin==true && req.session.email !== process.env.EMAIL_ADMIN) 
+    {
+        console.log(req.session.cart);
+        let total = 0;
+        let gross = 0;
+        if(req.session.cart.length == 0) {
+            total = 0;
+        } else {
+            for(let i= 0; i< req.session.cart.length; i++) {
+                total += req.session.cart[i].giaBan * req.session.cart[i].soLuong;
+                gross += Number(req.session.cart[i].soLuong);
+            }
+        }
+        return res.render('cart.ejs', {product: req.session.cart, total: total, gross: gross});
+    } else {
+        return res.redirect('/signin');
+    }
 }
+
+
+let postCart = async(req, res) => {
+    if(req.session.dalogin==true && req.session.email !== process.env.EMAIL_ADMIN) { 
+        let [spct, fields] = await pool.execute(`select idSPCT, soLuong from sanphamchitiet where idSP = ? and size = ?`, [req.body.idSP, req.body.size]);
+        if(spct[0].soLuong==0) {
+            req.flash('error', "Sản phẩm đã hết hàng");
+            const idValue = req.body.idSP;
+            return res.redirect(`/productDetail?id=${idValue}`);
+        } else if(req.body.soLuong > spct[0].soLuong){
+            req.flash('error', "Số lượng bạn muốn mua hiện không đủ trong kho!");
+            const idValue = req.body.idSP;
+            return res.redirect(`/productDetail?id=${idValue}`);
+        } else {
+            let index = req.session.cart.findIndex( item => item.idSPCT === spct[0].idSPCT);
+            if(index == -1) {
+                let x = req.session.cart.length;
+                req.session.cart[x] = req.body;
+                req.session.cart[x].idSPCT = spct[0].idSPCT;
+            } else {
+                req.session.cart[index].soLuong = Number(req.session.cart[index].soLuong) + Number(req.body.soLuong);
+            }
+            return res.redirect("/cart");
+        }
+    } else {
+        return res.redirect('/signin');
+    }
+}
+
+let postUpdateCart = async(req, res) => {
+    console.log(req.body);
+    if(req.body.action == 'update') {
+        let [soLuong, fields] = await pool.execute(`select soLuong from sanphamchitiet where idSP = ? and size = ?`, [req.body.idSP, req.body.size]);
+        if(req.body.soLuong > soLuong[0].soLuong) {
+            req.flash('error', "Số lượng bạn muốn mua hiện không đủ trong kho!");
+        } else {
+            let index = req.session.cart.findIndex( item => item.idSP === req.body.idSP);
+            req.session.cart[index].soLuong = req.body.soLuong;
+            req.flash('success_msg', "Cập nhật giỏ hàng thành công!");
+        }
+    } else if(req.body.action=='delete') {
+        let removeIndex = req.session.cart.findIndex( item => item.idSP === req.body.idSP);
+        req.session.cart.splice(removeIndex, 1);
+        req.flash('success_msg', "Cập nhật giỏ hàng thành công!");
+    }
+    res.redirect('/cart');
+}
+
+let getPay = async(req, res) => {
+    if(req.session.cart.length!=0) {
+        let total = 0;
+        let gross = 0;
+        for(let i= 0; i< req.session.cart.length; i++) {
+            total += req.session.cart[i].giaBan * req.session.cart[i].soLuong;
+            gross += Number(req.session.cart[i].soLuong);
+        }
+       return res.render('pay.ejs', {product: req.session.cart, total: total, gross: gross});
+    }
+   
+}
+
+let postPay = async(req, res) => {
+    //console.log(req.body);
+    let {nameUser, phoneNumber, address, thanhTien, soLuong, trangThai} = req.body;
+    let curTimeString = moment(new Date().toLocaleString(), "MM/DD/YYYY HH:mm:ss a").format("YYYY-MM-DD HH:mm:ss");
+    let [idUser, fields] = await pool.execute(`select user.idUser as idUser from user, account where user.idTK = account.idTK and account.email = ?`, [req.session.email]);
+    await pool.execute(`insert into donhang (idUser, nameUser,address, phoneNumber, soLuong, thanhTien, timeCreate, trangThai) values (?,?,?,?,?,?,?,?)`,
+    [idUser[0].idUser, nameUser, address, phoneNumber, soLuong, thanhTien, curTimeString, trangThai]);
+    let [idDH, tmp] = await pool.execute(`select idDH from donhang where idUser=? and timeCreate=?`,
+        [idUser[0].idUser, curTimeString]);
+    for(let index = 0; index < req.session.cart.length; index++) {
+        await pool.execute(`insert into donhangchitiet (idDH, idSPCT, soLuong) values (?,?,?)`, [idDH[0].idDH, req.session.cart[index].idSPCT, req.session.cart[index].soLuong]);
+        await pool.execute(`update sanphamchitiet set soLuong = soLuong - ? where idSPCT =?`, [req.session.cart[index].soLuong, req.session.cart[index].idSPCT]);
+        await pool.execute(`update sanpham set soLuong = soLuong - ? where idSP =?`, [req.session.cart[index].soLuong, req.session.cart[index].idSP]);
+    }
+    req.session.cart=[];
+    req.flash('success_msg',"Đặt hàng thành công!");
+    req.redirect('/user/history');
+}
+
+let getHistory = async(req, res) => {
+    return res.render("history.ejs");
+}
+
+
 module.exports = {
     getHomePage,
     getSignIn,
@@ -195,5 +298,10 @@ module.exports = {
     postChangePassword,
     getLogout,
     getCart,
-    getProductDetail
+    getProductDetail,
+    getHistory,
+    postCart,
+    postUpdateCart,
+    getPay,
+    postPay
 }

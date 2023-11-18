@@ -14,16 +14,24 @@ const initWebRoute = (app) => {
 
     router.post('/signin', homeController.postSignIn);
 
-    router.get('/cart', homeController.getCart);
+    
     router.get('/product', homeController.getProduct);
     router.get('/productDetail', homeController.getProductDetail);
 
     router.get('/user', homeController.getUser);
     router.post('/user', homeController.postUser);
 
-    router.get('/user/changePassword', homeController.getChangePassword)
+    router.get('/user/changePassword', homeController.getChangePassword);
     router.post('/user/changePassword', homeController.postChangePassword);
 
+    router.get('/user/history', homeController.getHistory);
+
+    router.get('/cart', homeController.getCart);
+    router.post('/cart', homeController.postCart);
+    router.post('/updatecart', homeController.postUpdateCart);
+
+    router.get('/pay', homeController.getPay);
+    router.post('/pay', homeController.postPay);
     router.get('/logout', homeController.getLogout);
 
 

@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cellz.clothing</title>
   <link rel="stylesheet" href="icon/themify-icons-font/themify-icons/themify-icons.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 <style>
     *{
         padding: 0;
@@ -340,9 +344,9 @@
 <div id="main">
   <div id="header">
     <ul id="nav">
-    <li><a href="#">Home</a></li>
+    <li><a href="/">Home</a></li>
       <li>
-        <a href="">Shopping</a>
+        <a href="/product">Shopping</a>
         <ul class="subnav">
           <li><a href="">T-Shirt</a></li>
           <li><a href="">Dress</a></li>
@@ -357,11 +361,15 @@
 
 <!----Icon-->
 <div class="shopping-btn">
-  <i class="shopping-icon ti-shopping-cart"></i>
+  <a href="/cart">
+    <i class="shopping-icon ti-shopping-cart"></i>
+  </a>
   </div>
 
   <div class="user-btn">
-    <i class="user-icon ti-user"></i>
+    <a href="/user">
+      <i class="user-icon ti-user"></i>
+    </a>
   </div>
   <div class="search-btn">
     <i class="search-icon ti-search"></i>
@@ -371,47 +379,68 @@
 <!---- Chi tiet sp-->
 <div class="product">
   <div class="head-link">
-    <p>Home</p> <span>&#10230; </span> <p>Dress</p> <span>&#10230; </span> <p>Jumpsuit Spring</p>
+    <p>Home</p> <span>&#10230; </span> <p><%=product[0].nameDM%></p> <span>&#10230; </span> <p><%=product[0].nameSP%></p>
   </div>
+<form action="/cart" method="post">
+  <% if (messages.success_msg) { %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert"><%= messages.success_msg %> 
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% } %>
+  
+  <% if (messages.error) { %>
+      <div class="alert alert-warning alert-dismissible fade show" role="alert"><%= messages.error %> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+  <% } %>
 <div class="product-content">
     <div class="product-content-left">
       <div class="product-content-left-big-img">
-        <img src="./assets/img/item/ga2.jpg" alt="Jumpsuit Spring" class="product-big-img">
+        <img src="image/item/ga2.jpg" alt="Jumpsuit Spring" class="product-big-img">
       </div>
 
       <div class="product-content-left-small-img">
-        <img src="./assets/img/product/sp8.jpg" alt="Jumpsuit Spring" class="product-small-img">
-        <img src="./assets/img/product/sp8-1.jpg" alt="Jumpsuit Spring" class="product-small-img">
+        <img src="image/product/sp8.jpg" alt="Jumpsuit Spring" class="product-small-img">
+        <img src="image/product/sp8-1.jpg" alt="Jumpsuit Spring" class="product-small-img">
       </div>
     </div>
 
     <div class="product-content-right">
       <div class="product-content-right-pro-name">
-        <h1>Jumpsuit Spring</h1>
-        <p>SP01</p>
+        <h1><%=product[0].nameSP%></h1>
+        <p>SP<%=product[0].idSP%></p>
       </div>
       <div class="product-content-right-pro-price">
-        <p>$5.999</p>
+        <p><%=product[0].giaBan%> VND</p>
       </div>
       <div class="product-content-right-pro-size">
         <p style="font-weight: bold;">Size</p>
-        <div class="size">
-          <span>XS</span>
-            <span>S</span>
-            <span>M</span>
-            <span>L</span>
-        </div>
-        <div class="quantity">
-          <p style="font-weight: bold;">Quantity:</p>
-          <input type="number" min="0" value="1">
-          </div>
-          <div class="product-right-button">
-            <button class="btn--buynow">Buy Now</button>
-            <button class="btn--add">Add Cart</button>
-          </div>
+
+          
+            <input name="idSP" value="<%=product[0].idSP%>" hidden>
+            <input name="nameSP" value="<%=product[0].nameSP%>" hidden>
+            <input name="giaBan" value="<%=product[0].giaBan%>" hidden>
+            <input name="imgSP" value="<%=product[0].imgSP%>" hidden>
+            <select name="size" id="size">
+              <%for(let index = sizes.length-1; index >=0 ; index--) { %>
+                  <option value="<%=sizes[index].size%>"><%=sizes[index].size%></option>
+              <% } %>
+            </select>
+            
+            <div class="quantity">
+              <p style="font-weight: bold;">Quantity:</p>
+              <input type="number" min="0" value="1" name="soLuong">
+            </div>
+
+            <div class="product-right-button">
+              <button class="btn--add" type="submit">Add Cart</button>
+            </div>
+          
+
       </div>
     </div>
   </div>
+</form>
 </div>
 
 <!----sanphamlienquan-->
@@ -419,75 +448,47 @@
   <div class="headline">
     <h3>Related Products</h3>
     <ul class="products-rela">
-      <li>
-        <div class="product-item">
-          <div class="product-top">
-            <a href="" class="product-pic">
-              <img src="./assets/img/product/sp5.jpg" alt="">
-            </a>
-            <!--mua ngay-->
-            <a href="" class="buy-now">Buy Now</a>
-          </div>
-          <div class="product-info">
-            <a href="" class="product-cate">Dress</a>
-            <a href="" class="product-name">Flora Dress</a>
-            <div class="product-price">$2.999</div>
-          </div>
-        </div>
-      </li>
-
-
-      <li>
-        <div class="product-item">
-          <div class="product-top">
-            <a href="" class="product-pic">
-              <img src="./assets/img/product/sp6.jpg" alt="">
-            </a>
-            <!--mua ngay-->
-            <a href="" class="buy-now">Buy Now</a>
-          </div>
-          <div class="product-info">
-            <a href="" class="product-cate">Dress</a>
-            <a href="" class="product-name">Aula Dress</a>
-            <div class="product-price">$3.999</div>
-          </div>
-        </div>
-      </li>
-
-      <li>
-        <div class="product-item">
-          <div class="product-top">
-            <a href="" class="product-pic">
-              <img src="./assets/img/product/sp7.jpg" alt="">
-            </a>
-            <!--mua ngay-->
-            <a href="" class="buy-now">Buy Now</a>
-          </div>
-          <div class="product-info">
-            <a href="" class="product-cate">Dress</a>
-            <a href="" class="product-name">Jessi Dress</a>
-            <div class="product-price">$1.999</div>
-          </div>
-        </div>
-      </li>
-
-      <li>
-        <div class="product-item">
-          <div class="product-top">
-            <a href="" class="product-pic">
-              <img src="./assets/img/product/sp8.jpg" alt="">
-            </a>
-            <!--mua ngay-->
-            <a href="" class="buy-now">Buy Now</a>
-          </div>
-          <div class="product-info">
-            <a href="" class="product-cate">Dress</a>
-            <a href="" class="product-name">Lissi Dress</a>
-            <div class="product-price">$2.999</div>
-          </div>
-        </div>
-      </li>
-
+      <% if(productDiff.length <= 4) { %>
+        <% for( let index = productDiff.length - 1; index >= 0; index-- ) { %>
+          <li>
+            <div class="product-item">
+              <div class="product-top">
+                <a href="" class="product-pic">
+                  <img src="<%=productDiff[index].imgSP%>" alt="">
+                </a>
+                <!--mua ngay-->
+                <a href="" class="buy-now">Buy Now</a>
+              </div>
+              <div class="product-info">
+                <a href="" class="product-cate"><%=productDiff[index].nameDM%></a>
+                <a href="" class="product-name"><%=productDiff[index].nameSP%></a>
+                <div class="product-price"><%=productDiff[index].giaBan%></div>
+              </div>
+            </div>
+          </li>
+    
+        <% } %>
+      <% } else { %>
+        <% for( let index = 0; index < 4; index++ ) { %>
+          <li>
+            <div class="product-item">
+              <div class="product-top">
+                <a href="" class="product-pic">
+                  <img src="<%=productDiff[index].imgSP%>" alt="">
+                </a>
+                <!--mua ngay-->
+                <a href="" class="buy-now">Buy Now</a>
+              </div>
+              <div class="product-info">
+                <a href="" class="product-cate"><%=productDiff[index].nameDM%></a>
+                <a href="" class="product-name"><%=productDiff[index].nameSP%></a>
+                <div class="product-price"><%=productDiff[index].giaBan%></div>
+              </div>
+            </div>
+          </li>
+        <% } %>  
+      <% } %>
+      
     </ul>
   </div>
 </div>
@@ -497,7 +498,7 @@
 <!----footer-->
   <div id="footer">
       <div class="anhbia">
-        <img src="./assets/img/Slider/a.jpg" alt="bia" class="anhbia-img">
+        <img src="image/Slider/a.jpg" alt="bia" class="anhbia-img">
       </div>
       <p class="about">About Us</p>
       <div class="socical-list">
