@@ -298,27 +298,29 @@
           <tr>
             <th>Ordinal number</th>
             <th>Name Item</th>
-            <th>Code Orders</th>
+            <th>Size</th>
+            <th>Quantity</th>
             <th>Order Date</th>
+            <th>Address</th>
+            <th>PhoneNumber</th>
             <th>Status</th>
             <th>Price</th>
           </tr>
-          <tr>
-            <td><span>1</span></td>
-            <td><p>Flora Dress</p></td>
-            <td><p>SP01</p></td>
-            <td><span>18/10/2023</span></td>
-            <td><p>Done</p></td>
-            <td><p>$2.999</p></td>
-          </tr>
-          <tr>
-            <td><span>2</span></td>
-            <td><p>Syndra Dress</p></td>
-            <td><p>SP04</p></td>
-            <td><span>18/10/2023</span></td>
-            <td><p>Done</p></td>
-            <td><p>$5.999</p></td>
-          </tr>
+          <% if(history.length > 0) { %>
+            <% for(let index = history.length - 1; index >= 0; index--) { %>
+              <tr>
+                <td><span><%= history.length - index %></span></td>
+                <td><p><%=history[index].nameSP%></p></td>
+                <td><p><%=history[index].size%></p></td>
+                <td><p><%=history[index].soLuong%></p></td>
+                <td><p><%= history[index].timeCreate.getFullYear()%>-<%=history[index].timeCreate.getMonth()+1%>-<%=history[index].timeCreate.getDate()%></p></td>
+                <td><p><%=history[index].address%></p></td>
+                <td><p><%=history[index].phoneNumber%></p></td>
+                <td><p><%=history[index].trangThai%></p></td>
+                <td><p><%=history[index].giaBan * history[index].soLuong%> VND</p></td>
+              </tr>
+            <% } %>
+          <% } %>
         </table>
       </div>
       </div>

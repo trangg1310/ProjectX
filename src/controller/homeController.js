@@ -277,11 +277,16 @@ let postPay = async(req, res) => {
     }
     req.session.cart=[];
     req.flash('success_msg',"Đặt hàng thành công!");
-    req.redirect('/user/history');
+    return res.redirect('/user/history');
 }
 
 let getHistory = async(req, res) => {
-    return res.render("history.ejs");
+    let [idUser, fields] = await pool.execute(`select user.idUser as idUser from user, account where user.idTK = account.idTK and account.email = ?`, [req.session.email]);
+    let [history, fields1] = await pool.execute(`SELECT donhang.address, donhang.phoneNumber, donhang.timeCreate, donhang.trangThai, 
+    sanpham.nameSP, sanpham.giaBan, donhangchitiet.soLuong, sanphamchitiet.size 
+    FROM donhang, donhangchitiet, sanpham, sanphamchitiet 
+    WHERE donhang.idDH = donhangchitiet.idDHCT AND donhangchitiet.idSPCT = sanphamchitiet.idSPCT AND sanpham.idSP = sanphamchitiet.idSPCT;`)
+    return res.render("history.ejs", {history: history});
 }
 
 
