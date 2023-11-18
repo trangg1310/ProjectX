@@ -289,6 +289,34 @@ let getHistory = async(req, res) => {
     return res.render("history.ejs", {history: history});
 }
 
+let getSearch = async(req, res) => {
+    console.log(req.query);
+    let sql = "SELECT sanpham.idSP as idSP, sanpham.nameSP as nameSP, sanpham.giaBan as giaBan, sanpham.imgSP as imgSP, sanpham.soLuong as soLuong, danhmuc.nameDM as nameDM FROM sanpham, danhmuc WHERE sanpham.idDM = danhmuc.idDM AND (nameSP LIKE '%"+req.query.product+"%' OR nameSP LIKE '"+req.query.product+"%' OR nameSP LIKE '%"+req.query.book+"%')";
+    console.log(sql);
+    let [product, fields] = await pool.execute(sql);
+    if(product.length==0) req.flash('error', "Không có sản phẩm bạn muốn tìm");
+    return res.render('product.ejs', {product: product})
+}
+
+let getProductShirt = async(req, res) => {
+    const [product, fields] = await pool.query(`select sanpham.idSP as idSP, sanpham.nameSP as nameSP, sanpham.giaBan as giaBan, sanpham.imgSP as imgSP, sanpham.soLuong as soLuong, danhmuc.nameDM as nameDM from sanpham, danhmuc where sanpham.idDM = danhmuc.idDM AND danhmuc.nameDM = "Shirt"`);
+    return res.render("product.ejs", {product: product});
+}
+
+let getProductDress = async(req, res) => {
+    const [product, fields] = await pool.query(`select sanpham.idSP as idSP, sanpham.nameSP as nameSP, sanpham.giaBan as giaBan, sanpham.imgSP as imgSP, sanpham.soLuong as soLuong, danhmuc.nameDM as nameDM from sanpham, danhmuc where sanpham.idDM = danhmuc.idDM AND danhmuc.nameDM = "Dress"`);
+    return res.render("product.ejs", {product: product});
+}
+
+let getProductPants = async(req, res) => {
+    const [product, fields] = await pool.query(`select sanpham.idSP as idSP, sanpham.nameSP as nameSP, sanpham.giaBan as giaBan, sanpham.imgSP as imgSP, sanpham.soLuong as soLuong, danhmuc.nameDM as nameDM from sanpham, danhmuc where sanpham.idDM = danhmuc.idDM AND danhmuc.nameDM = "Pants"`);
+    return res.render("product.ejs", {product: product});
+}
+
+let getProductAccesscories = async(req, res) => {
+    const [product, fields] = await pool.query(`select sanpham.idSP as idSP, sanpham.nameSP as nameSP, sanpham.giaBan as giaBan, sanpham.imgSP as imgSP, sanpham.soLuong as soLuong, danhmuc.nameDM as nameDM from sanpham, danhmuc where sanpham.idDM = danhmuc.idDM AND danhmuc.nameDM = "Accessories"`);
+    return res.render("product.ejs", {product: product});
+}
 
 module.exports = {
     getHomePage,
@@ -308,5 +336,10 @@ module.exports = {
     postCart,
     postUpdateCart,
     getPay,
-    postPay
+    postPay,
+    getProductShirt,
+    getProductDress,
+    getProductPants,
+    getProductAccesscories,
+    getSearch
 }

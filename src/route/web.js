@@ -18,6 +18,11 @@ const initWebRoute = (app) => {
     router.get('/product', homeController.getProduct);
     router.get('/productDetail', homeController.getProductDetail);
 
+    router.get('/shirt', homeController.getProductShirt);
+    router.get('/dress', homeController.getProductDress);
+    router.get('/pants', homeController.getProductPants);
+    router.get('/accesscories', homeController.getProductAccesscories);
+
     router.get('/user', homeController.getUser);
     router.post('/user', homeController.postUser);
 
@@ -32,6 +37,9 @@ const initWebRoute = (app) => {
 
     router.get('/pay', homeController.getPay);
     router.post('/pay', homeController.postPay);
+
+    router.get('/search', homeController.getSearch);
+
     router.get('/logout', homeController.getLogout);
 
 
