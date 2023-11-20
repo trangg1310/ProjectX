@@ -83,47 +83,115 @@
     }
 
     /* Phần ICON*/
-    #header .search-btn{
-      float: right;
-      padding: 0 10px;
-      cursor: pointer;
-    }
-    #header .search-btn:hover{
-      background-color: #f44336;
-    }
-    #header .search-icon{
-      color: #fff;
-      font-size: 20px;
-      line-height: 46px;
-    }
-    /* user */
-    #header .user-btn{
-      float: right;
-      padding: 0 10px;
-      cursor: pointer;
-    }
-    #header .user-btn:hover{
-      background-color: #f44336;
-    }
-    #header .user-icon{
-      color: #fff;
-      font-size: 20px;
-      line-height: 46px;
-    }
-    /* shopping */
-    #header .shopping-btn{
-      float: right;
-      padding: 0 10px;
-      cursor: pointer;
-    }
-    #header .shopping-btn:hover{
-      background-color: #f44336;
-    }
-    #header .shopping-icon{
-      color: #fff;
-      font-size: 20px;
-      line-height: 46px;
-    }
+
+      /* Phần ICON*/
+      #header .search-btn_tem{
+        float: right;
+        padding: 0 15px;
+        cursor: pointer;
+      }
+
+      #search-box{
+        background: #000;
+        height: 46px;
+      }
+      #search-box #search-text{
+        background-color: #fff;
+        border: none;
+        outline: none;
+        padding: 10px 0px;
+        font-size: 20px;
+        width: 0px;
+        transition: all 0.25s ease-in-out;
+      }
+      #header #search-box #search-btn{
+        color: #fff;
+        background-color: #000;
+        height: 30px;
+        border: none;
+        outline: none;
+        padding: 10px;
+        font-size: 20px;
+        margin-top: -2px;
+        cursor: pointer;
+      }
+      #header #search-box:hover #search-text {
+        width: 300px;
+        padding: 0 10px ;
+      }
+      ::placeholder{
+        font-size: 15px;
+      }
+
+
+      /* user */
+      #header .user-btn{
+        float: right;
+        padding: 0 15px;
+        cursor: pointer;
+      }
+      #header .user-icon{
+        color: #fff;
+        font-size: 20px;
+        line-height: 46px;
+      }
+
+
+      /* shopping */
+      #header .shopping-btn{
+        float: right;
+        padding: 0 15px;
+        cursor: pointer;
+      }
+      #header .shopping-btn a{
+        text-decoration: none;
+      }
+      #header .shopping-icon{
+        color: #fff;
+        font-size: 20px;
+        line-height: 46px;
+      }
+      #header .shopping-icon:hover{
+        color: #fff;
+      }
+      .shopping-btn{
+        position: relative;
+      }
+      .shopping-btn:hover .shopping_list{
+        display: none; /*Hieen len la block*/
+      }
+      .shopping_list{
+        position: absolute;
+        top: 100%;
+        margin-top: 4px;
+        right: 10px;
+        background-color: #000;
+        width: 300px;
+        border-radius: 12px;
+        box-shadow: 0 1px 10px #ccc;
+        display: none;
+      }
+      .shopping_list--no-item{
+        padding: 28px 0;
+      }
+      .shopping-no-item-img{
+        width: 100%;
+        display: none;
+      }
+      .shopping-notice{
+        position: absolute;
+        padding: 6px 2px;
+        line-height: 2rem;
+        background-color:#000;
+        color: #fff;
+        top: -8px;
+        font-size: 15px;
+      }
+      #header .shopping-icon{
+        color: #fff;
+        font-size: 20px;
+        line-height: 46px;
+      }
 
     /*footer*/
 
@@ -131,12 +199,9 @@
       background-color: black;
       padding: 30px 5px;
       text-align: center;
-
     }
-
     #footer .anhbia-img{
      width: 500px;
-
     }
     #footer p{
       color: #ccc;
@@ -146,7 +211,6 @@
     #footer .socical-list{
       font-size: 30px;
       padding: 0 10px;
-
     }
     #footer .socical-list a{
       color: #ccc;
@@ -163,11 +227,6 @@
       padding: 0 300px;
 
     }
-    /*
-    .auth-form{
-      margin-top: 46px;
-      height: 500px;
-    } */
     .alert {
       width: 500px;
       margin-bottom: -5px;
@@ -255,7 +314,7 @@
       margin-bottom: 100px;
       width: 60px;
       height: 60px;
-     
+
     }
     .user-name{
       margin-top: 20px;
@@ -298,7 +357,7 @@
 
   <div class="search-btn_tem">
     <form action="/search" id="search-box">
-      <input type="text" id="search-text"
+      <input type="text" autocomplete="off" id="search-text"
       placeholder="Search your item"  name="product" required>
       <button id="search-btn"><i class="search-icon ti-search"></i></button>
     </form>
@@ -345,6 +404,7 @@
           <img src="/image/Slider/user.png" alt="" class="user-ava">
           <span class="user-name">Hello Guys</span>
         </div>
+
         <form action="/user" method="post">
           <div>
             <% if (typeof errors != 'undefined'){
@@ -364,13 +424,14 @@
                   <p>
                   <%= messages.success_msg %></p>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-
                 </div>
             <% } %>
         </div>
+
         <div class ="auth-form__group">
           <input type="text" class="auth-form__input" name="name" placeholder="Name" value="<%=user.name%>" required>
         </div>
+
         <div class="auth-form__group">
           <input type="text" class="auth-form__input" name="email" placeholder="Email" value="<%=account.email%>" readonly>
         </div>

@@ -18,12 +18,12 @@
       html{
         font-family: Arial, Helvetica, sans-serif;
       }
-      
+
       /* Phần Header*/
       #nav{
         display: inline-block;
       }
-      
+
       #header{
         height: 46px;
         background: #000;
@@ -32,8 +32,8 @@
         left: 0;
         right: 0;
       }
-      
-      
+
+
       #nav, .subnav{
         list-style: none;
       }
@@ -42,13 +42,14 @@
       }
       #nav li{
         position: relative;
+        right: 32px;
       }
-      
+
       #nav > li > a{
         color: #fff;
         text-transform: uppercase;
       }
-      
+
       #nav li a{
         text-decoration: none;
         line-height: 46px;
@@ -58,17 +59,18 @@
       #nav li:hover .subnav{
         display: block;
       }
-      
+
       #nav > li:hover > a{
         color: #000;
         background-color: #ccc;
       }
-      
+
       #nav .subnav{
         display: none;
         position: absolute;
         background-color: #fff;
         box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        width: 150px;
       }
       #nav .subnav a{
         color: #000;
@@ -77,30 +79,53 @@
         color: #000;
         background-color: #ccc;
         opacity:1;
+        width: 150px;
       }
-      
+
       /* Phần ICON*/
-      #header .search-btn{
+      #header .search-btn_tem{
         float: right;
-        padding: 0 10px;
+        padding: 0 15px;
         cursor: pointer;
       }
-      #header .search-btn:hover{
-        background-color: #f44336;
+
+      #search-box{
+        background: #000;
+        height: 46px;
       }
-      #header .search-icon{
-        color: #fff;
+      #search-box #search-text{
+        background-color: #fff;
+        border: none;
+        outline: none;
+        padding: 10px 0px;
         font-size: 20px;
-        line-height: 46px;
+        width: 0px;
+        transition: all 0.25s ease-in-out;
       }
+      #header #search-box #search-btn{
+        color: #fff;
+        background-color: #000;
+        height: 30px;
+        border: none;
+        outline: none;
+        padding: 10px;
+        font-size: 20px;
+        margin-top: -2px;
+        cursor: pointer;
+      }
+      #header #search-box:hover #search-text {
+        width: 300px;
+        padding: 0 10px ;
+      }
+      ::placeholder{
+        font-size: 15px;
+      }
+
       /* user */
       #header .user-btn{
         float: right;
-        padding: 0 10px;
+        padding: 0 15px;
         cursor: pointer;
-      }
-      #header .user-btn:hover{
-        background-color: #f44336;
       }
       #header .user-icon{
         color: #fff;
@@ -110,30 +135,71 @@
       /* shopping */
       #header .shopping-btn{
         float: right;
-        padding: 0 10px;
+        padding: 0 15px;
         cursor: pointer;
       }
-      #header .shopping-btn:hover{
-        background-color: #f44336;
+      #header .shopping-btn a{
+        text-decoration: none;
       }
       #header .shopping-icon{
         color: #fff;
         font-size: 20px;
         line-height: 46px;
       }
-      
+      #header .shopping-icon:hover{
+        color: #fff;
+      }
+      .shopping-btn{
+        position: relative;
+      }
+      .shopping-btn:hover .shopping_list{
+        display: none; /*Hieen len la block*/
+      }
+      .shopping_list{
+        position: absolute;
+        top: 100%;
+        margin-top: 4px;
+        right: 10px;
+        background-color: #000;
+        width: 300px;
+        border-radius: 12px;
+        box-shadow: 0 1px 10px #ccc;
+        display: none;
+      }
+      .shopping_list--no-item{
+        padding: 28px 0;
+      }
+      .shopping-no-item-img{
+        width: 100%;
+        display: none;
+      }
+      .shopping-notice{
+        position: absolute;
+        padding: 6px 2px;
+        line-height: 2rem;
+        background-color:#000;
+        color: #fff;
+        top: -8px;
+        font-size: 15px;
+      }
+      #header .shopping-icon{
+        color: #fff;
+        font-size: 20px;
+        line-height: 46px;
+      }
+
       /*footer*/
-      
+
       #footer{
         background-color: black;
         padding: 30px 5px;
         text-align: center;
-      
+
       }
-      
+
       #footer .anhbia-img{
        width: 500px;
-      
+
       }
       #footer p{
         color: #ccc;
@@ -143,7 +209,7 @@
       #footer .socical-list{
         font-size: 30px;
         padding: 0 10px;
-      
+
       }
       #footer .socical-list a{
         color: #ccc;
@@ -178,22 +244,23 @@
       }
       .product-content-left-big-img{
         flex: 2;
-        width: 80%;
-      
+        width: 60%;
       }
       .product-content-left-big-img .product-big-img{
-        width: 90%;
-        margin-left: 50px;
+        width: 60%;
+        margin-left: 150px;
       }
+      /*
       .product-content-left-small-img{
         width: 20%;
         flex: 1;
       }
       .product-content-left-small-img .product-small-img{
         width: 70%;
-      }
+      }*/
       .product-content-right{
         flex: 1.5;
+        margin-right: 50px;
       }
       .product-content-right-pro-name{
         margin-top: 40px;
@@ -223,12 +290,17 @@
         cursor: pointer;
         background-color: #ccc;
       }
+      select{
+        background-color: antiquewhite;
+      }
       .quantity{
+        margin-top: 18px;
         display: flex;
         margin-bottom: 20px;
       }
       .quantity input{
-        width: 35px;
+        width: 40px;
+        height: 28px;
         padding-left: 3px;
         margin-left: 3px;
         background-color: antiquewhite;
@@ -307,13 +379,8 @@
       ul.products-rela li:hover a.buy-now{
         background-color:#9e9e9e;
         color: #ccc;
-      
+
       }
-      
-      
-      
-      
-      
       ul.products-rela li .product-info{
         padding: 20px 0;
       }
@@ -336,7 +403,7 @@
         text-transform: uppercase;
         color:#000;
         font-weight: 600;
-      }      
+      }
 </style>
 </head>
 <body>
@@ -361,53 +428,56 @@
 
 <!----Icon-->
 <div class="shopping-btn">
-  <a href="/cart">
+  <a style="text-decoration: none" href="/cart">
     <i class="shopping-icon ti-shopping-cart"></i>
   </a>
   </div>
 
   <div class="user-btn">
-    <a href="/user">
+    <a style="text-decoration: none" href="/user">
       <i class="user-icon ti-user"></i>
     </a>
   </div>
   <div class="search-btn_tem">
     <form action="/search" id="search-box">
-      <input type="text" id="search-text"
+      <input type="text" autocomplete="off" id="search-text"
       placeholder="Search your item"  name="product" required>
       <button id="search-btn"><i class="search-icon ti-search"></i></button>
     </form>
   </div>
   </div>
 <!----End Icon-->
+
 <!---- Chi tiet sp-->
 <div class="product">
   <div class="head-link">
     <p>Home</p> <span>&#10230; </span> <p><%=product[0].nameDM%></p> <span>&#10230; </span> <p><%=product[0].nameSP%></p>
   </div>
+
 <form action="/cart" method="post">
   <% if (messages.success_msg) { %>
-    <div class="alert alert-success alert-dismissible fade show" role="alert"><%= messages.success_msg %> 
+    <div class="alert alert-success alert-dismissible fade show" role="alert"><%= messages.success_msg %>
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   <% } %>
-  
+
   <% if (messages.error) { %>
-      <div class="alert alert-warning alert-dismissible fade show" role="alert"><%= messages.error %> 
+      <div class="alert alert-warning alert-dismissible fade show" role="alert"><%= messages.error %>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
   <% } %>
+
 <div class="product-content">
     <div class="product-content-left">
       <div class="product-content-left-big-img">
-        <img src="image/item/ga2.jpg" alt="Jumpsuit Spring" class="product-big-img">
+        <img src="image/product/sp8.jpg" alt="Jumpsuit Spring" class="product-big-img">
       </div>
-
+      <!--
       <div class="product-content-left-small-img">
-        <img src="image/product/sp8.jpg" alt="Jumpsuit Spring" class="product-small-img">
+        <img src="image/" alt="Jumpsuit Spring" class="product-small-img">
         <img src="image/product/sp8-1.jpg" alt="Jumpsuit Spring" class="product-small-img">
       </div>
-    </div>
+    </div>-->
 
     <div class="product-content-right">
       <div class="product-content-right-pro-name">
@@ -420,7 +490,7 @@
       <div class="product-content-right-pro-size">
         <p style="font-weight: bold;">Size</p>
 
-          
+
             <input name="idSP" value="<%=product[0].idSP%>" hidden>
             <input name="nameSP" value="<%=product[0].nameSP%>" hidden>
             <input name="giaBan" value="<%=product[0].giaBan%>" hidden>
@@ -430,7 +500,7 @@
                   <option value="<%=sizes[index].size%>"><%=sizes[index].size%></option>
               <% } %>
             </select>
-            
+
             <div class="quantity">
               <p style="font-weight: bold;">Quantity:</p>
               <input type="number" min="0" value="1" name="soLuong">
@@ -439,7 +509,7 @@
             <div class="product-right-button">
               <button class="btn--add" type="submit">Add Cart</button>
             </div>
-          
+
 
       </div>
     </div>
@@ -457,9 +527,11 @@
           <li>
             <div class="product-item">
               <div class="product-top">
+                <p><img src="<%=productDiff[index].imgSP%>" alt=""> </p>
+                <!--
                 <a href="" class="product-pic">
                   <img src="<%=productDiff[index].imgSP%>" alt="">
-                </a>
+                </a>-->
                 <!--mua ngay-->
                 <a href="" class="buy-now">Buy Now</a>
               </div>
@@ -470,7 +542,7 @@
               </div>
             </div>
           </li>
-    
+
         <% } %>
       <% } else { %>
         <% for( let index = 0; index < 4; index++ ) { %>
@@ -490,9 +562,9 @@
               </div>
             </div>
           </li>
-        <% } %>  
+        <% } %>
       <% } %>
-      
+
     </ul>
   </div>
 </div>
