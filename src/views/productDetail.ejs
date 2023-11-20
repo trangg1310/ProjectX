@@ -470,7 +470,7 @@
 <div class="product-content">
     <div class="product-content-left">
       <div class="product-content-left-big-img">
-        <img src="image/product/sp8.jpg" alt="Jumpsuit Spring" class="product-big-img">
+        <img src="<%=product[0].imgSP%>" alt="Jumpsuit Spring" class="product-big-img">
       </div>
       <!--
       <div class="product-content-left-small-img">
@@ -553,7 +553,7 @@
                   <img src="<%=productDiff[index].imgSP%>" alt="">
                 </a>
                 <!--mua ngay-->
-                <a href="" class="buy-now">Buy Now</a>
+                <a href="/productDetail?id=<%=productDiff[index].idSP%>" class="buy-now">Buy Now</a>
               </div>
               <div class="product-info">
                 <a href="" class="product-cate"><%=productDiff[index].nameDM%></a>
