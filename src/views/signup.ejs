@@ -246,7 +246,7 @@
             background-color: #fff;
             margin-top: 46px;
             height: 400px;
-            padding: 0 300px;
+            /*padding: 0 300px;*/
 
           }
           .auth-form{
@@ -262,6 +262,7 @@
             grid-template-columns: 350px 450px;
             border: 1px solid grey;
             background-color: #d7d6d6;
+            margin-left: 230px;
           }
           .auth-form__header{
             font-size: 10px;
@@ -321,6 +322,7 @@
     </style>
 </head>
 <body>
+
   <!----Header-->
 <div id="main">
   <div id="header">
@@ -386,9 +388,10 @@
         <div>
           <input type="text" class="auth-form__input" name="name" placeholder="Name" value='<%=user.name%>' required>
         </div>
+
         <div>
             <input type="text" class="auth-form__input" name="email" placeholder="Email" required>
-          </div>
+        </div>
 
         <div>
             <input type="password" class="auth-form__input" name="password" placeholder="Password" required>
