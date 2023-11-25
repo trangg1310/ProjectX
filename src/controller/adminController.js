@@ -7,7 +7,7 @@ import path from "path"
 
 let getAdmin = async(req, res) => {
     const [user, fields] = await pool.execute(`select user.idUser, user.name, user.address, user.phoneNumber, account.email 
-    from user, account where user.idTK = account.idTK`);
+    from user, account where user.idTK = account.idTK AND account.admin = 0`);
     const [danhmuc, fields1] = await pool.execute(`select idDM, nameDM from danhmuc`);
     const [product, fields2] = await pool.execute(`select sanphamchitiet.idSPCT, sanpham.idSP, sanpham.nameSP, danhmuc.nameDM, sanpham.giaBan, sanpham.imgSP, sanphamchitiet.size, sanphamchitiet.soLuong 
     from sanpham, sanphamchitiet, danhmuc where sanphamchitiet.idSP = sanpham.idSP AND sanpham.idDM = danhmuc.idDM 
@@ -23,11 +23,15 @@ let getAdmin = async(req, res) => {
 let postUpdateProduct = async(req, res) => {
     if(req.body.action =="update") {
         let {idSPCT, idSP, idDM, nameSP, size, soLuong, giaBan} = req.body;
-        
+        let [slc, fields] = await pool.execute('select soLuong from sanphamchitiet where idSPCT = ?', [idSPCT]);
+        await pool.execute('update sanphamchitiet set soLuong = ? size = ? where idSPCT = ?', [soLuong,size, idSPCT]);
+        await pool.execute('update sanpham set nameSP = ?, soLuong = soLuong - ? + ?, giaBan = ?, idDM = ? where idSP = ?', [nameSP, slc[0].soLuong, soLuong, giaBan, idDM, idSP]);
+        req.flash('success_msg', "Đã cập nhật sản phẩm thành công!");
     } else if(req.body.action == "delete") {
         try {
             await pool.execute('delete from sanphamchitiet where idSPCT=?', [req.body.idSPCT]);
             await pool.update('update sanpham set soluong = soluong - ?,  where idSP=?', [req.body.soLuong]);
+            req.flash('success_msg', "Đã xóa sản phẩm thành công!");
         } catch (error) {
             req.flash('error', "Có lỗi khi xóa sản phẩm này!");
         }
@@ -64,11 +68,11 @@ let postUpdateOrder = async(req, res) => {
 let postUpdateCategory = async(req, res) => {
     if(req.body.action == "update") {
         let {idDM, nameDM} = req.body;
-        await pool.execute('update user set nameDM = ? where idDM = ?', [nameDM, idDM]);
+        await pool.execute('update danhmuc set nameDM = ? where idDM = ?', [nameDM, idDM]);
         req.flash('success_msg', "Đã cập nhật danh mục thành công!");
     } else if(req.body.action == "delete") {
         try {
-            await pool.execute('delete from danhmuc where idDm=?', [req.body.idDM]);
+            await pool.execute('delete from danhmuc where idDM=?', [req.body.idDM]);
             req.flash('success_msg', "Đã xóa danh mục thành công!");
         } catch (error) {
             req.flash('error', "Có lỗi khi xóa danh mục này!");
@@ -86,7 +90,7 @@ let createCategory = async(req, res) => {
 }
 
 let createOrder = async(req, res) => {
-    
+
 }
 
 module.exports = {
