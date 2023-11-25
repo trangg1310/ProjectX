@@ -649,7 +649,7 @@ p{
   <li><a href="#theorder">The order</a></li>
   <li><a href="#category">Category</a></li>
   <li><a href="#statistic">Statistic</a></li>
-  <li><a href="">Log Out</a></li>
+  <li><a href="/logout">Log Out</a></li>
 </ul>
 <div class="menu-pic" style="margin-bottom: 30px;">
 <img src="image/Slider/Slider1.png" alt=""class="menu-img">
@@ -755,55 +755,46 @@ p{
 
 
 <!-- thêm sản phẩm -->
-<div class="modal-container" id="myModal1">
+<div class="modal-container" id="myModal1" style="height: fit-content;">
 <div class="modal1">
     <div class="modal-header">
       <h2>Product</h2>
     </div>
     <div class="add-product">
-      <form action="/admincreateproduct" method="post">
+      <form action="/admincreateproduct" method="post" enctype="multipart/form-data">
         <div class="product">
           <div class="product-add-content">
             <label for="">Id Category</label>
-            <input type="text" name="idCategory">
+            <input type="text" name="idDM" required>
           </div>
 
           <div class="product-add-content">
             <label for="">Name Item</label>
-            <input type="text" name="nameItem">
-          </div>
-
+            <input type="text" name="nameSP" required>
+          </div>        
           <div class="product-add-content">
-            <label for="">Size</label>
-            <div class="size">
-              <span>XS</span>
-                <span>S</span>
-                <span>M</span>
-                <span>L</span>
-            </div>
+              <label for="">Quantity</label>
+              <input type="number" name="quantity[]" placeholder="S" required>
+              <input type="number" name="quantity[]" placeholder="M" required>
+              <input type="number" name="quantity[]" placeholder="L" required>
+              <input type="number" name="quantity[]" placeholder="XL" required>
           </div>
-
-          <div class="product-add-content">
-            <label for="">Quantity</label>
-            <input type="text" name="quantity">
-          </div>
-
           <div class="product-add-content">
             <label for="">Price</label>
-            <input type="text" name="price">
+            <input type="text" name="giaBan" required>
           </div>
 
           <div class="product-add-content">
             <label for="">Image</label>
-            <button class="btn--pick" type="submit">Pick your image</button>
+            <input type="file" accept="image/*" name="imgSP" required>
           </div>
 
           <div class="auth-form__controls">
             <button class="btn--save" type="submit">Save</button>
-            <button class="btn--exit">Exit</button>
           </div>
         </div>
       </form>
+      <button class="btn--exit">Exit</button>
     </div>
 </div>
 </div>
@@ -905,8 +896,8 @@ p{
                 <td><p><input name="idUser" value="<%=history[index].idUser%>" readonly></p></td>
                 <td><p><input name="address" value="<%=history[index].address%>" required></p></td>
                 <td><span><input name="phoneNumber" value="<%=history[index].phoneNumber%>" required> </span> </td>
-                <td><span><input name="idSPCT" value="<%=history[index].idSPCT%>" required> </span> </td>
-                <td><span><input name="soLuong" value="<%=history[index].soLuong%>" required> </span> </td>
+                <td><span><input name="idSPCT" value="<%=history[index].idSPCT%>" readonly> </span> </td>
+                <td><span><input name="soLuong" type="number" value="<%=history[index].soLuong%>" required> </span> </td>
                 <td><span><input name="thanhTien" value="<%=history[index].soLuong * history[index].giaBan%>" readonly> </span> </td>
                 <td><span><input name="timeCreate" value="<%= history[index].timeCreate.getFullYear()%>-<%=history[index].timeCreate.getMonth()+1%>-<%=history[index].timeCreate.getDate()%>" readonly> </span></td>
                 <td>
@@ -975,21 +966,21 @@ p{
       <h2>The Order</h2>
     </div>
     <div class="add-theorder">
-      <form action="" method="post">
+      <form action="/admincreateorder" method="post">
         <div class="theorder">
           <div class="theorder-add-content">
             <label for="">Id User</label>
-            <input type="text" name="idUser">
+            <input type="text" name="idUser" required>
           </div>
 
           <div class="theorder-add-content">
             <label for="">Name User</label>
-            <input type="text" name="nameUser">
+            <input type="text" name="nameUser" required>
           </div>
 
           <div class="theorder-add-content">
             <label for="">Address</label>
-            <input type="text" name="address">
+            <input type="text" name="address" required>
           </div>
 
           <div class="theorder-add-content">
@@ -998,23 +989,24 @@ p{
           </div>
 
           <div class="theorder-add-content">
+            <label for="">IDSP</label>
+            <input type="text" name="idSPCT">
+          </div>
+
+          <div class="theorder-add-content">
             <label for="">Quantity</label>
-            <input type="text" name="quantity">
+            <input type="number" name="soLuong">
           </div>
-          <div class="theorder-add-content">
-            <label for="">Total Amount</label>
-            <input type="text" name="totalAmount">
-          </div>
-          <div class="theorder-add-content">
+          <div class="theorder-add-content" hidden>
             <label for="">Status</label>
-            <input type="text" name="status">
+            <input type="text" name="trangThai" value="Chờ giao hàng">
           </div>
           <div class="auth-form__controls">
             <button class="btn--save" type="submit">Save</button>
-            <button class="btn--exit" type="submit">Exit</button>
           </div>
         </div>
       </form>
+      <button class="btn--exit" type="submit">Exit</button>
     </div>
 </div>
 </div>
@@ -1056,24 +1048,19 @@ p{
       <h2>Category</h2>
     </div>
     <div class="add-category">
-      <form action="" method="post">
+      <form action="/admincreatecategory" method="post">
         <div class="category">
           <div class="category-add-content">
-            <label for="">Id Category</label>
-            <input type="text" name="idAccount">
-          </div>
-
-          <div class="category-add-content">
-            <label for="">Name</label>
-            <input type="text" name="name">
+            <label for="nameDM">Name</label>
+            <input type="text" name="nameDM">
           </div>
 
           <div class="auth-form__controls">
             <button class="btn--save" type="submit">Save</button>
-            <button class="btn--exit" type="submit">Exit</button>
           </div>
         </div>
       </form>
+      <button class="btn--exit" type="submit">Exit</button>
     </div>
 </div>
 </div>
