@@ -909,7 +909,31 @@ p{
                 <td><span><input name="soLuong" value="<%=history[index].soLuong%>" required> </span> </td>
                 <td><span><input name="thanhTien" value="<%=history[index].soLuong * history[index].giaBan%>" readonly> </span> </td>
                 <td><span><input name="timeCreate" value="<%= history[index].timeCreate.getFullYear()%>-<%=history[index].timeCreate.getMonth()+1%>-<%=history[index].timeCreate.getDate()%>" readonly> </span></td>
-                <td><span><input name="trangThai" value="<%=history[index].trangThai%>" required> </span></td>
+                <td>
+                  <select name="trangThai" style="background-color: transparent; border: none; padding: 8px 0px;" id="trangThai">
+                      <% if (history[index].trangThai === "Chờ giao hàng") { %>
+                          <option value="Chờ giao hàng" selected>Chờ giao hàng</option>
+                          <option value="Đang giao hàng">Đang giao hàng</option>
+                          <option value="Đã giao hàng">Đã giao hàng</option>
+                          <option value="Đã hủy">Đã hủy</option>
+                      <% } else if (history[index].trangThai === "Đang giao hàng") {%>
+                        <option value="Chờ giao hàng">Chờ giao hàng</option>
+                        <option value="Đang giao hàng" selected>Đang giao hàng</option>
+                        <option value="Đã giao hàng">Đã giao hàng</option>
+                        <option value="Đã hủy">Đã hủy</option>
+                      <% } else if (history[index].trangThai === "Đã giao hàng") { %>
+                        <option value="Chờ giao hàng">Chờ giao hàng</option>
+                        <option value="Đang giao hàng" >Đang giao hàng</option>
+                        <option value="Đã giao hàng"selected>Đã giao hàng</option>
+                        <option value="Đã hủy">Đã hủy</option>
+                      <% } else if (history[index].trangThai === "Đã hủy") { %>
+                        <option value="Chờ giao hàng">Chờ giao hàng</option>
+                        <option value="Đang giao hàng" >Đang giao hàng</option>
+                        <option value="Đã giao hàng">Đã giao hàng</option>
+                        <option value="Đã hủy"selected>Đã hủy</option>
+                      <% } %>
+                  </select>
+                </td>
                 <td><button type="submit" name="action" value="update" class="btn--update-user">Update</button></td>
                 <td><button type="submit" name="action" value="delete">Delete</button></td>
               </tr>
