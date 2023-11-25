@@ -62,7 +62,6 @@ let postUpdateUser = async(req, res) => {
 }
 
 let postUpdateOrder = async(req, res) => {
-
 } 
 
 let postUpdateCategory = async(req, res) => {

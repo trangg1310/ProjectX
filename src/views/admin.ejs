@@ -1081,7 +1081,7 @@ p{
 
 <!--Thống kê-->
 <div class="sec5 col-12 mb-4" id="doanhso" style="margin-bottom: 0px;">
-  <div class="card shadow" style="height: ;">
+  <div class="card shadow">
       <div class="card-header">
         <h2 id="statistic">Statistic</h2>
       </div>
@@ -1099,7 +1099,7 @@ p{
 </section>
 
 <script type='text/javascript'>
-  const history1 = <%-JSON.stringify(doanhthu)%> ;
+  const history1 = <%-JSON.stringify(doanhthu)%>;
   const cur_date = new Date();
   let cur_d_string = cur_date.getFullYear() + ((cur_date.getMonth() + 1 >= 10) ? '-' : '-0') + (cur_date.getMonth() +1) + ((cur_date.getDate() >= 10) ? '-' : '-0') + cur_date.getDate();
   const begin_date = document.querySelector("#begin-date");
