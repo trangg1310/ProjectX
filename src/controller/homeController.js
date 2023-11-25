@@ -285,7 +285,7 @@ let getHistory = async(req, res) => {
     let [history, fields1] = await pool.execute(`SELECT donhang.address, donhang.phoneNumber, donhang.timeCreate, donhang.trangThai, 
     sanpham.nameSP, sanpham.giaBan, donhangchitiet.soLuong, sanphamchitiet.size 
     FROM donhang, donhangchitiet, sanpham, sanphamchitiet 
-    WHERE donhang.idDH = donhangchitiet.idDHCT AND donhangchitiet.idSPCT = sanphamchitiet.idSPCT AND sanpham.idSP = sanphamchitiet.idSPCT;`)
+    WHERE donhang.idDH = donhangchitiet.idDHCT AND donhangchitiet.idSPCT = sanphamchitiet.idSPCT AND sanpham.idSP = sanphamchitiet.idSPCT AND donhang.idUser = ?`, [idUser[0].idUser])
     return res.render("history.ejs", {history: history});
 }
 

@@ -1,5 +1,6 @@
 import express from "express"
 import homeController from "../controller/homeController"
+import adminController from "../controller/adminController"
 
 let router = express.Router();
 
@@ -42,6 +43,12 @@ const initWebRoute = (app) => {
 
     router.get('/logout', homeController.getLogout);
 
+    
+    router.get('/admin', adminController.getAdmin);
+    router.post('/adminproduct', adminController.postUpdateProduct);
+    router.post('/adminuser', adminController.postUpdateUser);
+    router.post('/adminorder', adminController.postUpdateOrder);
+    router.post('/admincategory', adminController.postUpdateCategory);
 
     return app.use('/', router);
 }

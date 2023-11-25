@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cellz.clothing</title>
   <link rel="stylesheet" href="/icon/themify-icons-font/themify-icons/themify-icons.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.74.1/dist/L.Control.Locate.min.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
@@ -115,12 +122,6 @@ i{
 .sec5{
   margin-left: -20px;
   background-size: cover;
-  height: 100vh;
-}
-.sec6{
-  margin-left: -20px;
-  background-size: cover;
-  height: 100vh;
 }
 h2{
   font-size: 40px;
@@ -604,6 +605,38 @@ p{
   cursor: pointer;
   background-color: rgb(43, 42, 42);
 }
+.card {
+  max-height: 800px; /* Đặt chiều cao tối đa cho card (tùy chọn) */
+  border: 1px solid #ddd; /* Thêm viền cho card (tùy chọn) */
+  overflow-y: hidden; /* Ẩn thanh cuộn toàn bộ card */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  margin: 50px 30px;
+}
+
+.card-header {
+  background-color: #f0f0f0; /* Màu nền của card-header (tùy chọn) */
+  padding: 10px; /* Thêm padding cho card-header (tùy chọn) */
+}
+
+.card-body {
+  flex: 1; /* Co giãn để lấp đầy không gian còn lại */
+  overflow-y: auto; /* Cho phép cuộn nếu nội dung vượt quá chiều cao */
+  padding: 10px; /* Thêm padding cho card-body (tùy chọn) */
+}
+
+.scrollable-content {
+  max-height: 100%; /* Chiều cao tối đa của tbody có thể cuộn */
+  overflow-y: auto; /* Cho phép cuộn nếu nội dung vượt quá chiều cao của tbody */
+}
+
+.alert {
+  margin-left: 280px;
+  margin-top: 50px;
+  margin-right: 30px;
+}
+
 </style>
 
 </head>
@@ -618,46 +651,109 @@ p{
   <li><a href="#statistic">Statistic</a></li>
   <li><a href="">Log Out</a></li>
 </ul>
-<div class="menu-pic">
-<img src="./assets/img/Slider/Slider1.png" alt=""class="menu-img">
+<div class="menu-pic" style="margin-bottom: 30px;">
+<img src="image/Slider/Slider1.png" alt=""class="menu-img">
 </div>
-<div class="menu-home">
-  <a href="" class="btn--withicon">Back Home</a>
-</div>
+<% if (messages.success_msg) { %></p>
+  <div class="alert alert-success alert-dismissible fade show" role="alert"><%= messages.success_msg %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% } %>
+
+<% if (messages.error) { %>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert"><%= messages.error %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<% } %>
 
 
 <!--Content-->
 <section class="slide_image">
 <!--Sản phẩm-->
-<div class="sec1"></div>
-  <h2 id="product">Product</h2>
-  <button class="btn--add-product">Add More</button>
-  <div class="menu-product">
-    <table>
-      <tr>
-        <th>Id </th>
-        <th>Id Cate</th>
-        <th>Item</th>
-        <th>Name Item</th>
-        <th>Size</th>
-        <th>QUANTITY</th>
-        <th>PRICE</th>
-      </tr>
-      <tr>
-        <form action="" method="post">
-          <td>1</td>
-          <td>2</td>
-          <td><img src="./assets/img/item/ga2.jpg" alt="" class="item-img"></td>
-          <td><p>Sinra</p></td>
-          <td><span>S</span></td>
-          <td> <span>12</span> </td>
-          <td> <span>1200000</span> </td>
-          <td><button class="btn--upda-product">Update</button></td>
-          <td><button type="submit" name="action" value="delete">Delete</button></td>
-        </form>
-      </tr>
-    </table>
+<div class="card">
+  <div class="sec1" style="display: none;"></div>
+  <div class="card-header">
+    <h2 id="product">Product</h2>
+    <input type="text" id="searchInput" placeholder="NameItem/IDSP">
+    <button class="btn--add-product">Add More</button>
   </div>
+  <div class="menu-product card-body">
+    
+      <table>
+        <thead>
+          <tr>
+            <th>IdSP</th>
+            <th>Category</th>
+            <th>Name Item</th>
+            <th>Size</th>
+            <th>QUANTITY</th>
+            <th>PRICE</th>
+          </tr>
+        </thead>
+        <tbody class="scrollable-content">
+          <%for(let index = 0; index < product.length; index++) {%>
+            <form action="/adminproduct" method="post">
+              <tr>
+                <td><input name="idSPCT" value="<%=product[index].idSPCT%>" readonly></td>
+                <input name="idSP" value="<%=product[index].idSP%>" hidden>
+                <td>
+                  <select name="idDM" style="background-color: transparent; border: none; padding: 8px 0px;" id="nameDM">
+                      <% for (let i = 0; i < danhmuc.length; i++) { %>
+                          <% if(product[index].nameDM == danhmuc[i].nameDM) { %>
+                            <option value="<%=danhmuc[i].idDM%>" selected><%=danhmuc[i].nameDM%></option>
+                          <% } else { %>
+                            <option value="<%=danhmuc[i].idDM%>"><%=danhmuc[i].nameDM%></option>
+                          <% } %>
+                      <% } %>
+                  </select>
+                </td>
+                <td><p><input name="nameSP" value="<%=product[index].nameSP%>" required></p></td>
+                <td><span><input name="size" value="<%=product[index].size%>" required></span></td>
+                <td><span><input name="soLuong" value="<%=product[index].soLuong%>" required></span> </td>
+                <td> <span><input name="giaBan" value="<%=product[index].giaBan%>" required></span> </td>
+                <td><button type="submit" name="action" value="update" class="btn--upda-product">Update</button></td>
+                <td><button type="submit" name="action" value="delete">Delete</button></td>
+              </tr>
+            </form>
+          <%}%>
+        </tbody>
+      </table> 
+  </div>
+</div>
+<!-- lọc sản phẩm -->
+<script>
+  document.getElementById("searchInput").addEventListener("input", function () {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("searchInput");
+    filter = input.value.toUpperCase();
+    table = document.querySelector(".menu-product table");
+    tr = table.getElementsByTagName("tr");
+
+    for (i = 1; i < tr.length; i++) {
+      var nameSPCell = tr[i].querySelector("[name='nameSP']");
+      var idSPCell = tr[i].querySelector("[name='idSPCT']");
+      if (nameSPCell && idSPCell) {
+        // Sử dụng .textContent hoặc .innerText để truy cập giá trị
+        txtValue = nameSPCell.value.toUpperCase();
+        var idSPValue = idSPCell.value;
+
+        // Kiểm tra giá trị thực tế của txtValue và idSPValue
+        console.log('txtValue:', txtValue);
+        console.log('idSPValue:', idSPValue);
+
+        // Check if either the nameSP or idSP contains the filter
+        if (txtValue.includes(filter) || idSPValue.includes(filter)) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  });
+</script>
+
+
+
 <!-- thêm sản phẩm -->
 <div class="modal-container" id="myModal1">
 <div class="modal">
@@ -665,7 +761,7 @@ p{
       <h2>Product</h2>
     </div>
     <div class="add-product">
-      <form action="" method="post">
+      <form action="/admincreateproduct" method="post">
         <div class="product">
           <div class="product-add-content">
             <label for="">Id Category</label>
@@ -714,101 +810,140 @@ p{
 
 
 <!--Khách hàng-->
-  <div class="sec2"></div>
-  <h2 id="client">Client</h2>
-  <div class="menu-client">
-    <table>
-      <tr>
-        <th>Id </th>
-        <th>Id Acc</th>
-        <th>Name</th>
-        <th>Adress</th>
-        <th>Phone Number</th>
-      </tr>
-      <tr>
-          <td>1</td>
-          <td>1</td>
-          <td><p>Phuong Anh</p></td>
-          <td><p>Than Xuan Ha Noi</p></td>
-          <td> <span>0337295656 </span> </td>
-          <td><button class="btn--update-user">Update</button></td>
-          <td><button type="submit" name="action" value="delete">Delete</button></td>
-      </tr>
-    </table>
+<div class="card">
+  <div class="sec2" style="display: none;"></div>
+  <div class="card-header">
+    <h2 id="client">Client</h2>
+    <input type="text" id="searchInputClient" placeholder="Email">
   </div>
-<!--Sua khach hang-->
-<div class="modal-container" id="myModal2">
-<div class="modal">
-    <div class="modal-header">
-      <h2>Client</h2>
-    </div>
-    <div class="update-user">
-      <form action="" method="post">
-        <div class="user">
-          <div class="user-update-content">
-            <label for="">Id Account</label>
-            <input type="text" name="idAccount">
-          </div>
-
-          <div class="user-update-content">
-            <label for="">Name</label>
-            <input type="text" name="name">
-          </div>
-
-          <div class="user-update-content">
-            <label for="">Address</label>
-            <input type="text" name="address">
-          </div>
-
-          <div class="user-update-content">
-            <label for="">Phone Number</label>
-            <input type="text" name="phoneNumber">
-          </div>
-          <div class="auth-form__controls">
-            <button class="btn--save" type="submit">Save</button>
-            <button class="btn--exit" type="submit">Exit</button>
-          </div>
-        </div>
-      </form>
-    </div>
+  <div class="menu-client card-body">  
+      <table>
+        <thead>
+          <tr>
+            <th>IdUser </th>
+            <th>Email</th>
+            <th>Name</th>
+            <th>Adress</th>
+            <th>Phone Number</th>
+          </tr>
+        </thead>
+        <tbody class="scrollable-content">
+          <% for(let index = 0; index < user.length; index++)  {%>
+            <form action="/adminuser" method="post">
+              <tr>
+                <td><input name="idUser" value="<%=user[index].idUser%>" readonly></td>
+                <td><input name="email" value="<%=user[index].email%>" readonly></td>
+                <td><p><input name="name" value="<%=user[index].name%>" required></p></td>
+                <td><p><input name="address" value="<%=user[index].address%>" required></p></td>
+                <td><span><input name="phoneNumber" value="<%=user[index].phoneNumber%>" required> </span> </td>
+                <td><button type="submit" name="action" value="update" class="btn--update-user">Update</button></td>
+                <td><button type="submit" name="action" value="delete">Delete</button></td>
+              </tr>
+            </form>
+          <%}%>
+        </tbody>
+      </table> 
+  </div>
 </div>
-</div>
+
+<script>
+  document.getElementById("searchInputClient").addEventListener("input", function () {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("searchInputClient");
+    filter = input.value.toUpperCase();
+    table = document.querySelector(".menu-client table"); // Sửa đổi đường dẫn đến bảng
+    tr = table.getElementsByTagName("tr");
+
+    for (i = 0; i < tr.length; i++) { // Bắt đầu từ i = 0 để bao gồm cả hàng tiêu đề
+      var emailCell = tr[i].querySelector("[name='email']");
+      if (emailCell) {
+        // Sử dụng .value để truy cập giá trị
+        txtValue = emailCell.value.toUpperCase();
+        // Check if the email contains the filter
+        if (txtValue.includes(filter)) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  });
+</script>
+
 
 
 <!--Đơn hàng-->
-<div class="sec3"></div>
-<h2 id="theorder">The Order</h2>
-<button class="btn--add-cart"><a style="text-decoration: none" href="">ADD</a></button>
-<div class="menu-theorder">
-  <table>
-    <tr>
-      <th>Id</th>
-      <th>Id User</th>
-      <th>Name User</th>
-      <th>Adress</th>
-      <th>Phone Number</th>
-      <th>Quantity</th>
-      <th>Total amount</th>
-      <th>Time</th>
-      <th>STATUS</th>
-    </tr>
-    <tr>
-      <form action="" method="post">
-        <td>1</td>
-        <td>1</td>
-        <td><p>Phuong Anh</p></td>
-        <td><p>Than Xuan Ha Noi</p></td>
-        <td> <span>0337295656 </span> </td>
-        <td> <span>2</span> </td>
-        <td> <span>2200000</span> </td>
-        <td> <span>18/12/2023</span> </td>
-        <td> <span>Are delivering</span> </td>
-        <td><button class="btn--upda-cart">Update</button></td>
-        <td><button type="submit" name="action" value="delete">Delete</button></td>
-      </form>
-    </tr>
-  </table>
+<div class="card">
+  <div class="sec3" style="display: none;"></div>
+  <div class="card-header">
+    <h2 id="theorder">The Order</h2>
+    <input type="text" id="searchInputTheOrder" placeholder="Phone Number">
+    <button class="btn--add-cart"><a style="text-decoration: none" href="">ADD</a></button>
+  </div>
+  <div class="menu-theorder card-body">  
+      <table>
+        <thead>
+          <tr>
+            <th>IdDH</th>
+            <th>IdDHCT</th>
+            <th>Id User</th>
+            <th>Address</th>
+            <th>Phone Number</th>
+            <th>IDSP</th>
+            <th>QUANTITY</th>
+            <th>Total amount</th>
+            <th>Time</th>
+            <th>STATUS</th>
+          </tr>
+        </thead>
+        <tbody class="scrollable-content">
+          <% for(let index = 0; index < history.length; index++)  {%>
+            <form action="/adminorder" method="post">
+              <tr>
+                <td><input name="idDH" value="<%=history[index].idDH%>" readonly></td>
+                <td><input name="idDHCT" value="<%=history[index].idDHCT%>" readonly></td>
+                <td><p><input name="idUser" value="<%=history[index].idUser%>" readonly></p></td>
+                <td><p><input name="address" value="<%=history[index].address%>" required></p></td>
+                <td><span><input name="phoneNumber" value="<%=history[index].phoneNumber%>" required> </span> </td>
+                <td><span><input name="idSPCT" value="<%=history[index].idSPCT%>" required> </span> </td>
+                <td><span><input name="soLuong" value="<%=history[index].soLuong%>" required> </span> </td>
+                <td><span><input name="thanhTien" value="<%=history[index].soLuong * history[index].giaBan%>" readonly> </span> </td>
+                <td><span><input name="timeCreate" value="<%= history[index].timeCreate.getFullYear()%>-<%=history[index].timeCreate.getMonth()+1%>-<%=history[index].timeCreate.getDate()%>" readonly> </span></td>
+                <td><span><input name="trangThai" value="<%=history[index].trangThai%>" required> </span></td>
+                <td><button type="submit" name="action" value="update" class="btn--update-user">Update</button></td>
+                <td><button type="submit" name="action" value="delete">Delete</button></td>
+              </tr>
+            </form>
+          <%}%>
+        </tbody>
+      </table> 
+  </div>
 </div>
+
+<script>
+  document.getElementById("searchInputTheOrder").addEventListener("input", function () {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("searchInputTheOrder");
+    filter = input.value.toUpperCase();
+    table = document.querySelector(".menu-theorder table"); // Sửa đổi đường dẫn đến bảng
+    tr = table.getElementsByTagName("tr");
+
+    for (i = 0; i < tr.length; i++) { // Bắt đầu từ i = 0 để bao gồm cả hàng tiêu đề
+      var phoneNumberCell = tr[i].querySelector("[name='phoneNumber']");
+      if (phoneNumberCell) {
+        // Sử dụng .value để truy cập giá trị
+        txtValue = phoneNumberCell.value.toUpperCase();
+        // Check if the email contains the filter
+        if (txtValue.includes(filter)) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  });
+</script>
+
 <!--Them don hang-->
 <div class="modal-container" id="myModal3">
 <div class="modal">
@@ -862,24 +997,33 @@ p{
 
 
 <!--Danh muc-->
-<div class="sec4"></div>
-<h2 id="category">Category</h2>
-<button class="btn--add-cate"><a style="text-decoration: none" href="">ADD</a></button>
-<div class="menu-category">
-  <table>
-    <tr>
-      <th>Id</th>
-      <th>Name Category</th>
-    </tr>
-    <tr>
-      <form action="" method="post">
-        <td>1</td>
-        <td><p>Dress</p></td>
-        <td><button class="btn--upda-cate">Update</button></td>
-        <td><button type="submit" name="action" value="delete">Delete</button></td>
-      </form>
-    </tr>
-  </table>
+<div class="card">
+  <div class="card-header">
+    <h2 id="category">Category</h2>
+    <button class="btn--add-cate"><a style="text-decoration: none" href="">ADD</a></button>
+  </div>
+  <div class="menu-category card-body">
+    <table>
+      <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name Category</th>
+      </tr>
+      </thead>
+      <tbody class="scrollable-content">
+      <%for(let index = 0; index < danhmuc.length; index++) {%>
+        <tr>
+          <form action="/admincategory" method="post">
+            <td><input name="idDM" value="<%=danhmuc[index].idDM%>" readonly></td>
+            <td><p><input name="nameDM" value="<%=danhmuc[index].nameDM%>" required></p></td>
+            <td><button type="submit" name="action" value="update" class="btn--upda-cate">Update</button></td>
+            <td><button type="submit" name="action" value="delete">Delete</button></td>
+          </form>
+        </tr>
+      <%}%>
+      </tbody>
+    </table>
+  </div>
 </div>
 <!--Them danh muc-->
 <div class="modal-container" id="myModal4">
@@ -912,13 +1056,147 @@ p{
 
 
 <!--Thống kê-->
-<div class="sec5"></div>
-<h2 id="statistic">Statistic</h2>
-<form action="" method="post">
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem eveniet asperiores error tempora ea</p>
-</form>
-<div class="sec6"></div>
+<div class="sec5 col-12 mb-4" id="doanhso" style="margin-bottom: 0px;">
+  <div class="card shadow" style="height: ;">
+      <div class="card-header">
+        <h2 id="statistic">Statistic</h2>
+      </div>
+      <div class="card-body">
+          <label for="begin-date" style="margin-left: 2rem;">Từ ngày:</label>
+          <input type="date" name="begin-date" style="text-align: center;" id="begin-date" onchange="runWhenSelectDate()">
+          <label for="end-date" style="margin-left: 10rem;">Đến ngày:</label>
+          <input type="date" name="end-date" style="text-align: center;" id="end-date" onchange="runWhenSelectDate()">
+          <!-- <button class="btn btn-success" id="select-date" style="margin-left: 8rem">Chọn</button> -->
+
+          <canvas id="myChart" style="padding: 2rem 0;"></canvas>
+      </div>
+  </div>
+</div>
 </section>
+
+<script type='text/javascript'>
+  const history1 = <%-JSON.stringify(doanhthu)%> ;
+  const cur_date = new Date();
+  let cur_d_string = cur_date.getFullYear() + ((cur_date.getMonth() + 1 >= 10) ? '-' : '-0') + (cur_date.getMonth() +1) + ((cur_date.getDate() >= 10) ? '-' : '-0') + cur_date.getDate();
+  const begin_date = document.querySelector("#begin-date");
+  const end_date = document.querySelector("#end-date");
+  // const select_date = document.querySelector("#select-date");
+
+  //ngay ket thuc
+  // const cur_date = new Date();
+  end_date.value = cur_date.getFullYear() + ((cur_date.getMonth() + 1 >= 10) ? '-' : '-0') + (cur_date.getMonth() +1) + ((cur_date.getDate() >= 10) ? '-' : '-0') + cur_date.getDate();
+
+  //ngay bat dau
+  const prev_date = new Date(Date.now() - 10 * 24 * 60 * 60 * 1000);
+  begin_date.value = prev_date.getFullYear() + ((prev_date.getMonth() + 1 >= 10) ? '-' : '-0') + (prev_date.getMonth() +1) + ((prev_date.getDate() >= 10) ? '-' : '-0') + prev_date.getDate();
+  
+  // console.log(doanhthu);
+  let dayArray = [];
+  let index = [];
+  
+  let myChart = new Chart("myChart", {
+      type: 'bar',
+      data: {
+          // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+          labels: index,
+          datasets: [{
+              label: 'Doanh số',
+              data: dayArray,
+              // backgroundColor: [
+              //     'rgba(255, 99, 132, 0.2)',
+              //     'rgba(54, 162, 235, 0.2)',
+              //     'rgba(255, 206, 86, 0.2)',
+              //     'rgba(75, 192, 192, 0.2)',
+              //     'rgba(153, 102, 255, 0.2)',
+              //     'rgba(255, 159, 64, 0.2)'
+              // ],
+              backgroundColor: 'rgba(13, 110, 253, 0.5)',
+              // borderColor: [
+              //     'rgba(255, 99, 132, 1)',
+              //     'rgba(54, 162, 235, 1)',
+              //     'rgba(255, 206, 86, 1)',
+              //     'rgba(75, 192, 192, 1)',
+              //     'rgba(153, 102, 255, 1)',
+              //     'rgba(255, 159, 64, 1)'
+              // ],
+              borderColor: 'rgba(25, 111, 61, 0.5)',
+              borderWidth: 1
+          }]
+      },
+      options: {
+          scales: {
+              yAxes: [{
+                  display: true,
+                  scaleLabel: {
+                      display: true,
+                      labelString: 'VNĐ'
+                  },
+                  ticks: {
+                      beginAtZero: true
+                  }
+              }]
+          }
+          
+      }
+  });
+
+  const runWhenSelectDate = function() {
+      let tempBegin = new Date(begin_date.value);
+      let tempEnd = new Date(end_date.value);
+      console.log(tempBegin);
+      dayArray = []; 
+      index = [];
+      
+      if(tempBegin > tempEnd) {
+          Toastify({
+              text: "Ngày bắt đầu phải trước ngày kết thúc",
+              position: "center",
+              style: {
+                  background: "0d6efd"
+                  
+              },
+              duration: 5000,
+              close: true
+          }).showToast();
+          return;
+      }
+      let temp = [];
+      for(let i = 0; i < history1.length; i++) {
+          console.log(history1[i].timeCreate)
+          let d = new Date(history1[i].timeCreate);
+          temp.push( d.getFullYear() + ((d.getMonth() + 1 >= 10) ? ('-' + (d.getMonth() + 1)) : ('-0' + (d.getMonth() + 1))) + ((d.getDate() >= 10) ? ('-' + d.getDate()) : ('-0' + d.getDate())));
+      }
+      // console.log(temp);
+      for(let d = tempBegin; d <= tempEnd; d.setDate(d.getDate() + 1)) {
+          
+          let d_string = d.getFullYear() + ((d.getMonth() + 1 >= 10) ? '-' : '-0') + (d.getMonth() +1) + ((d.getDate() >= 10) ? '-' : '-0') + d.getDate();
+          index.push(((d.getDate() >= 10) ? '' : '0') + d.getDate() + ((d.getMonth() + 1 >= 10) ? '-' : '-0') + (d.getMonth() +1) + '-' + d.getFullYear());
+          
+          if(temp.includes(d_string)) {
+              dayArray.push(Number(history1[temp.indexOf(d_string)].doanhthu));
+          } else {
+              dayArray.push(0);
+          }
+      }
+      // console.log("Mảng lưu doanh số",dayArray);
+      // console.log("Mảng lưu ngày", index);
+
+      myChart.data.labels = index;
+      myChart.data.datasets[0].data = dayArray;
+
+      myChart.update();
+
+      
+  }
+  
+  //Gọi 1 lần khi load trang
+  runWhenSelectDate();
+
+  // select_date.addEventListener('click', runWhenSelectDate);
+</script>
+
+
+
 
 <script>
 // San pham
