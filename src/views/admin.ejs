@@ -555,7 +555,15 @@ p{
   align-items: center;
 }
 
-.modal {
+.modal1 {
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 800px;
+  height: 620px;
+}
+.modal3 {
   background-color: #fff;
   padding: 10px;
   border-radius: 8px;
@@ -613,6 +621,7 @@ p{
   display: flex;
   flex-direction: column;
   margin: 50px 30px;
+  position: unset;
 }
 
 .card-header {
@@ -678,7 +687,7 @@ p{
     <button class="btn--add-product">Add More</button>
   </div>
   <div class="menu-product card-body">
-    
+
       <table>
         <thead>
           <tr>
@@ -717,7 +726,7 @@ p{
             </form>
           <%}%>
         </tbody>
-      </table> 
+      </table>
   </div>
 </div>
 <!-- lọc sản phẩm -->
@@ -756,7 +765,7 @@ p{
 
 <!-- thêm sản phẩm -->
 <div class="modal-container" id="myModal1">
-<div class="modal">
+<div class="modal1">
     <div class="modal-header">
       <h2>Product</h2>
     </div>
@@ -816,7 +825,7 @@ p{
     <h2 id="client">Client</h2>
     <input type="text" id="searchInputClient" placeholder="Email">
   </div>
-  <div class="menu-client card-body">  
+  <div class="menu-client card-body">
       <table>
         <thead>
           <tr>
@@ -842,7 +851,7 @@ p{
             </form>
           <%}%>
         </tbody>
-      </table> 
+      </table>
   </div>
 </div>
 
@@ -880,7 +889,7 @@ p{
     <input type="text" id="searchInputTheOrder" placeholder="Phone Number">
     <button class="btn--add-cart"><a style="text-decoration: none" href="">ADD</a></button>
   </div>
-  <div class="menu-theorder card-body">  
+  <div class="menu-theorder card-body">
       <table>
         <thead>
           <tr>
@@ -916,7 +925,7 @@ p{
             </form>
           <%}%>
         </tbody>
-      </table> 
+      </table>
   </div>
 </div>
 
@@ -946,7 +955,7 @@ p{
 
 <!--Them don hang-->
 <div class="modal-container" id="myModal3">
-<div class="modal">
+<div class="modal3">
     <div class="modal-header">
       <h2>The Order</h2>
     </div>
@@ -1089,11 +1098,11 @@ p{
   //ngay bat dau
   const prev_date = new Date(Date.now() - 10 * 24 * 60 * 60 * 1000);
   begin_date.value = prev_date.getFullYear() + ((prev_date.getMonth() + 1 >= 10) ? '-' : '-0') + (prev_date.getMonth() +1) + ((prev_date.getDate() >= 10) ? '-' : '-0') + prev_date.getDate();
-  
+
   // console.log(doanhthu);
   let dayArray = [];
   let index = [];
-  
+
   let myChart = new Chart("myChart", {
       type: 'bar',
       data: {
@@ -1136,7 +1145,7 @@ p{
                   }
               }]
           }
-          
+
       }
   });
 
@@ -1144,16 +1153,16 @@ p{
       let tempBegin = new Date(begin_date.value);
       let tempEnd = new Date(end_date.value);
       console.log(tempBegin);
-      dayArray = []; 
+      dayArray = [];
       index = [];
-      
+
       if(tempBegin > tempEnd) {
           Toastify({
               text: "Ngày bắt đầu phải trước ngày kết thúc",
               position: "center",
               style: {
                   background: "0d6efd"
-                  
+
               },
               duration: 5000,
               close: true
@@ -1168,10 +1177,10 @@ p{
       }
       // console.log(temp);
       for(let d = tempBegin; d <= tempEnd; d.setDate(d.getDate() + 1)) {
-          
+
           let d_string = d.getFullYear() + ((d.getMonth() + 1 >= 10) ? '-' : '-0') + (d.getMonth() +1) + ((d.getDate() >= 10) ? '-' : '-0') + d.getDate();
           index.push(((d.getDate() >= 10) ? '' : '0') + d.getDate() + ((d.getMonth() + 1 >= 10) ? '-' : '-0') + (d.getMonth() +1) + '-' + d.getFullYear());
-          
+
           if(temp.includes(d_string)) {
               dayArray.push(Number(history1[temp.indexOf(d_string)].doanhthu));
           } else {
@@ -1186,9 +1195,9 @@ p{
 
       myChart.update();
 
-      
+
   }
-  
+
   //Gọi 1 lần khi load trang
   runWhenSelectDate();
 
