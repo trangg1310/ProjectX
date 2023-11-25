@@ -878,7 +878,7 @@ p{
   <div class="card-header">
     <h2 id="theorder">The Order</h2>
     <input type="text" id="searchInputTheOrder" placeholder="Phone Number">
-    <button class="btn--add-cart"><a style="text-decoration: none" href="">ADD</a></button>
+    <button class="btn--add-cart"><span style="color: white" >ADD</span></button>
   </div>
   <div class="menu-theorder card-body">
       <table>
@@ -1000,7 +1000,7 @@ p{
 <div class="card">
   <div class="card-header">
     <h2 id="category">Category</h2>
-    <button class="btn--add-cate"><a style="text-decoration: none" href="">ADD</a></button>
+    <button class="btn--add-cate"><span style="color: white;" >ADD</span></button>
   </div>
   <div class="menu-category card-body">
     <table>
@@ -1206,17 +1206,17 @@ function openModal1() {
 function closeModal1() {
   document.getElementById('myModal1').style.display = 'none';
 }
-window.onclick = function(event) {
-  if (event.target == document.getElementById('myModal1')) {
-      closeModal1();
-  }
-};
 
 $(document).ready(function(){
   $('li').click(function(){
     $(this).addClass('active').siblings().removeClass('active');
   });
 
+  window.onclick = function(event) {
+    if (event.target == document.getElementById('myModal1')) {
+        closeModal1();
+    }
+  };
 $('button.btn--add-product').click(function(){
         $('.add-product').removeClass('add-product').addClass('add-product-show');
         openModal1(); // Gọi hàm openModal() khi thêm class add-product-show
@@ -1231,16 +1231,16 @@ function openModal2() {
 function closeModal2() {
   document.getElementById('myModal2').style.display = 'none';
 }
-window.onclick = function(event) {
-  if (event.target == document.getElementById('myModal2')) {
-      closeModal2();
-  }
-};
 
 $(document).ready(function(){
   $('li').click(function(){
     $(this).addClass('active').siblings().removeClass('active');
   });
+  window.onclick = function(event) {
+    if (event.target == document.getElementById('myModal2')) {
+        closeModal2();
+    }
+  };
 
 $('button.btn--add-cart').click(function(){
         $('.add-theorder').removeClass('add-theorder').addClass('add-theorder-show');
@@ -1257,16 +1257,16 @@ function openModal3() {
 function closeModal3() {
   document.getElementById('myModal3').style.display = 'none';
 }
-window.onclick = function(event) {
-  if (event.target == document.getElementById('myModal3')) {
-      closeModal3();
-  }
-};
 
 $(document).ready(function(){
   $('li').click(function(){
     $(this).addClass('active').siblings().removeClass('active');
   });
+  window.onclick = function(event) {
+    if (event.target == document.getElementById('myModal3')) {
+        closeModal3();
+    }
+  };
 
 $('button.btn--add-cate').click(function(){
         $('.add-category').removeClass('add-category').addClass('add-category-show');
