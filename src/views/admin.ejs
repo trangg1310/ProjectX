@@ -214,7 +214,7 @@ p{
   align-items: center;
 }
 
-.modal {
+.modal1 {
   background-color: #fff;
   padding: 10px;
   border-radius: 8px;
@@ -431,7 +431,7 @@ p{
   align-items: center;
 }
 
-.modal {
+.modal2 {
   background-color: #fff;
   padding: 10px;
   border-radius: 8px;
@@ -553,15 +553,6 @@ p{
   background: rgba(0, 0, 0, 0.5);
   justify-content: center;
   align-items: center;
-}
-
-.modal1 {
-  background-color: #fff;
-  padding: 10px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  width: 800px;
-  height: 620px;
 }
 .modal3 {
   background-color: #fff;
@@ -954,8 +945,8 @@ p{
 </script>
 
 <!--Them don hang-->
-<div class="modal-container" id="myModal3">
-<div class="modal3">
+<div class="modal-container" id="myModal2">
+<div class="modal2">
     <div class="modal-header">
       <h2>The Order</h2>
     </div>
@@ -1035,8 +1026,8 @@ p{
   </div>
 </div>
 <!--Them danh muc-->
-<div class="modal-container" id="myModal4">
-<div class="modal">
+<div class="modal-container" id="myModal3">
+<div class="modal3">
     <div class="modal-header">
       <h2>Category</h2>
     </div>
@@ -1233,7 +1224,7 @@ $('button.btn--add-product').click(function(){
 })
 })
 
-//khach hang
+//don hang
 function openModal2() {
   document.getElementById('myModal2').style.display = 'flex';
 }
@@ -1251,14 +1242,15 @@ $(document).ready(function(){
     $(this).addClass('active').siblings().removeClass('active');
   });
 
-$('button.btn--update-user').click(function(){
-        $('.update-user').removeClass('update-user').addClass('update-user-show');
+$('button.btn--add-cart').click(function(){
+        $('.add-theorder').removeClass('add-theorder').addClass('add-theorder-show');
         openModal2();
 
 })
 })
 
-//don hang
+
+//danh muc
 function openModal3() {
   document.getElementById('myModal3').style.display = 'flex';
 }
@@ -1276,35 +1268,9 @@ $(document).ready(function(){
     $(this).addClass('active').siblings().removeClass('active');
   });
 
-$('button.btn--add-cart').click(function(){
-        $('.add-theorder').removeClass('add-theorder').addClass('add-theorder-show');
-        openModal3();
-
-})
-})
-
-
-//don hang
-function openModal4() {
-  document.getElementById('myModal4').style.display = 'flex';
-}
-function closeModal4() {
-  document.getElementById('myModal4').style.display = 'none';
-}
-window.onclick = function(event) {
-  if (event.target == document.getElementById('myModal4')) {
-      closeModal4();
-  }
-};
-
-$(document).ready(function(){
-  $('li').click(function(){
-    $(this).addClass('active').siblings().removeClass('active');
-  });
-
 $('button.btn--add-cate').click(function(){
         $('.add-category').removeClass('add-category').addClass('add-category-show');
-        openModal4();
+        openModal3();
 
 })
 })
