@@ -341,7 +341,7 @@ let getProductAccesscories = async(req, res) => {
 let getProductByCategory = async(req, res) => {
     const categoryName = req.params.category; // Lấy tên thể loại từ đường dẫn
     const [product, fields] = await pool.query(`select sanpham.idSP as idSP, sanpham.nameSP as nameSP, sanpham.giaBan as giaBan, sanpham.imgSP as imgSP, sanpham.soLuong as soLuong, danhmuc.nameDM as nameDM from sanpham, danhmuc where sanpham.idDM = danhmuc.idDM AND danhmuc.nameDM = ?`, [categoryName]);
-    return res.render("product.ejs", {product: product});
+    return res.render("productDM.ejs", {product: product, categoryName:categoryName});
 }
 
 module.exports = {

@@ -41,7 +41,7 @@ const initWebRoute = (app) => {
 
     
     router.get('/product', homeController.getProduct);
-    router.get('/:category', homeController.getProductByCategory);
+    router.get('/product/:category', homeController.getProductByCategory);
     router.get('/productDetail', homeController.getProductDetail);
 
 
