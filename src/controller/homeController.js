@@ -282,11 +282,14 @@ let postPay = async(req, res) => {
 
 let getHistory = async(req, res) => {
     let [idUser, fields] = await pool.execute(`select user.idUser as idUser from user, account where user.idTK = account.idTK and account.email = ?`, [req.session.email]);
-    let [history, fields1] = await pool.execute(`SELECT donhang.address, donhang.phoneNumber, donhang.timeCreate, donhang.trangThai, 
-    sanpham.nameSP, sanpham.giaBan, donhangchitiet.soLuong, sanphamchitiet.size 
-    FROM donhang, donhangchitiet, sanpham, sanphamchitiet 
-    WHERE donhang.idDH = donhangchitiet.idDHCT AND donhangchitiet.idSPCT = sanphamchitiet.idSPCT AND sanpham.idSP = sanphamchitiet.idSPCT AND donhang.idUser = ?`, [idUser[0].idUser])
-    return res.render("history.ejs", {history: history});
+    let [history1, fields2] = await pool.execute(`SELECT donhang.idDH, donhangchitiet.idDHCT, donhang.idUser,donhang.address, donhang.phoneNumber, 
+    donhang.timeCreate, donhang.trangThai, sanpham.nameSP, sanpham.giaBan, donhangchitiet.soLuong, sanphamchitiet.size, sanphamchitiet.idSPCT 
+    FROM donhang
+    JOIN donhangchitiet ON donhang.idDH = donhangchitiet.idDH
+    JOIN sanphamchitiet ON donhangchitiet.idSPCT = sanphamchitiet.idSPCT
+    JOIN sanpham ON sanpham.idSP = sanphamchitiet.idSP
+    WHERE donhang.idUser = ?`, [idUser[0].idUser])
+    return res.render("history.ejs", {history: history1});
 }
 
 let getSearch = async(req, res) => {

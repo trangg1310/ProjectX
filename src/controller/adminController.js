@@ -13,10 +13,12 @@ let getAdmin = async(req, res) => {
         const [product, fields2] = await pool.execute(`select sanphamchitiet.idSPCT, sanpham.idSP, sanpham.nameSP, danhmuc.nameDM, sanpham.giaBan, sanpham.imgSP, sanphamchitiet.size, sanphamchitiet.soLuong 
         from sanpham, sanphamchitiet, danhmuc where sanphamchitiet.idSP = sanpham.idSP AND sanpham.idDM = danhmuc.idDM 
         ORDER BY sanphamchitiet.idSPCT ASC`);
-        const [history, fields3] = await pool.execute(`SELECT donhang.idDH, donhangchitiet.idDHCT, donhang.idUser,donhang.address, donhang.phoneNumber, donhang.timeCreate, donhang.trangThai, 
-        sanpham.nameSP, sanpham.giaBan, donhangchitiet.soLuong, sanphamchitiet.size, sanphamchitiet.idSPCT 
-        FROM donhang, donhangchitiet, sanpham, sanphamchitiet 
-        WHERE donhang.idDH = donhangchitiet.idDHCT AND donhangchitiet.idSPCT = sanphamchitiet.idSPCT AND sanpham.idSP = sanphamchitiet.idSPCT`);
+        const [history, fields3] = await pool.execute(`SELECT donhang.idDH, donhangchitiet.idDHCT, donhang.idUser, donhang.address, donhang.phoneNumber, 
+        donhang.timeCreate, donhang.trangThai, sanpham.nameSP, sanpham.giaBan, donhangchitiet.soLuong, sanphamchitiet.size, sanphamchitiet.idSPCT 
+        FROM donhang
+        JOIN donhangchitiet ON donhang.idDH = donhangchitiet.idDH
+        JOIN sanphamchitiet ON donhangchitiet.idSPCT = sanphamchitiet.idSPCT
+        JOIN sanpham ON sanpham.idSP = sanphamchitiet.idSP`);
         const dthutheongay = await pool.execute('SELECT DATE(donhang.timeCreate) AS timeCreate, SUM(donhang.thanhTien) AS doanhthu FROM donhang WHERE donhang.trangThai != "Đã hủy" GROUP BY DATE(donhang.timeCreate) ORDER BY DATE(donhang.timeCreate) ASC;');
         return res.render("admin.ejs", {user: user, danhmuc: danhmuc, product: product, history: history, doanhthu:dthutheongay[0]});
     } else {
@@ -169,6 +171,7 @@ let createOrder = async(req, res) => {
         await pool.execute('insert into donhangchitiet (idDH, idSPCT, soLuong) values (?,?,?)', [idDH[0].idDH, idSPCT, soLuong]);
         await pool.execute(`update sanphamchitiet set soLuong = soLuong - ? where idSPCT =?`, [soLuong, idSPCT]);
         await pool.execute(`update sanpham set soLuong = soLuong - ? where idSP =?`, [soLuong, spct[0].idSP]);
+        req.flash('success_msg', "Đã thêm đơn hàng thành công!");
     } catch (error) {
         req.flash('error', "Có lỗi khi tạo đơn hàng này! Xem lại idUser và idSPCT");
     }
