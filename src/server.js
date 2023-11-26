@@ -3,6 +3,9 @@ import configViewEngine from './configs/viewEngine'
 import initWebRoute from './route/web'
 import session from 'express-session'
 import passport from 'passport'
+import controller from './controller/homeController'
+
+
 const initializePassport = require("./configs/passportConfig");
 const flash = require('express-flash');
 
@@ -12,6 +15,7 @@ initializePassport(passport);
 
 const app = express()
 const port = process.env.PORT || 8080;
+
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -24,7 +28,7 @@ app.use(session({
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use(controller.getAllCategories);
 configViewEngine(app);
 initWebRoute(app);
 

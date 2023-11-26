@@ -15,6 +15,23 @@ const user = {
 
 let errors = [];
 
+
+const getAllCategories = async (req, res, next) => {
+    try {
+        const [categories, fields] = await pool.query(`SELECT * FROM danhmuc`);
+        res.locals.categories = categories;
+        next();
+    } catch (error) {
+        // Xử lý lỗi nếu có
+        next(error);
+    }
+};
+
+let renderNav = async(req, res) => {
+    // Điều này sẽ được gọi sau khi middleware getAllCategories thực hiện xong
+    return res.render("header.ejs", { categories: res.locals.categories });
+};
+
 let getHomePage = async(req, res) => {
     return res.render('index.ejs');
 }
@@ -321,6 +338,12 @@ let getProductAccesscories = async(req, res) => {
     return res.render("product.ejs", {product: product});
 }
 
+let getProductByCategory = async(req, res) => {
+    const categoryName = req.params.category; // Lấy tên thể loại từ đường dẫn
+    const [product, fields] = await pool.query(`select sanpham.idSP as idSP, sanpham.nameSP as nameSP, sanpham.giaBan as giaBan, sanpham.imgSP as imgSP, sanpham.soLuong as soLuong, danhmuc.nameDM as nameDM from sanpham, danhmuc where sanpham.idDM = danhmuc.idDM AND danhmuc.nameDM = ?`, [categoryName]);
+    return res.render("product.ejs", {product: product});
+}
+
 module.exports = {
     getHomePage,
     getSignIn,
@@ -344,5 +367,8 @@ module.exports = {
     getProductDress,
     getProductPants,
     getProductAccesscories,
-    getSearch
+    getSearch,
+    getAllCategories,
+    renderNav,
+    getProductByCategory
 }
