@@ -37,8 +37,13 @@ let postUpdateProduct = async(req, res) => {
         try {
             await pool.execute('delete from sanphamchitiet where idSPCT=?', [req.body.idSPCT]);
             await pool.execute('update sanpham set soluong = soluong - ? where idSP=?', [req.body.soLuong, req.body.idSP]);
+            let [tmp, fields1] = await pool.execute('select * from sanphamchitiet where idSP = ?', [req.body.idSP]);
+            if(tmp.length == 0) {
+                await pool.execute('delete from sanpham where idSP = ?', [req.body.idSP]);
+            }
             req.flash('success_msg', "Đã xóa sản phẩm thành công!");
         } catch (error) {
+            console.log(error);
             req.flash('error', "Có lỗi khi xóa sản phẩm này!");
         }
     }
@@ -72,16 +77,42 @@ let postUpdateOrder = async(req, res) => {
         let {idDH, idDHCT, idUser, address, phoneNumber, idSPCT, soLuong, thanhTien, timeCreate, trangThai} = req.body;
         let [slspct, fields] = await pool.execute('select soLuong from sanphamchitiet where idSPCT = ?', [idSPCT]);
         let [slc, fields1] = await pool.execute('select soLuong from donhangchitiet where idSPCT = ?', [idSPCT]);
-        if(soLuong <= 0 ) {
-            req.flash('error', "Số lượng sản phẩm phải lớn hơn 0!");
-        } else {
-            if(slspct[0].soLuong - soLuong + slc[0].soLuong >=0) {
-                await pool.execute('update donhangchitiet set soLuong = ? where idDHCT = ?', [soLuong, idDHCT]);
-                await pool.execute('update sanphamchitiet set soLuong = soLuong - ? + ? where idSPCT = ?', [soLuong, slc[0].soLuong ,idSPCT]);
-                await pool.execute('update donhang set address = ?, phoneNumber =?, soLuong = soLuong - ? + ?, trangThai = ? where idDH = ?', [address, phoneNumber, slc[0].soLuong, soLuong, trangThai, idDH]);
+        let [donhang, fields2] = await pool.execute('select * from donhang where idDH = ?', [idDH]);
+        if(trangThai == "Đã hủy") {
+            if(donhang[0].trangThai != "Đã hủy") {
+                await pool.execute('update sanphamchitiet set soLuong = soLuong + ? where idSPCT = ?', [slc[0].soLuong ,idSPCT]);
+                await pool.execute('update donhang set trangThai = ? where idDH = ?', [trangThai, idDH]);
                 req.flash('success_msg', "Đã cập nhật đơn hàng thành công!");
             } else {
-                req.flash('error', "Số lượng sản phẩm vượt quá số lượng trong kho hàng!");
+                req.flash('error', "Không thể sửa một đơn đã hủy");
+            }
+        } else if(trangThai != "Đã hủy") {
+            if(donhang[0].trangThai == "Đã hủy") {
+                if(soLuong <= 0 ) {
+                    req.flash('error', "Số lượng sản phẩm phải lớn hơn 0!");
+                } else {
+                    if(slspct[0].soLuong - soLuong + slc[0].soLuong >=0) {
+                        await pool.execute('update donhangchitiet set soLuong = ? where idDHCT = ?', [soLuong, idDHCT]);
+                        await pool.execute('update sanphamchitiet set soLuong = soLuong - ? where idSPCT = ?', [soLuong ,idSPCT]);
+                        await pool.execute('update donhang set address = ?, phoneNumber =?, soLuong = soLuong + ?, trangThai = ? where idDH = ?', [address, phoneNumber, soLuong, trangThai, idDH]);
+                        req.flash('success_msg', "Đã cập nhật trạng thái đơn hàng thành công!");
+                    } else {
+                        req.flash('error', "Số lượng sản phẩm vượt quá số lượng trong kho hàng!");
+                    }
+                }
+            } else {
+                if(soLuong <= 0 ) {
+                    req.flash('error', "Số lượng sản phẩm phải lớn hơn 0!");
+                } else {
+                    if(slspct[0].soLuong - soLuong + slc[0].soLuong >=0) {
+                        await pool.execute('update donhangchitiet set soLuong = ? where idDHCT = ?', [soLuong, idDHCT]);
+                        await pool.execute('update sanphamchitiet set soLuong = soLuong - ? + ? where idSPCT = ?', [soLuong, slc[0].soLuong ,idSPCT]);
+                        await pool.execute('update donhang set address = ?, phoneNumber =?, soLuong = soLuong - ? + ?, trangThai = ? where idDH = ?', [address, phoneNumber, slc[0].soLuong, soLuong, trangThai, idDH]);
+                        req.flash('success_msg', "Đã cập nhật đơn hàng thành công!");
+                    } else {
+                        req.flash('error', "Số lượng sản phẩm vượt quá số lượng trong kho hàng!");
+                    }
+                }
             }
         }
     } else if(req.body.action == "delete") {
