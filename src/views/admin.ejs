@@ -34,22 +34,25 @@ body{
   font-family: montserrat;
 }
 /*Menu*/
-ul{
+.ul_show{
   position: fixed;
   top: 0;
-  left: 0;
-  margin-left: -240px;
+  left: -30px;
+  /*margin-left: 40px;
+  overflow-y: auto;*/
   width: 240px;
   background: #1e1e1e;
   height: 100vh;
-  overflow-y: auto;
   transition: all .3s;
+
+
 }
-ul li{
+.ul_show li{
   height: 65px;
   outline: none;
 }
-ul li a{
+.ul_show li a{
+  text-decoration: none;
   display: block;
   height: 100%;
   width: 100%;
@@ -60,23 +63,22 @@ ul li a{
   background: #1e1e1e;
   border-top: 1px solid rgba(255,255,255,.1);
   border-bottom: 1px solid black;
-  border-left: 5px solid transparent;
-}
-li a.contact{
-  border-bottom: 1px solid rgba(0,0,0,.5);
+  /*border-left: 5px solid transparent;*/
 }
 .active a{
   color: #464444;
   border-left: 5px solid #fff;
   background: #1B1B1B;
 }
+
 /*Home menu*/
 .menu-img{
   width: 800px;
   height: 400px;
-  margin-left: 400px;
+  margin-left: 550px;
   margin-top: 80px;
 }
+/*
 .menu-home{
   display: inline;
   margin-left: 750px;
@@ -86,19 +88,21 @@ li a.contact{
   font-size: 30px;
   color: #000;
   text-decoration-line: underline;
-}
+}*/
+
 /*content*/
 section{
   margin-left: 0px;
   transition: all .3s;
 }
+/*
 i{
   position: fixed;
   margin: 20px 25px;
   font-size: 30px;
   color: #000;
   cursor: pointer;
-}
+}*/
 .sec1{
   margin-left: -20px;
   background-size: cover;
@@ -127,6 +131,7 @@ h2{
   font-size: 40px;
   padding: 15px 20px;
 }
+
 p{
   padding: 0 20px 10px 20px;
   text-align: justify;
@@ -137,45 +142,35 @@ p{
 .slide_image{
   margin-left: 260px;
 }
+
 /*San pham */
-.menu-product{
-  width: 100%;
-  text-align: center;
-  margin-left: 10px;
-}
 .btn--add-product{
   color: #fff;
   margin-left: 40px;
   background-color: #000;
   padding: 0 10px ;
   font-size: 20;
-  height: 35px;
-}
-.btn--add-product a{
-  color: #fff;
+  height: 30px;
 }
 .menu-product th{
-  padding-bottom: 30px;
+  padding-bottom: 10px;
   font-family: 'Courier New', Courier, monospace;
-  font-size: 18px;
+  font-size: 13px;
   text-transform: uppercase;
   color: #333;
-  border-collapse: collapse;
-  border-bottom: 2px solid #dddddd;
-  padding: 20px 30px;
-}
-.menu-product .item-img{
-  width: 100px;
-  height: 100px;
+  text-align: center;
+  padding: 20px 20px;
 }
 .menu-product td{
-  padding: 20px 20px;
-  border-bottom: 2px solid #dddddd;
-  text-align: center;
   font-family: 'Courier New', Courier, monospace;
-  font-size: 15px;
+  font-size: 13px;
   color: #333;
   margin-top: 10px;
+  padding-right: 10px;
+
+}
+.menu-product td .name-sp{
+  margin-top: 25px;
 }
 .menu-product button{
   color: #fff;
@@ -188,6 +183,11 @@ p{
   cursor: pointer;
   background-color: #464444;
 }
+.pro-idspct , .pro-size, .pro-sl{
+  width: 60px;
+}
+
+
 /* Thêm sản phẩm */
 .add-product{
   position: fixed;
@@ -213,14 +213,13 @@ p{
   justify-content: center;
   align-items: center;
 }
-
 .modal1 {
   background-color: #fff;
   padding: 10px;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   width: 800px;
-  height: 600px;
+  height: 800px;
 }
 .modal-header {
   display: flex;
@@ -228,13 +227,14 @@ p{
   align-items: center;
   margin-bottom: 0px;
   font-size: 20px;
+  height: 60px;
 }
 .modal-close {
   cursor: pointer;
 }
 .product-add-content{
-  font-size: 15px;
-  padding: 10px 10px;
+  font-size: 13px;
+  padding: 2px 0;
 }
 .product-add-content input{
   margin-top: 10px;
@@ -244,63 +244,37 @@ p{
   padding-left: 6px;
   margin-bottom: 10px;
 }
-.size span{
-  display: inline-block;
-  padding: 3px 6px;
-  border: 1px solid #dddddd;
-  margin: 12px 10px 12px 0;
-  font-size: 12px;
-  cursor: pointer;
-  background-color: #ccc;
-}
-.btn--pick:hover{
-  background-color: #000;
-  color: #fff;
-  cursor: pointer;
-}
-.auth-form__controls{
-  margin-left: 500px;
-  margin-top: 5px;
-  display: inline-block;
-}
-.btn--save , .btn--exit{
+.btn--save-product,.btn--exit--product {
   margin-left: 40px;
   background-color: #000;
   padding: 10px 10px ;
   font-size: 20;
-  height: 35px;
+  height: 40px;
   width: 50px;
   color: #fff;
-}
-.btn--exit:hover, .btn--save:hover{
-  cursor: pointer;
-  background-color: rgb(43, 42, 42);
-}
 
+}
 
 /*Khach hang*/
-.menu-client{
-  width: 100%;
-  text-align: center;
-  margin-left: 20px;
-}
 .menu-client th{
-  padding-bottom: 30px;
+  padding-bottom: 10px;
   font-family: 'Courier New', Courier, monospace;
-  font-size: 20px;
+  font-size: 13px;
   text-transform: uppercase;
   color: #333;
-  border-collapse: collapse;
-  border-bottom: 2px solid #dddddd;
-  padding: 20px 40px;
+  text-align: center;
+  padding: 20px 20px;
 }
 .menu-client td{
-  padding: 20px 20px;
-  border-bottom: 2px solid #dddddd;
-  text-align: center;
   font-family: 'Courier New', Courier, monospace;
-  font-size: 15px;
+  font-size: 13px;
   color: #333;
+  margin-top: 10px;
+  padding-right: 10px;
+
+}
+.name-kh , .address-kh{
+  margin-top: 25px;
 }
 .menu-client button{
   color: #fff;
@@ -313,98 +287,65 @@ p{
   cursor: pointer;
   background-color: #464444;
 }
-/* update client */
-.update-user{
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 240px;
-  background: #1e1e1e;
-  height: 100vh;
-  overflow-y: auto;
-  /* transition: all .3s; */
+.use-iduser{
+  width: 60px;
 }
-.update-user{
-  padding: 0px;
-}
-.user-update-content{
-  font-size: 15px;
-  padding: 10px 10px;
-}
-.user-update-content input{
-  margin-top: 10px;
-  width: 98%;
-  height: 30px;
-  border: 2px solid #464444;
-  padding-left: 6px;
-  margin-bottom: 10px;
-}
-.auth-form__controls{
-  margin-left: 500px;
-  margin-top: 5px;
-  display: inline-block;
-}
-.btn--save , .btn--exit{
-  margin-left: 40px;
-  background-color: #000;
-  padding: 10px 10px ;
-  font-size: 20;
-  height: 35px;
-  width: 50px;
-  color: #fff;
-}
-.btn--exit:hover, .btn--save:hover{
-  cursor: pointer;
-  background-color: rgb(43, 42, 42);
-}
-
 
 
 /* Đơn hàng */
-.menu-theorder{
-  width: 100%;
-  text-align: center;
-  margin-left: 0px;
+.btn--add-cart{
+  color: #fff;
+  margin-left: 40px;
+  background-color: #000;
+  padding: 0 10px ;
+  font-size: 20;
+  height: 30px;
 }
 .menu-theorder th{
-  padding-bottom: 30px;
+  padding-bottom: 10px;
   font-family: 'Courier New', Courier, monospace;
-  font-size: 18px;
+  font-size: 12px;
   text-transform: uppercase;
   color: #333;
-  border-collapse: collapse;
-  border-bottom: 2px solid #dddddd;
-  padding: 20px 20px;
+  padding: 10px 10px;
+  text-align: center;
 }
 .menu-theorder td{
-  padding: 15px 15px;
-  border-bottom: 2px solid #dddddd;
-  text-align: center;
   font-family: 'Courier New', Courier, monospace;
-  font-size: 13px;
+  font-size: 12px;
   color: #333;
+  margin-top: 10px;
+  padding-right: 4px;
+  text-align: center;
+  margin-right: 100px;
 }
+.or-iddh ,.or-iddhct, .or-idus, .or-idspct, .or-sl{
+  width: 40px;
+}
+.or-idus ,.or-addr{
+  margin-top: 25px;
+}
+.or-tg ,.or-phone{
+  width: 90px;
+}
+.or-tien{
+  width: 60px;
+}
+
+
 .menu-theorder button{
   color: #fff;
   background-color: #000;
-  padding: 0 5px ;
-  font-size: 15px;
-  height: 25px;
+  padding: 0px 10px ;
+  font-size: 18;
+  height: 30px;
 }
 .menu-theorder button:hover{
   cursor: pointer;
   background-color: #464444;
 }
-.btn--add-cart{
-  margin-left: 40px;
-  background-color: #000;
-  padding: 0 10px ;
-  font-size: 20;
-  height: 35px;
-}
-.btn--add-cart a{
-  color: #fff;
-}
+
+
 /* them don hang */
 .add-theorder{
   position: fixed;
@@ -437,7 +378,7 @@ p{
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   width: 800px;
-  height: 620px;
+  height: 650px;
 }
 .modal-header {
   display: flex;
@@ -450,34 +391,28 @@ p{
   cursor: pointer;
 }
 .theorder-add-content{
-  display: inline;
-  font-size: 15px;
+  font-size: 13px;
   padding: 10px 10px;
 }
 .theorder-add-content input{
-  display: table;
   margin-top: 10px;
-  width: 70%;
+  width: 98%;
   height: 30px;
   border: 2px solid #464444;
   padding-left: 6px;
   margin-bottom: 10px;
+
 }
-.auth-form__controls{
-  margin-left: 530px;
-  margin-top: 5px;
-  display: inline-block;
-}
-.btn--save , .btn--exit{
+.btn--save-theOrder , .btn--exit--theOrder{
   margin-left: 40px;
   background-color: #000;
   padding: 10px 10px ;
   font-size: 20;
-  height: 35px;
+  height: 40px;
   width: 50px;
   color: #fff;
 }
-.btn--exit:hover, .btn--save:hover{
+.btn--exit--theOrder:hover, .btn--save-theOrder:hover{
   cursor: pointer;
   background-color: rgb(43, 42, 42);
 }
@@ -495,20 +430,19 @@ p{
   font-size: 18px;
   text-transform: uppercase;
   color: #333;
-  border-collapse: collapse;
-  border-bottom: 2px solid #dddddd;
   padding: 20px 20px;
 }
 .menu-category td{
   padding: 15px 15px;
-  border-bottom: 2px solid #dddddd;
   text-align: center;
   font-family: 'Courier New', Courier, monospace;
   font-size: 13px;
   color: #333;
 }
+.cate-name{
+  margin-top: 25px;
+}
 .menu-category button{
-
   color: #fff;
   background-color: #000;
   padding: 0 5px ;
@@ -520,11 +454,12 @@ p{
   background-color: #464444;
 }
 .btn--add-cate{
-  margin-left: 40px;
+  margin-left: 45px;
   background-color: #000;
   padding: 0 10px ;
   font-size: 20;
   height: 35px;
+  margin-bottom: 10px;
 }
 .btn--add-cate a{
   color: #fff;
@@ -559,8 +494,8 @@ p{
   padding: 10px;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  width: 800px;
-  height: 620px;
+  width: 500px;
+  height: 400px;
 }
 .modal-header {
   display: flex;
@@ -580,31 +515,32 @@ p{
 .category-add-content input{
   display: table;
   margin-top: 10px;
-  width: 70%;
+  width: 100%;
   height: 30px;
   border: 2px solid #464444;
   padding-left: 6px;
   margin-bottom: 10px;
 }
-.auth-form__controls{
-  margin-left: 530px;
-  margin-top: 5px;
-  display: inline-block;
-}
-.btn--save , .btn--exit{
+.btn--save {
   margin-left: 40px;
   background-color: #000;
   padding: 10px 10px ;
   font-size: 20;
-  height: 35px;
+  height: 40px;
   width: 50px;
   color: #fff;
 }
-.btn--exit:hover, .btn--save:hover{
-  cursor: pointer;
-  background-color: rgb(43, 42, 42);
+.btn--exit--category{
+  margin-left: 40px;
+  background-color: #000;
+  padding: 10px 10px ;
+  font-size: 20;
+  height: 40px;
+  width: 50px;
+  color: #fff;
 }
 .card {
+
   max-height: 800px; /* Đặt chiều cao tối đa cho card (tùy chọn) */
   border: 1px solid #ddd; /* Thêm viền cho card (tùy chọn) */
   overflow-y: hidden; /* Ẩn thanh cuộn toàn bộ card */
@@ -612,12 +548,14 @@ p{
   display: flex;
   flex-direction: column;
   margin: 50px 30px;
+
   position: unset;
 }
 
 .card-header {
   background-color: #f0f0f0; /* Màu nền của card-header (tùy chọn) */
   padding: 10px; /* Thêm padding cho card-header (tùy chọn) */
+
 }
 
 .card-body {
@@ -677,8 +615,8 @@ p{
     <input type="text" id="searchInput" placeholder="NameItem/IDSP">
     <button class="btn--add-product">Add More</button>
   </div>
-  <div class="menu-product card-body">
 
+  <div class="menu-product card-body">
       <table>
         <thead>
           <tr>
@@ -690,11 +628,13 @@ p{
             <th>PRICE</th>
           </tr>
         </thead>
+
         <tbody class="scrollable-content">
           <%for(let index = 0; index < product.length; index++) {%>
             <form action="/adminproduct" method="post">
               <tr>
-                <td><input name="idSPCT" value="<%=product[index].idSPCT%>" readonly></td>
+                <td><input class="pro-idspct"
+                  name="idSPCT" value="<%=product[index].idSPCT%>" readonly></td>
                 <input name="idSP" value="<%=product[index].idSP%>" hidden>
                 <td>
                   <select name="idDM" style="background-color: transparent; border: none; padding: 8px 0px;" id="nameDM">
@@ -707,9 +647,12 @@ p{
                       <% } %>
                   </select>
                 </td>
-                <td><p><input name="nameSP" value="<%=product[index].nameSP%>" required></p></td>
-                <td><span><input name="size" value="<%=product[index].size%>" required></span></td>
-                <td><span><input name="soLuong" value="<%=product[index].soLuong%>" required></span> </td>
+                <td><p><input class="name-sp"
+                  name="nameSP" value="<%=product[index].nameSP%>" required></p></td>
+                <td><span><input class="pro-size"
+                  name="size" value="<%=product[index].size%>" required></span></td>
+                <td><span><input class="pro-sl"
+                  name="soLuong" value="<%=product[index].soLuong%>" required></span> </td>
                 <td> <span><input name="giaBan" value="<%=product[index].giaBan%>" required></span> </td>
                 <td><button type="submit" name="action" value="update" class="btn--upda-product">Update</button></td>
                 <td><button type="submit" name="action" value="delete">Delete</button></td>
@@ -763,6 +706,7 @@ p{
     <div class="add-product">
       <form action="/admincreateproduct" method="post" enctype="multipart/form-data">
         <div class="product">
+
           <div class="product-add-content">
             <label for="">Id Category</label>
             <input type="text" name="idDM" required>
@@ -771,7 +715,7 @@ p{
           <div class="product-add-content">
             <label for="">Name Item</label>
             <input type="text" name="nameSP" required>
-          </div>        
+          </div>
           <div class="product-add-content">
               <label for="">Quantity</label>
               <input type="number" name="quantity[]" placeholder="S" required>
@@ -790,11 +734,11 @@ p{
           </div>
 
           <div class="auth-form__controls">
-            <button class="btn--save" type="submit">Save</button>
+            <button class="btn--save-product" type="submit">Save</button>
+            <button class="btn--exit--product">Exit</button>
           </div>
         </div>
       </form>
-      <button class="btn--exit">Exit</button>
     </div>
 </div>
 </div>
@@ -822,10 +766,13 @@ p{
           <% for(let index = 0; index < user.length; index++)  {%>
             <form action="/adminuser" method="post">
               <tr>
-                <td><input name="idUser" value="<%=user[index].idUser%>" readonly></td>
-                <td><input name="email" value="<%=user[index].email%>" readonly></td>
-                <td><p><input name="name" value="<%=user[index].name%>" required></p></td>
-                <td><p><input name="address" value="<%=user[index].address%>" required></p></td>
+                <td><input class="use-iduser"
+                  name="idUser" value="<%=user[index].idUser%>" readonly></td>
+                <td><input               name="email" value="<%=user[index].email%>" readonly></td>
+                <td><p><input class="name-kh"
+                name="name" value="<%=user[index].name%>" required></p></td>
+                <td><p><input class="address-kh"
+                  name="address" value="<%=user[index].address%>" required></p></td>
                 <td><span><input name="phoneNumber" value="<%=user[index].phoneNumber%>" required> </span> </td>
                 <td><button type="submit" name="action" value="update" class="btn--update-user">Update</button></td>
                 <td><button type="submit" name="action" value="delete">Delete</button></td>
@@ -891,15 +838,25 @@ p{
           <% for(let index = 0; index < history.length; index++)  {%>
             <form action="/adminorder" method="post">
               <tr>
-                <td><input name="idDH" value="<%=history[index].idDH%>" readonly></td>
-                <td><input name="idDHCT" value="<%=history[index].idDHCT%>" readonly></td>
-                <td><p><input name="idUser" value="<%=history[index].idUser%>" readonly></p></td>
-                <td><p><input name="address" value="<%=history[index].address%>" required></p></td>
-                <td><span><input name="phoneNumber" value="<%=history[index].phoneNumber%>" required> </span> </td>
-                <td><span><input name="idSPCT" value="<%=history[index].idSPCT%>" readonly> </span> </td>
-                <td><span><input name="soLuong" type="number" value="<%=history[index].soLuong%>" required> </span> </td>
-                <td><span><input name="thanhTien" value="<%=history[index].soLuong * history[index].giaBan%>" readonly> </span> </td>
-                <td><span><input name="timeCreate" value="<%= history[index].timeCreate.getFullYear()%>-<%=history[index].timeCreate.getMonth()+1%>-<%=history[index].timeCreate.getDate()%>" readonly> </span></td>
+                <td><input class="or-iddh"
+                  name="idDH" value="<%=history[index].idDH%>" readonly></td>
+                <td><input class="or-iddhct"
+                  name="idDHCT" value="<%=history[index].idDHCT%>" readonly></td>
+                <td><p><input class="or-idus"
+                  name="idUser" value="<%=history[index].idUser%>" readonly></p></td>
+                <td><p><input class="or-addr"
+                  name="address" value="<%=history[index].address%>" required></p></td>
+                <td><span><input
+                  class="or-phone"
+                  name="phoneNumber" value="<%=history[index].phoneNumber%>" required> </span> </td>
+                <td><span><input class="or-idspct"
+                  name="idSPCT" value="<%=history[index].idSPCT%>" readonly> </span> </td>
+                <td><span><input class="or-sl"
+                  name="soLuong" type="number" value="<%=history[index].soLuong%>" required> </span> </td>
+                <td><span><input class="or-tien"
+                   name="thanhTien" value="<%=history[index].soLuong * history[index].giaBan%>" readonly> </span> </td>
+                <td><span><input class="or-tg"
+                name="timeCreate" value="<%= history[index].timeCreate.getFullYear()%>-<%=history[index].timeCreate.getMonth()+1%>-<%=history[index].timeCreate.getDate()%>" readonly> </span></td>
                 <td>
                   <select name="trangThai" style="background-color: transparent; border: none; padding: 8px 0px;" id="trangThai">
                       <% if (history[index].trangThai === "Chờ giao hàng") { %>
@@ -1002,11 +959,12 @@ p{
             <input type="text" name="trangThai" value="Chờ giao hàng">
           </div>
           <div class="auth-form__controls">
-            <button class="btn--save" type="submit">Save</button>
+            <button class="btn--save-theOrder" type="submit">Save</button>
+            <button class="btn--exit--theOrder" type="submit">Exit</button>
           </div>
         </div>
       </form>
-      <button class="btn--exit" type="submit">Exit</button>
+
     </div>
 </div>
 </div>
@@ -1031,7 +989,8 @@ p{
         <tr>
           <form action="/admincategory" method="post">
             <td><input name="idDM" value="<%=danhmuc[index].idDM%>" readonly></td>
-            <td><p><input name="nameDM" value="<%=danhmuc[index].nameDM%>" required></p></td>
+            <td><p><input class="cate-name"
+              name="nameDM" value="<%=danhmuc[index].nameDM%>" required></p></td>
             <td><button type="submit" name="action" value="update" class="btn--upda-cate">Update</button></td>
             <td><button type="submit" name="action" value="delete">Delete</button></td>
           </form>
@@ -1057,10 +1016,11 @@ p{
 
           <div class="auth-form__controls">
             <button class="btn--save" type="submit">Save</button>
+
           </div>
         </div>
       </form>
-      <button class="btn--exit" type="submit">Exit</button>
+      <button class="btn--exit--category" type="submit">Exit</button>
     </div>
 </div>
 </div>
@@ -1223,14 +1183,14 @@ $(document).ready(function(){
     $(this).addClass('active').siblings().removeClass('active');
   });
 
-  window.onclick = function(event) {
-    if (event.target == document.getElementById('myModal1')) {
-        closeModal1();
-    }
-  };
 $('button.btn--add-product').click(function(){
         $('.add-product').removeClass('add-product').addClass('add-product-show');
         openModal1(); // Gọi hàm openModal() khi thêm class add-product-show
+
+})
+$('button.btn--exit--product').click(function(){
+        $('.add-product').removeClass('add-product-show').addClass('add-product');
+        closeModal1();
 
 })
 })
@@ -1247,15 +1207,16 @@ $(document).ready(function(){
   $('li').click(function(){
     $(this).addClass('active').siblings().removeClass('active');
   });
-  window.onclick = function(event) {
-    if (event.target == document.getElementById('myModal2')) {
-        closeModal2();
-    }
-  };
+
 
 $('button.btn--add-cart').click(function(){
         $('.add-theorder').removeClass('add-theorder').addClass('add-theorder-show');
         openModal2();
+
+})
+$('button.btn--exit--theOrder').click(function(){
+        $('.add-theorder').removeClass('add-theorder-show').addClass('add-theorder');
+        closeModal2();
 
 })
 })
@@ -1273,15 +1234,16 @@ $(document).ready(function(){
   $('li').click(function(){
     $(this).addClass('active').siblings().removeClass('active');
   });
-  window.onclick = function(event) {
-    if (event.target == document.getElementById('myModal3')) {
-        closeModal3();
-    }
-  };
+
 
 $('button.btn--add-cate').click(function(){
         $('.add-category').removeClass('add-category').addClass('add-category-show');
         openModal3();
+
+})
+$('button.btn--exit--category').click(function(){
+        $('.add-category').removeClass('add-category-show').addClass('add-category');
+        closeModal3();
 
 })
 })

@@ -196,6 +196,7 @@
       background-color: black;
       padding: 30px 5px;
       text-align: center;
+      margin-top: -50px;
     }
 
     #footer .anhbia-img{
@@ -235,12 +236,11 @@
 .auth-form__container{
   height: 500px;
   width: 1300px;
-  margin-top: 100px;
+  margin-top: 80px;
   display: grid;
   grid-template-columns: 350px 450px;
   border: 1px solid grey;
   background-color: #d7d6d6;
-
 }
 .auth-form__header{
   margin-left: 90px;
@@ -259,6 +259,7 @@
 .btn--withicon:hover{
   color: #fff;
 }
+/*
 .auth-form__form{
   margin-top: 30px;
 }
@@ -293,6 +294,64 @@
   font-family: 'Courier New', Courier, monospace;
   font-size: 12px;
   color: #333;
+}*/
+
+.card {
+width: 900px;
+height: 480px; /* Đặt chiều cao tối đa cho card (tùy chọn) */
+border: 1px solid #ddd; /* Thêm viền cho card (tùy chọn) */
+overflow-y: hidden; /* Ẩn thanh cuộn toàn bộ card */
+overflow: hidden;
+display: flex;
+flex-direction: column;
+margin: 50px 30px;
+margin-right: 10px;
+margin-top: 8px;
+position: unset;
+}
+
+.card-header {
+background-color: #f0f0f0; /* Màu nền của card-header (tùy chọn) */
+padding: 10px; /* Thêm padding cho card-header (tùy chọn) */
+
+}
+
+.card-body {
+flex: 1; /* Co giãn để lấp đầy không gian còn lại */
+overflow-y: auto; /* Cho phép cuộn nếu nội dung vượt quá chiều cao */
+padding: 10px; /* Thêm padding cho card-body (tùy chọn) */
+}
+
+.scrollable-content {
+max-height: 100%; /* Chiều cao tối đa của tbody có thể cuộn */
+overflow-y: auto; /* Cho phép cuộn nếu nội dung vượt quá chiều cao của tbody */
+}
+
+.alert {
+margin-left: 280px;
+margin-top: 50px;
+margin-right: 30px;
+}
+.history-user{
+  background-color:#d7d6d6 ;
+}
+.history-user th{
+  padding-bottom: 10px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #333;
+  padding: 10px 10px;
+  text-align: center;
+}
+.history-user td{
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 12px;
+  color: #333;
+  margin-top: 10px;
+  padding: 10px 8px;
+  text-align: center;
+  margin-right: 100px;
 }
   </style>
 </head>
@@ -366,36 +425,46 @@
         </div>
       </div>
 
-      <div class="auth-form__form">
-        <table>
-          <tr>
-            <th>Ordinal number</th>
-            <th>Name Item</th>
-            <th>Size</th>
-            <th>Quantity</th>
-            <th>Order Date</th>
-            <th>Address</th>
-            <th>PhoneNumber</th>
-            <th>Status</th>
-            <th>Price</th>
-          </tr>
-          <% if(history.length > 0) { %>
-            <% for(let index = history.length - 1; index >= 0; index--) { %>
-              <tr>
-                <td><span><%= history.length - index %></span></td>
-                <td><p><%=history[index].nameSP%></p></td>
-                <td><p><%=history[index].size%></p></td>
-                <td><p><%=history[index].soLuong%></p></td>
-                <td><p><%= history[index].timeCreate.getFullYear()%>-<%=history[index].timeCreate.getMonth()+1%>-<%=history[index].timeCreate.getDate()%></p></td>
-                <td><p><%=history[index].address%></p></td>
-                <td><p><%=history[index].phoneNumber%></p></td>
-                <td><p><%=history[index].trangThai%></p></td>
-                <td><p><%=history[index].giaBan * history[index].soLuong%> VND</p></td>
-              </tr>
-            <% } %>
-          <% } %>
-        </table>
+      <!---Form lịch sử-->
+
+      <div class="card">
+        <div class="sec3" style="display: none;"></div>
+        <div class="history-user card-body">
+            <table>
+              <thead>
+                <tr>
+                  <th>STT</th>
+                  <th>Name Item</th>
+                  <th>Size</th>
+                  <th>Quantity</th>
+                  <th>Address</th>
+                  <th>PhoneNumber</th>
+                  <th>Price</th>
+                  <th>Order Date</th>
+                  <th>STATUS</th>
+                </tr>
+              </thead>
+              <tbody class="scrollable-content">
+                <% if(history.length > 0) { %>
+                  <% for(let index = history.length - 1; index >= 0; index--) { %>
+                    <tr>
+                      <td><span><%= history.length - index %></span></td>
+                      <td><p><%=history[index].nameSP%></p></td>
+                      <td><p><%=history[index].size%></p></td>
+                      <td><p><%=history[index].soLuong%></p></td>
+                      <td><p><%= history[index].timeCreate.getFullYear()%>-<%=history[index].timeCreate.getMonth()+1%>-<%=history[index].timeCreate.getDate()%></p></td>
+                      <td><p><%=history[index].address%></p></td>
+                      <td><p><%=history[index].phoneNumber%></p></td>
+                      <td><p><%=history[index].trangThai%></p></td>
+                      <td><p><%=history[index].giaBan * history[index].soLuong%> VND</p></td>
+                    </tr>
+                <%}%>
+              <%}%>
+              </tbody>
+            </table>
+        </div>
       </div>
+
       </div>
     </div>
   </div>
