@@ -25,9 +25,10 @@ const getAllCategories = async (req, res, next) => {
   }
 };
 
+
 let renderNav = async (req, res) => {
   // Điều này sẽ được gọi sau khi middleware getAllCategories thực hiện xong
-  return res.render("header.ejs", { categories: res.locals.categories });
+  return res.render("subnav.ejs", { categories: res.locals.categories });
 };
 
 let getHomePage = async (req, res) => {
@@ -442,34 +443,6 @@ let getSearch = async (req, res) => {
   return res.render("product.ejs", { product: product });
 };
 
-let getProductShirt = async (req, res) => {
-  const [product, fields] = await pool.query(
-    `select sanpham.idSP as idSP, sanpham.nameSP as nameSP, sanpham.giaBan as giaBan, sanpham.imgSP as imgSP, sanpham.soLuong as soLuong, danhmuc.nameDM as nameDM from sanpham, danhmuc where sanpham.idDM = danhmuc.idDM AND danhmuc.nameDM = "Shirt"`
-  );
-  return res.render("product.ejs", { product: product });
-};
-
-let getProductDress = async (req, res) => {
-  const [product, fields] = await pool.query(
-    `select sanpham.idSP as idSP, sanpham.nameSP as nameSP, sanpham.giaBan as giaBan, sanpham.imgSP as imgSP, sanpham.soLuong as soLuong, danhmuc.nameDM as nameDM from sanpham, danhmuc where sanpham.idDM = danhmuc.idDM AND danhmuc.nameDM = "Dress"`
-  );
-  return res.render("product.ejs", { product: product });
-};
-
-let getProductPants = async (req, res) => {
-  const [product, fields] = await pool.query(
-    `select sanpham.idSP as idSP, sanpham.nameSP as nameSP, sanpham.giaBan as giaBan, sanpham.imgSP as imgSP, sanpham.soLuong as soLuong, danhmuc.nameDM as nameDM from sanpham, danhmuc where sanpham.idDM = danhmuc.idDM AND danhmuc.nameDM = "Pants"`
-  );
-  return res.render("product.ejs", { product: product });
-};
-
-let getProductAccesscories = async (req, res) => {
-  const [product, fields] = await pool.query(
-    `select sanpham.idSP as idSP, sanpham.nameSP as nameSP, sanpham.giaBan as giaBan, sanpham.imgSP as imgSP, sanpham.soLuong as soLuong, danhmuc.nameDM as nameDM from sanpham, danhmuc where sanpham.idDM = danhmuc.idDM AND danhmuc.nameDM = "Accessories"`
-  );
-  return res.render("product.ejs", { product: product });
-};
-
 let getProductByCategory = async (req, res) => {
   const categoryName = req.params.category; // Lấy tên thể loại từ đường dẫn
   const [product, fields] = await pool.query(
@@ -501,10 +474,6 @@ module.exports = {
   postUpdateCart,
   getPay,
   postPay,
-  getProductShirt,
-  getProductDress,
-  getProductPants,
-  getProductAccesscories,
   getSearch,
   getAllCategories,
   renderNav,
