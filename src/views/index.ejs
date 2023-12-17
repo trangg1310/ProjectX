@@ -471,47 +471,49 @@
 
     <!----Sản phẩm bán chạy-->
     <div class="sanpham-section">
-      <h2 class="section-heading">HOT ITEMS</h2>
+      <h2 class="section-heading">Sản phẩm hot</h2>
 
-    <!----HOT IMTEMS-->
+    <!----Sản phẩm bán chạy-->
     <div class="sanpham-list">
-      <div class="sanpham-hot">
-        <img src="image/item/ga2.jpg" alt="Jumpsuit Spring" class="sanpham-img">
-        <div class="sanpham-content">
-          <h3 class="sanpham-heading">Jumpsuit Spring</h3>
-          <a href="/product" class="sanpham-btn">BUY NOW</a>
-        </div>
-      </div>
 
-      <div class="sanpham-hot">
-        <img src="image/item/ga3.jpg" alt="Dress Spring" class="sanpham-img">
-        <div class="sanpham-content">
-          <h3 class="sanpham-heading">Dress Spring</h3>
-          <a href="/product" class="sanpham-btn">BUY NOW</a>
+      <% for(let i = 0; i < hotitem.length; i++) { %>
+        <div class="sanpham-hot">
+          <img src="<%=hotitem[i].imgSP%>" alt="Hot Item" class="sanpham-img">
+          <div class="sanpham-content">
+            <h3 class="sanpham-heading"><%=hotitem[i].nameSP%></h3>
+            <a href="/productDetail?id=<%=hotitem[i].idSP%>" class="sanpham-btn">BUY NOW</a>
+          </div>
         </div>
-      </div>
-
+      <% } %>
       <div class="sanpham-hot1">
         <img src="image/item/ga1.jpg" alt="Jumpsuit Summer" class="sanpham-img1">
       </div>
-
-      <div class="sanpham-hot">
-        <img src="image/item/ga4.jpg" alt="Jacket Spring" class="sanpham-img">
-        <div class="sanpham-content">
-          <h3 class="sanpham-heading">Jacket Spring</h3>
-          <a href="/product" class="sanpham-btn">BUY NOW</a>
-        </div>
-      </div>
-
-      <div class="sanpham-hot">
-        <img src="image/item/ga5.jpg" alt="Jumpsuit Summer" class="sanpham-img">
-        <div class="sanpham-content">
-          <h3 class="sanpham-heading">Jumpsuit Summer</h3>
-          <a href="/product" class="sanpham-btn">BUY NOW</a>
-        </div>
-      </div>
     </div>
   </div>
+
+  <div class="sanpham-section">
+    <h2 class="section-heading">Sản phẩm mới</h2>
+
+  <!----Sản phẩm mới-->
+  <div class="sanpham-list">
+
+    <div class="sanpham-hot1">
+      <img src="image/item/ga2.jpg" alt="Jumpsuit Summer" class="sanpham-img1">
+    </div>
+
+    <% for(let i = 0; i < newitem.length; i++) { %>
+      <div class="sanpham-hot">
+        <img src="<%=newitem[i].imgSP%>" alt="Hot Item" class="sanpham-img">
+        <div class="sanpham-content">
+          <h3 class="sanpham-heading"><%=newitem[i].nameSP%></h3>
+          <a href="/productDetail?id=<%=newitem[i].idSP%>" class="sanpham-btn">BUY NOW</a>
+        </div>
+      </div>
+    <% } %>
+
+  </div>
+</div>
+
 
 <!----IMTEMS-->
 <div class="slider">

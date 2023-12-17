@@ -32,7 +32,10 @@ let renderNav = async (req, res) => {
 };
 
 let getHomePage = async (req, res) => {
-  return res.render("index.ejs");
+  let [hotitem, fields] = await pool.execute(`SELECT sanpham.* FROM sanpham JOIN (SELECT sanphamchitiet.idSP FROM donhangchitiet JOIN sanphamchitiet ON donhangchitiet.idSPCT = sanphamchitiet.idSPCT GROUP BY sanphamchitiet.idSP ORDER BY COUNT(donhangchitiet.idSPCT) DESC LIMIT 4) AS ban_chay ON sanpham.idSP = ban_chay.idSP`);
+  let [newitem, fields1] = await pool.execute(`SELECT * FROM sanpham ORDER BY idSP DESC LIMIT 4`);
+  console.log(hotitem);
+  return res.render("index.ejs", {newitem: newitem, hotitem: hotitem});
 };
 
 let getSignIn = async (req, res) => {
