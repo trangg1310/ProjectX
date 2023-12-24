@@ -152,6 +152,9 @@ p{
   font-size: 20;
   height: 30px;
 }
+.menu-product table{
+  margin-left: 100px;
+}
 .menu-product th{
   padding-bottom: 10px;
   font-family: 'Courier New', Courier, monospace;
@@ -167,7 +170,6 @@ p{
   color: #333;
   margin-top: 10px;
   padding-right: 10px;
-
 }
 .menu-product td .name-sp{
   margin-top: 25px;
@@ -250,7 +252,7 @@ p{
   padding: 10px 10px ;
   font-size: 20;
   height: 40px;
-  width: 50px;
+  width: 60px;
   color: #fff;
 
 }
@@ -289,6 +291,7 @@ p{
 }
 .use-iduser{
   width: 60px;
+  margin-left: 35px;
 }
 
 
@@ -321,6 +324,13 @@ p{
 }
 .or-iddh ,.or-iddhct, .or-idus, .or-idspct, .or-sl{
   width: 40px;
+}
+.or-idus{
+  margin-left: 10px;
+}
+.or-addr{
+  width: 200px;
+  margin-right: 10px;
 }
 .or-idus ,.or-addr{
   margin-top: 25px;
@@ -391,7 +401,7 @@ p{
   cursor: pointer;
 }
 .theorder-add-content{
-  font-size: 13px;
+  font-size: 12px;
   padding: 10px 10px;
 }
 .theorder-add-content input{
@@ -407,9 +417,8 @@ p{
   margin-left: 40px;
   background-color: #000;
   padding: 10px 10px ;
-  font-size: 20;
   height: 40px;
-  width: 50px;
+  width: 60px;
   color: #fff;
 }
 .btn--exit--theOrder:hover, .btn--save-theOrder:hover{
@@ -457,7 +466,7 @@ p{
   margin-left: 45px;
   background-color: #000;
   padding: 0 10px ;
-  font-size: 20;
+  font-size: 30;
   height: 35px;
   margin-bottom: 10px;
 }
@@ -527,16 +536,17 @@ p{
   padding: 10px 10px ;
   font-size: 20;
   height: 40px;
-  width: 50px;
+  width: 60px;
   color: #fff;
 }
 .btn--exit--category{
+  margin-top: 10px;
   margin-left: 40px;
   background-color: #000;
   padding: 10px 10px ;
   font-size: 20;
   height: 40px;
-  width: 50px;
+  width: 60px;
   color: #fff;
 }
 .card {
@@ -581,13 +591,13 @@ p{
 <body>
 <!--Menu-->
 <ul class="ul_show">
-  <li class="active"><a href="#">Home</a></li>
-  <li><a href="#product">Product</a></li>
-  <li><a href="#client">Client</a></li>
-  <li><a href="#theorder">The order</a></li>
-  <li><a href="#category">Category</a></li>
-  <li><a href="#statistic">Statistic</a></li>
-  <li><a href="/logout">Log Out</a></li>
+  <li class="active"><a href="#">Trang chủ</a></li>
+  <li><a href="#product">Sản phẩm</a></li>
+  <li><a href="#client">Khách hàng</a></li>
+  <li><a href="#theorder">Đơn hàng</a></li>
+  <li><a href="#category">Danh mục</a></li>
+  <li><a href="#statistic">Thống kê</a></li>
+  <li><a href="/logout">Đăng xuất</a></li>
 </ul>
 <div class="menu-pic" style="margin-bottom: 30px;">
 <img src="image/Slider/Slider1.png" alt=""class="menu-img">
@@ -611,9 +621,9 @@ p{
 <div class="card">
   <div class="sec1" style="display: none;"></div>
   <div class="card-header">
-    <h2 id="product">Product</h2>
-    <input type="text" id="searchInput" placeholder="NameItem/IDSP">
-    <button class="btn--add-product">Add More</button>
+    <h2 id="product">Sản phẩm</h2>
+    <input type="text" id="searchInput" placeholder="Tên sản phẩm/IDSP">
+    <button class="btn--add-product">Thêm mới</button>
   </div>
 
   <div class="menu-product card-body">
@@ -621,11 +631,11 @@ p{
         <thead>
           <tr>
             <th>IdSP</th>
-            <th>Category</th>
-            <th>Name Item</th>
+            <th>Danh mục</th>
+            <th>Tên sản phẩm</th>
             <th>Size</th>
-            <th>QUANTITY</th>
-            <th>PRICE</th>
+            <th>Số lượng</th>
+            <th>Giá</th>
           </tr>
         </thead>
 
@@ -654,8 +664,8 @@ p{
                 <td><span><input class="pro-sl"
                   name="soLuong" value="<%=product[index].soLuong%>" required></span> </td>
                 <td> <span><input name="giaBan" value="<%=product[index].giaBan%>" required></span> </td>
-                <td><button type="submit" name="action" value="update" class="btn--upda-product">Update</button></td>
-                <td><button type="submit" name="action" value="delete">Delete</button></td>
+                <td><button type="submit" name="action" value="update" class="btn--upda-product">Sửa</button></td>
+                <td><button type="submit" name="action" value="delete">Xoá</button></td>
               </tr>
             </form>
           <%}%>
@@ -701,41 +711,41 @@ p{
 <div class="modal-container" id="myModal1" style="height: fit-content;">
 <div class="modal1">
     <div class="modal-header">
-      <h2>Product</h2>
+      <h2>Sản phẩm</h2>
     </div>
     <div class="add-product">
       <form action="/admincreateproduct" method="post" enctype="multipart/form-data">
         <div class="product">
 
           <div class="product-add-content">
-            <label for="">Id Category</label>
+            <label for="">Id danh mục</label>
             <input type="text" name="idDM" required>
           </div>
 
           <div class="product-add-content">
-            <label for="">Name Item</label>
+            <label for="">Tên sản phẩm</label>
             <input type="text" name="nameSP" required>
           </div>
           <div class="product-add-content">
-              <label for="">Quantity</label>
+              <label for="">Số lượng từng size</label>
               <input type="number" name="quantity[]" placeholder="S" required>
               <input type="number" name="quantity[]" placeholder="M" required>
               <input type="number" name="quantity[]" placeholder="L" required>
               <input type="number" name="quantity[]" placeholder="XL" required>
           </div>
           <div class="product-add-content">
-            <label for="">Price</label>
+            <label for="">Giá</label>
             <input type="text" name="giaBan" required>
           </div>
 
           <div class="product-add-content">
-            <label for="">Image</label>
+            <label for="">Hình sản phẩm</label>
             <input type="file" accept="image/*" name="imgSP" required>
           </div>
 
           <div class="auth-form__controls">
-            <button class="btn--save-product" type="submit">Save</button>
-            <button class="btn--exit--product">Exit</button>
+            <button class="btn--save-product" type="submit">Lưu</button>
+            <button class="btn--exit--product">Thoát</button>
           </div>
         </div>
       </form>
@@ -748,18 +758,18 @@ p{
 <div class="card">
   <div class="sec2" style="display: none;"></div>
   <div class="card-header">
-    <h2 id="client">Client</h2>
+    <h2 id="client">Khách hàng</h2>
     <input type="text" id="searchInputClient" placeholder="Email">
   </div>
   <div class="menu-client card-body">
       <table>
         <thead>
           <tr>
-            <th>IdUser </th>
+            <th>Id khách hàng </th>
             <th>Email</th>
-            <th>Name</th>
-            <th>Adress</th>
-            <th>Phone Number</th>
+            <th>Tên khách hàng</th>
+            <th>Địa chỉ</th>
+            <th>Số điện thoại</th>
           </tr>
         </thead>
         <tbody class="scrollable-content">
@@ -774,8 +784,8 @@ p{
                 <td><p><input class="address-kh"
                   name="address" value="<%=user[index].address%>" required></p></td>
                 <td><span><input name="phoneNumber" value="<%=user[index].phoneNumber%>" required> </span> </td>
-                <td><button type="submit" name="action" value="update" class="btn--update-user">Update</button></td>
-                <td><button type="submit" name="action" value="delete">Delete</button></td>
+                <td><button type="submit" name="action" value="update" class="btn--update-user">Sửa</button></td>
+                <td><button type="submit" name="action" value="delete">Xoá</button></td>
               </tr>
             </form>
           <%}%>
@@ -814,9 +824,9 @@ p{
 <div class="card">
   <div class="sec3" style="display: none;"></div>
   <div class="card-header">
-    <h2 id="theorder">The Order</h2>
-    <input type="text" id="searchInputTheOrder" placeholder="Phone Number">
-    <button class="btn--add-cart"><span style="color: white" >ADD</span></button>
+    <h2 id="theorder">Đơn hàng</h2>
+    <input type="text" id="searchInputTheOrder" placeholder="Số điện thoại">
+    <button class="btn--add-cart"><span style="color: white" >Thêm</span></button>
   </div>
   <div class="menu-theorder card-body">
       <table>
@@ -824,14 +834,14 @@ p{
           <tr>
             <th>IdDH</th>
             <th>IdDHCT</th>
-            <th>Id User</th>
-            <th>Address</th>
-            <th>Phone Number</th>
+            <th>Id Khách hàng</th>
+            <th>Địa chỉ</th>
+            <th>SDT</th>
             <th>IDSP</th>
-            <th>QUANTITY</th>
-            <th>Total amount</th>
-            <th>Time</th>
-            <th>STATUS</th>
+            <th>Số lượng</th>
+            <th>Tổng tiền</th>
+            <th>Thời gian đặt hàng</th>
+            <th>Trạng thái</th>
           </tr>
         </thead>
         <tbody class="scrollable-content">
@@ -882,8 +892,8 @@ p{
                       <% } %>
                   </select>
                 </td>
-                <td><button type="submit" name="action" value="update" class="btn--update-user">Update</button></td>
-                <td><button type="submit" name="action" value="delete">Delete</button></td>
+                <td><button type="submit" name="action" value="update" class="btn--update-user">Sửa</button></td>
+                <!--<td><button type="submit" name="action" value="delete">Xoá</button></td>-->
               </tr>
             </form>
           <%}%>
@@ -920,28 +930,28 @@ p{
 <div class="modal-container" id="myModal2">
 <div class="modal2">
     <div class="modal-header">
-      <h2>The Order</h2>
+      <h2>Đơn hàng</h2>
     </div>
     <div class="add-theorder">
       <form action="/admincreateorder" method="post">
         <div class="theorder">
           <div class="theorder-add-content">
-            <label for="">Id User</label>
+            <label for="">Id khách hàng</label>
             <input type="text" name="idUser" required>
           </div>
 
           <div class="theorder-add-content">
-            <label for="">Name User</label>
+            <label for="">Tên khách hàng</label>
             <input type="text" name="nameUser" required>
           </div>
 
           <div class="theorder-add-content">
-            <label for="">Address</label>
+            <label for="">Địa chỉ</label>
             <input type="text" name="address" required>
           </div>
 
           <div class="theorder-add-content">
-            <label for="">Phone Number</label>
+            <label for="">Số điện thoại</label>
             <input type="text" name="phoneNumber">
           </div>
 
@@ -951,16 +961,16 @@ p{
           </div>
 
           <div class="theorder-add-content">
-            <label for="">Quantity</label>
+            <label for="">Số lượng</label>
             <input type="number" name="soLuong">
           </div>
           <div class="theorder-add-content" hidden>
-            <label for="">Status</label>
+            <label for="">Trạng thái</label>
             <input type="text" name="trangThai" value="Chờ giao hàng">
           </div>
           <div class="auth-form__controls">
-            <button class="btn--save-theOrder" type="submit">Save</button>
-            <button class="btn--exit--theOrder" type="submit">Exit</button>
+            <button class="btn--save-theOrder" type="submit">Lưu</button>
+            <button class="btn--exit--theOrder" type="submit">Thoát</button>
           </div>
         </div>
       </form>
@@ -973,15 +983,15 @@ p{
 <!--Danh muc-->
 <div class="card">
   <div class="card-header">
-    <h2 id="category">Category</h2>
-    <button class="btn--add-cate"><span style="color: white;" >ADD</span></button>
+    <h2 id="category">Danh mục</h2>
+    <button class="btn--add-cate"><span style="color: white;" >Thêm</span></button>
   </div>
   <div class="menu-category card-body">
     <table>
       <thead>
       <tr>
         <th>Id</th>
-        <th>Name Category</th>
+        <th>Tên danh mục</th>
       </tr>
       </thead>
       <tbody class="scrollable-content">
@@ -991,8 +1001,8 @@ p{
             <td><input name="idDM" value="<%=danhmuc[index].idDM%>" readonly></td>
             <td><p><input class="cate-name"
               name="nameDM" value="<%=danhmuc[index].nameDM%>" required></p></td>
-            <td><button type="submit" name="action" value="update" class="btn--upda-cate">Update</button></td>
-            <td><button type="submit" name="action" value="delete">Delete</button></td>
+            <td><button type="submit" name="action" value="update" class="btn--upda-cate">Sửa</button></td>
+            <td><button type="submit" name="action" value="delete">Xoá</button></td>
           </form>
         </tr>
       <%}%>
@@ -1004,23 +1014,23 @@ p{
 <div class="modal-container" id="myModal3">
 <div class="modal3">
     <div class="modal-header">
-      <h2>Category</h2>
+      <h2>Danh mục</h2>
     </div>
     <div class="add-category">
       <form action="/admincreatecategory" method="post">
         <div class="category">
           <div class="category-add-content">
-            <label for="nameDM">Name</label>
+            <label for="nameDM">Tên danh mục</label>
             <input type="text" name="nameDM">
           </div>
 
           <div class="auth-form__controls">
-            <button class="btn--save" type="submit">Save</button>
+            <button class="btn--save" type="submit">Lưu</button>
 
           </div>
         </div>
       </form>
-      <button class="btn--exit--category" type="submit">Exit</button>
+      <button class="btn--exit--category" type="submit">Thoát</button>
     </div>
 </div>
 </div>
@@ -1030,7 +1040,7 @@ p{
 <div class="sec5 col-12 mb-4" id="doanhso" style="margin-bottom: 0px;">
   <div class="card shadow">
       <div class="card-header">
-        <h2 id="statistic">Statistic</h2>
+        <h2 id="statistic">Thống kê</h2>
       </div>
       <div class="card-body">
           <label for="begin-date" style="margin-left: 2rem;">Từ ngày:</label>

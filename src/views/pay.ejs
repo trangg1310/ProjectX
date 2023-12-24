@@ -289,28 +289,41 @@
         height: auto;;
       }
       table{
-        margin-left: 100px;
-        width: 100%;
-        font-size: 20px;
+        margin-left: 20px;
+        width: 350px;
+        font-size: 18px;
+        padding: 2px 2px;
         text-align: center;
       }
       .delivery-content-right table tr th:first-child{
         text-align: left;
       }
+
       .delivery-content-right table tr th{
         padding-bottom: 12px;
         border-bottom: 2px solid #dddddd;
       }
+      /*
       .delivery-content-right table tr th:last-child{
         text-align: right
-      }
-      .delivery-content-right table tr td:first-child{
+      }*/
+
+      .delivery-content-right table tr td{
         padding: 6px 0;
         text-align: left;
       }
-      .delivery-content-right table tr td:last-child{
-        text-align: right;
+      .delivery-content-right table tr td:nth-child(2){
+        padding: 6px 0;
+        text-align: center;
       }
+      .delivery-content-right table tr td:nth-child(3){
+        padding: 6px 0;
+        text-align: center;
+      }
+
+
+
+
 </style>
 </head>
 <body>
@@ -318,15 +331,14 @@
 <div id="main">
   <div id="header">
     <ul id="nav">
-      <li><a href="/">Home</a></li>
+      <li><a href="/">Trang chủ</a></li>
         <li>
-          <a href="/product">Shopping</a>
+          <a href="/product">Sản phẩm</a>
           <ul class="subnav">
             <%- include('subnav.ejs') %>
           </ul>
         </li>
-        <li><a href="">Instagram</a></li>
-        <li><a href="">About Us</a></li>
+        <li><a href="#footer">Chúng tôi</a></li>
       </ul>
 <!----End Header-->
 
@@ -345,7 +357,7 @@
   <div class="search-btn_tem">
     <form action="/search" id="search-box">
       <input type="text" autocomplete="off" id="search-text"
-      placeholder="Search your item"  name="product" required>
+      placeholder="Tìm kiếm"  name="product" required>
       <button id="search-btn"><i class="search-icon ti-search"></i></button>
     </form>
   </div>
@@ -354,23 +366,23 @@
 <!---- Thanh toan-->
 <div class="delivery">
   <div class="head-link">
-    <p>Home</p> <span>&#10230; </span> <p>Shopping Cart</p> <span>&#10230; </span> <p>Pay</p>
-    <h1>Delivery Information</h1>
+    <p>Trang chủ</p> <span>&#10230; </span> <p>Giỏ hàng</p> <span>&#10230; </span> <p>Thanh toán</p>
+    <h1>Thông tin giao hàng</h1>
   </div>
   <form action="/pay" method="post">
   <div class="container">
     <div class="delivery-content">
       <div class="delivery-content-left">
         <div class="delivery-content-left-input-info">
-          <label for="">Name</label>
+          <label for="">Tên</label>
           <input type="text" name="nameUser" required >
         </div>
         <div class="delivery-content-left-input-info">
-          <label for="">Phone Number</label>
+          <label for="">Số điện thoại</label>
           <input type="text" name="phoneNumber" required>
         </div>
         <div class="delivery-content-left-input-info">
-          <label for="">Address</label>
+          <label for="">Địa chỉ</label>
           <input type="text" name="address" required>
         </div>
         <input name="thanhTien" value="<%=total%>" hidden>
@@ -379,17 +391,17 @@
         <div class="delivery-content-left-input-button">
           <a href="/cart" class="btn--withicon">
             <i class="arrow-icon ti-arrow-left"></i>
-            Back Cart</a>
-          <button class="btn--c-pay" type="submit"><p style="font-weight: bold;">Click To Pay</p></button>
+            Quay lại giỏ hàng</a>
+          <button class="btn--c-pay" type="submit"><p style="font-weight: bold;">Thanh toán</p></button>
         </div>
       </div>
 
       <div class="delivery-content-right">
         <table>
           <tr>
-            <th>Item Name</th>
-            <th>Quantity</th>
-            <th>Price</th>
+            <th>Tên sản phẩm</th>
+            <th>Số lượng</th>
+            <th>Giá</th>
           </tr>
 
           <% for(let index = 0; index < product.length; index++) { %>
@@ -400,8 +412,8 @@
             </tr>
           <% } %>
           <tr>
-            <td style="font-weight: bold;" colspan="2">Total amount</td>
-            <td style="font-weight: bold;"><p><%=total%> VND</p></td>
+            <td style="font-weight: bold;" colspan="2">Tổng tiền</td>
+            <td style="font-weight: bold;"><%=total%> VND</td>
           </tr>
         </table>
 
@@ -416,7 +428,7 @@
       <div class="anhbia">
         <img src="image/Slider/a.jpg" alt="bia" class="anhbia-img">
       </div>
-      <p class="about">About Us</p>
+      <p class="about">Chúng tôi</p>
       <div class="socical-list">
         <a href=""><i class="ti-truck"></i></a>
         <a href=""><i class="ti-package"></i></a>

@@ -27,6 +27,7 @@
         top: 0;
         left: 0;
         right: 0;
+        z-index: 100;
       }
 
 
@@ -215,7 +216,7 @@
         background: url('image/Slider/Slider1.png') top center / cover no-repeat;
       }
 
-      /* Phần New Collection*/
+      /* Phần bộ sưu tập*/
       #content{
         background-color: antiquewhite;
         height: 600px;
@@ -264,7 +265,7 @@
 
 
       }
-      /* Phần Hot items*/
+      /* Phần sp bán chạy*/
       .sanpham-list{
         margin-top: 32px;
         padding: 10px 150px;
@@ -283,10 +284,16 @@
         width: 500px;
 
       }
+      .sanpham-hot1 .sanpham-img2{
+        height: 740px;
+        width: 550px;
+      }
+
       .sanpham-list{
         display: grid;
         grid-template-columns: 1fr 1fr 3fr;
       }
+
       .sanpham-hot1{
         grid-row: 1 / 4;
       }
@@ -312,12 +319,11 @@
         color: #000;
         background-color: #ccc;
       }
-      
-
       /*IMTEMS*/
       #content .slider{
         background-color: antiquewhite;
         height: 600px;
+        margin-top: -15px;
       }
       .slider .section-heading{
         margin-bottom: 20px;
@@ -400,15 +406,14 @@
 <div id="main">
   <div id="header">
     <ul id="nav">
-    <li><a href="/">Home</a></li>
+    <li><a href="/">Trang chủ</a></li>
       <li>
-        <a href="/product">Shopping</a>
+        <a href="/product">Sản phẩm</a>
         <ul class="subnav">
           <%- include('subnav.ejs') %>
         </ul>
       </li>
-      <li><a href="">Instagram</a></li>
-      <li><a href="">About Us</a></li>
+      <li><a href="#footer">Chúng tôi</a></li>
     </ul>
 <!----End Header-->
 
@@ -436,7 +441,7 @@
   <div class="search-btn_tem">
     <form action="/search" id="search-box">
       <input type="text" autocomplete="off" id="search-text"
-      placeholder="Search your item"  name="product" required>
+      placeholder="Tìm kiếm"  name="product" required>
       <button id="search-btn"><i class="search-icon ti-search"></i></button>
     </form>
   </div>
@@ -450,8 +455,8 @@
    <!----New collection-->
   <div id="content">
     <div class="content-section">
-      <h2 class="section-heading">New collection</h2>
-      <p class="section-sub-heading">Comming soon</p>
+      <h2 class="section-heading">Bộ sưu tập mới</h2>
+      <p class="section-sub-heading">Sắp ra mắt</p>
 
       <div class="list-item">
         <div class="new-item">
@@ -471,7 +476,7 @@
 
     <!----Sản phẩm bán chạy-->
     <div class="sanpham-section">
-      <h2 class="section-heading">Sản phẩm hot</h2>
+      <h2 class="section-heading">Sản phẩm bán chạy</h2>
 
     <!----Sản phẩm bán chạy-->
     <div class="sanpham-list">
@@ -481,7 +486,7 @@
           <img src="<%=hotitem[i].imgSP%>" alt="Hot Item" class="sanpham-img">
           <div class="sanpham-content">
             <h3 class="sanpham-heading"><%=hotitem[i].nameSP%></h3>
-            <a href="/productDetail?id=<%=hotitem[i].idSP%>" class="sanpham-btn">BUY NOW</a>
+            <a href="/productDetail?id=<%=hotitem[i].idSP%>" class="sanpham-btn">MUA NGAY</a>
           </div>
         </div>
       <% } %>
@@ -496,9 +501,8 @@
 
   <!----Sản phẩm mới-->
   <div class="sanpham-list">
-
     <div class="sanpham-hot1">
-      <img src="image/item/ga2.jpg" alt="Jumpsuit Summer" class="sanpham-img1">
+      <img src="image/item/ga2.jpg" alt="Jumpsuit Summer" class="sanpham-img2">
     </div>
 
     <% for(let i = 0; i < newitem.length; i++) { %>
@@ -506,7 +510,7 @@
         <img src="<%=newitem[i].imgSP%>" alt="Hot Item" class="sanpham-img">
         <div class="sanpham-content">
           <h3 class="sanpham-heading"><%=newitem[i].nameSP%></h3>
-          <a href="/productDetail?id=<%=newitem[i].idSP%>" class="sanpham-btn">BUY NOW</a>
+          <a href="/productDetail?id=<%=newitem[i].idSP%>" class="sanpham-btn">MUA NGAY</a>
         </div>
       </div>
     <% } %>
@@ -517,7 +521,7 @@
 
 <!----IMTEMS-->
 <div class="slider">
-  <h2 class="section-heading">ITEMS</h2>
+  <h2 class="section-heading"></h2>
   <div class="slider_img">
     <input type="radio" name="inputslider" id="img1">
     <input type="radio" name="inputslider" id="img2">
@@ -539,7 +543,7 @@
       <div class="anhbia">
         <img src="image/Slider/a.jpg" alt="bia" class="anhbia-img">
       </div>
-      <p class="about">About Us</p>
+      <p class="about">Chúng tôi</p>
       <div class="socical-list">
         <a href=""><i class="ti-truck"></i></a>
         <a href=""><i class="ti-package"></i></a>

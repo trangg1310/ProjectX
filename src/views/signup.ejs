@@ -262,7 +262,7 @@
             grid-template-columns: 350px 450px;
             border: 1px solid grey;
             background-color: #d7d6d6;
-            margin-left: 280px;
+            margin-left: 230px;
           }
           .auth-form__header{
             font-size: 10px;
@@ -327,15 +327,14 @@
 <div id="main">
   <div id="header">
     <ul id="nav">
-      <li><a href="/">Home</a></li>
+      <li><a href="/">Trang chủ</a></li>
         <li>
-          <a href="/product">Shopping</a>
+          <a href="/product">Sản phẩm</a>
           <ul class="subnav">
             <%- include('subnav.ejs') %>
           </ul>
         </li>
-        <li><a href="">Instagram</a></li>
-        <li><a href="">About Us</a></li>
+        <li><a href="#footer">Chúng tôi</a></li>
       </ul>
 <!----End Header-->
 
@@ -354,7 +353,7 @@
   <div class="search-btn_tem">
     <form action="/search" id="search-box">
       <input type="text" autocomplete="off" id="search-text"
-      placeholder="Search your item"  name="product" required>
+      placeholder="Tìm kiếm"  name="product" required>
       <button id="search-btn"><i class="search-icon ti-search"></i></button>
     </form>
   </div>
@@ -365,8 +364,8 @@
   <div class="auth-form">
     <div class="auth-form__container">
       <div class="auth-form__header">
-        <h3 class="auth-form__heading">Sign up</h3>
-        <span class="auth-form__switch-btn"> <a href="/signin">Sign in </a></span>
+        <h3 class="auth-form__heading">Đăng ký</h3>
+        <span class="auth-form__switch-btn"> <a href="/signin">Đăng nhập </a></span>
       </div>
 
       <form action="/signup" method="post">
@@ -383,7 +382,7 @@
           <% } %>
         </div>
         <div>
-          <input type="text" class="auth-form__input" name="name" placeholder="Name" value='<%=user.name%>' required>
+          <input type="text" class="auth-form__input" name="name" placeholder="Nhập tên của bạn" value='<%=user.name%>' required>
         </div>
 
         <div>
@@ -391,18 +390,18 @@
         </div>
 
         <div>
-            <input type="password" class="auth-form__input" name="password" placeholder="Password" required>
+            <input type="password" class="auth-form__input" name="password" placeholder="Mật khẩu" required>
         </div>
 
         <div>
-          <input type="text" class="auth-form__input" name="address" placeholder="Address" required>
+          <input type="text" class="auth-form__input" name="address" placeholder="Địa chỉ" required>
       </div>
 
         <div>
-        <input type="text" class="auth-form__input" name="phoneNumber" placeholder="Phone Number" required>
+        <input type="text" class="auth-form__input" name="phoneNumber" placeholder="Số điện thoại" required>
         </div>
 
-        <button class="btn--signup" type="submit">Sign Up</button>
+        <button class="btn--signup" type="submit">Đăng ký</button>
       </form>
   </div>
 
@@ -413,7 +412,7 @@
   <div class="anhbia">
     <img src="/image/Slider/a.jpg" alt="bia" class="anhbia-img">
   </div>
-  <p class="about">About Us</p>
+  <p class="about">Chúng tôi</p>
   <div class="socical-list">
     <a href=""><i class="ti-truck"></i></a>
     <a href=""><i class="ti-package"></i></a>

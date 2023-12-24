@@ -31,6 +31,7 @@
         top: 0;
         left: 0;
         right: 0;
+        z-index: 100;
       }
 
 
@@ -316,15 +317,14 @@
 <div id="main">
   <div id="header">
     <ul id="nav">
-      <li><a href="/">Home</a></li>
+      <li><a href="/">Trang chủ</a></li>
         <li>
-          <a href="/product">Shopping</a>
+          <a href="/product">Sản phẩm</a>
           <ul class="subnav">
             <%- include('subnav.ejs') %>
           </ul>
         </li>
-        <li><a href="">Instagram</a></li>
-        <li><a href="">About Us</a></li>
+        <li><a href="#footer">Chúng tôi</a></li>
       </ul>
 <!----End Header-->
 
@@ -343,7 +343,7 @@
   <div class="search-btn_tem">
       <form action="/search" id="search-box">
         <input type="text" autocomplete="off" id="search-text"
-        placeholder="Search your item"  name="product" required>
+        placeholder="Tìm kiếm"  name="product" required>
         <button id="search-btn"><i class="search-icon ti-search"></i></button>
       </form>
     </div>
@@ -353,7 +353,7 @@
 <!---- sanpham-->
 <div id="wrapper">
   <div class="head-link">
-    <p>Home</p><span>&#10230;</span><p>Shopping</p><span>&#10230;<p><%=categoryName%></p>
+    <p>Trang chủ</p><span>&#10230;</span><p>Sản phẩm</p><span>&#10230;<p><%=categoryName%></p>
   </div>
   <div class="headline">
     <% if (messages.success_msg) { %>
@@ -367,7 +367,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     <% } %>
-    <h3>Items</h3>
+    <h3>Sản phẩm</h3>
     <ul class="products">
       <% for( let index = product.length - 1; index >= 0; index-- ) { %>
         <% if(product[index].soLuong>0) {%>
@@ -379,7 +379,7 @@
               <a href="" class="product-pic">
                 <img src="/<%=product[index].imgSP %>" alt="">
               </a>-->
-              <a href="/productDetail?id=<%=product[index].idSP%>" class="buy-now">Buy Now</a>
+              <a href="/productDetail?id=<%=product[index].idSP%>" class="buy-now">Mua ngay</a>
             </div>
             <div class="product-info">
               <a href="" class="product-cate"><%=product[index].nameDM%></a>
@@ -403,7 +403,7 @@
       <div class="anhbia">
         <img src="/image/Slider/a.jpg" alt="bia" class="anhbia-img">
       </div>
-      <p class="about">About Us</p>
+      <p class="about">Chúng tôi</p>
       <div class="socical-list">
         <a href=""><i class="ti-truck"></i></a>
         <a href=""><i class="ti-package"></i></a>

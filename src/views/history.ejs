@@ -346,7 +346,7 @@ margin-right: 30px;
 }
 .history-user td{
   font-family: 'Courier New', Courier, monospace;
-  font-size: 12px;
+  font-size: 11.5px;
   color: #333;
   margin-top: 10px;
   padding: 10px 8px;
@@ -360,15 +360,14 @@ margin-right: 30px;
 <div id="main">
   <div id="header">
     <ul id="nav">
-      <li><a href="/">Home</a></li>
+      <li><a href="/">Trang chủ</a></li>
         <li>
-          <a href="/product">Shopping</a>
+          <a href="/product">Sản phẩm</a>
           <ul class="subnav">
             <%- include('subnav.ejs') %>
           </ul>
         </li>
-        <li><a href="">Instagram</a></li>
-        <li><a href="">About Us</a></li>
+        <li><a href="#footer">Chúng tôi</a></li>
       </ul>
 <!----End Header-->
 
@@ -388,7 +387,7 @@ margin-right: 30px;
   <div class="search-btn_tem">
     <form action="/search" id="search-box">
       <input type="text" autocomplete="off" id="search-text"
-      placeholder="Search your item"  name="product" required>
+      placeholder="Tìm kiếm"  name="product" required>
       <button id="search-btn"><i class="search-icon ti-search"></i></button>
     </form>
   </div>
@@ -401,27 +400,27 @@ margin-right: 30px;
   <div class="auth-form">
     <div class="auth-form__container">
       <div class="auth-form__header">
-        <h3 class="auth-form__heading">Order history</Address></h3>
+        <h3 class="auth-form__heading">Lịch sử đặt hàng</Address></h3>
 
         <div class="auth-form__icon">
           <a href="/user" class="btn--withicon">
             <i class="info-icon ti-control-play"></i>
-            Information</a>
+            Thông tin cá nhân </a>
         </div>
         <div class="auth-form__icon">
           <a href="/user/changePassword" class="btn--withicon">
             <i class="address-icon ti-control-play"></i>
-            Change Password</a>
+            Đổi mật khẩu</a>
         </div>
         <div class="auth-form__icon">
           <a href="#" class="btn--withicon">
             <i class="address-icon ti-control-play"></i>
-            Order history</a>
+            Lịch sử đặt hàng</a>
         </div>
         <div class="auth-form__icon">
           <a href="/logout" class="btn--withicon">
             <i class="logout-icon ti-control-play"></i>
-            Log Out</a>
+            Đăng xuất</a>
         </div>
       </div>
 
@@ -434,14 +433,14 @@ margin-right: 30px;
               <thead>
                 <tr>
                   <th>STT</th>
-                  <th>Name Item</th>
+                  <th>Tên sản phẩm</th>
                   <th>Size</th>
-                  <th>Quantity</th>
-                  <th>Time</th>
-                  <th>Address</th>
-                  <th>Phone Number</th>
-                  <th>Status</th>
-                  <th>Price</th>
+                  <th>Số lượng</th>
+                  <th>Ngày đặt hàng</th>
+                  <th>Địa chỉ</th>
+                  <th>SDT</th>
+                  <th>Trạng thái</th>
+                  <th>Giá</th>
                 </tr>
               </thead>
               <tbody class="scrollable-content">
@@ -477,7 +476,7 @@ margin-right: 30px;
       <div class="anhbia">
         <img src="/image/Slider/a.jpg" alt="bia" class="anhbia-img">
       </div>
-      <p class="about">About Us</p>
+      <p class="about">Chúng tôi</p>
       <div class="socical-list">
         <a href=""><i class="ti-truck"></i></a>
         <a href=""><i class="ti-package"></i></a>

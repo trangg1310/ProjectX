@@ -376,15 +376,14 @@
 <div id="main">
   <div id="header">
     <ul id="nav">
-      <li><a href="/">Home</a></li>
+      <li><a href="/">Trang chủ</a></li>
         <li>
-          <a href="/product">Shopping</a>
+          <a href="/product">Sản phẩm</a>
           <ul class="subnav">
             <%- include('subnav.ejs') %>
           </ul>
         </li>
-        <li><a href="">Instagram</a></li>
-        <li><a href="">About Us</a></li>
+        <li><a href="#footer">Chúng tôi</a></li>
       </ul>
 <!----End Header-->
 
@@ -403,7 +402,7 @@
   <div class="search-btn_tem">
     <form action="/search" id="search-box">
       <input type="text" autocomplete="off" id="search-text"
-      placeholder="Search your item"  name="product" required>
+      placeholder="Tìm kiếm"  name="product" required>
       <button id="search-btn"><i class="search-icon ti-search"></i></button>
     </form>
   </div>
@@ -413,7 +412,7 @@
 
 <div class="container">
   <div class="head-link">
-    <p>Home</p><span>&#10230;</span><p>Shopping Cart</p>
+    <p>Trang chủ</p><span>&#10230;</span><p>Giỏ hàng</p>
   </div>
   <p>
   <% if (messages.success_msg) { %></p>
@@ -429,18 +428,18 @@
   <% } %>
 
   <div class="headline">
-    <h3>Your Cart</h3>
+    <h3>Giỏ hàng của bạn</h3>
   </div>
 
 <div class="cart-content">
     <div class="cart-content-left">
       <table>
         <tr>
-          <th>Items</th>
-          <th>Name Item</th>
+          <th>Sản phẩm</th>
+          <th>Tên sản phẩm</th>
           <th>Size</th>
-          <th>Quantity</th>
-          <th>Price</th>
+          <th>Số lượng</th>
+          <th>Giá</th>
           <th></th>
         </tr>
 
@@ -466,20 +465,20 @@
     <div class="cart-content-right">
         <table>
           <tr>
-            <th colspan="2">Information Your Items</th>
+            <th colspan="2">Thông tin sản phẩm của bạn</th>
           </tr>
           <tr>
-          <td>Gross product</td>
+          <td>Tổng sản phẩm</td>
           <td><%=gross%></td>
           </tr>
           <tr>
-            <td>Total amount</td>
-            <td><p><%=total%> VND</p></td>
+            <td>Tổng tiền</td>
+            <td><%=total%> VND</td>
           </tr>
         </table>
         <div class="cart-button-right">
-          <button class="btn--pay" type="submit"><a style="text-decoration: none" href="/pay">Pay Now</a></button>
-          <button class="btn--shopping"><a style="text-decoration: none"  href="/product">Back Shopping</a></button>
+          <button class="btn--pay" type="submit"><a style="text-decoration: none" href="/pay">Thanh toán ngay</a></button>
+          <button class="btn--shopping"><a style="text-decoration: none"  href="/product">Tiếp tục mua hàng</a></button>
         </div>
     </div>
   </div>
@@ -492,7 +491,7 @@
       <div class="anhbia">
         <img src="image/Slider/a.jpg" alt="bia" class="anhbia-img">
       </div>
-      <p class="about">About Us</p>
+      <p class="about">Chúng tôi</p>
       <div class="socical-list">
         <a href=""><i class="ti-truck"></i></a>
         <a href=""><i class="ti-package"></i></a>

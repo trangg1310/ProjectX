@@ -320,15 +320,14 @@
 <div id="main">
   <div id="header">
     <ul id="nav">
-      <li><a href="/">Home</a></li>
+      <li><a href="/">Trang chủ</a></li>
         <li>
-          <a href="/product">Shopping</a>
+          <a href="/product">Sản phẩm</a>
           <ul class="subnav">
             <%- include('subnav.ejs') %>
           </ul>
         </li>
-        <li><a href="">Instagram</a></li>
-        <li><a href="">About Us</a></li>
+        <li><a href="#footer">Chúng tôi</a></li>
       </ul>
 
 
@@ -348,7 +347,7 @@
   <div class="search-btn_tem">
     <form action="/search" id="search-box">
       <input type="text" autocomplete="off" id="search-text"
-      placeholder="Search your item"  name="product" required>
+      placeholder="Tìm kiếm"  name="product" required>
       <button id="search-btn"><i class="search-icon ti-search"></i></button>
     </form>
   </div>
@@ -360,8 +359,8 @@
   <div class="auth-form">
     <div class="auth-form__container">
       <div class="auth-form__header">
-        <h3 class="auth-form__heading">Sign in</h3>
-        <span class="auth-form__switch-btn"><a href="/signup">Sign up</a></span>
+        <h3 class="auth-form__heading">Đăng nhập</h3>
+        <span class="auth-form__switch-btn"><a href="/signup">Đăng ký</a></span>
       </div>
 
       <form action="/signin" method="post">
@@ -388,10 +387,10 @@
           </div>
 
           <div class="auth-form__group">
-            <input type="password" class="auth-form__input" name="password" placeholder="Password">
+            <input type="password" class="auth-form__input" name="password" placeholder="Mật khẩu">
 
         <div class="auth-form__controls">
-            <button class="btn--signup" type="submit">Sign In</button>
+            <button class="btn--signup" type="submit">Đăng nhập</button>
         </div>
       </form>
     </div>
@@ -399,7 +398,7 @@
         <div class="auth-form__icon">
           <a href="/" class="btn--withicon">
             <i class="arrow-icon ti-arrow-left"></i>
-            Back Home</a>
+            Trang chủ</a>
         </div>
       </div>
     </div>
@@ -412,7 +411,7 @@
   <div class="anhbia">
     <img src="/image/Slider/a.jpg" alt="bia" class="anhbia-img">
   </div>
-  <p class="about">About Us</p>
+  <p class="about">Chúng tôi</p>
   <div class="socical-list">
     <a href=""><i class="ti-truck"></i></a>
     <a href=""><i class="ti-package"></i></a>
